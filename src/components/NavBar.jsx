@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
-	{ label: "Alphabet", to: "/alphabet" },
+	{ label: "Alphabet", to: "/a1/alphabet" },
 	{ label: "Verbs", to: "/verbs" },
 	{ label: "Vocabulary", to: "/vocabulary" },
 	{ label: "Grammar", to: "/grammar" },

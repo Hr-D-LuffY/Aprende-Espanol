@@ -22,7 +22,7 @@ export default function AlphabetPage() {
 				{/* Header */}
 				<div className="mb-14">
 					<p className="text-[11px] tracking-[0.18em] uppercase text-[#3f3f46] mb-4">
-						Reference · A1
+						Reference · A1 · Foundation
 					</p>
 					<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
 						The Spanish Alphabet
@@ -216,7 +216,7 @@ export default function AlphabetPage() {
 						Next step
 					</p>
 					<Link
-						to="/pronunciation"
+						to="/a1/pronunciation"
 						className="flex items-center justify-between border border-[#1c1c1f] bg-[#111113] hover:border-[#f59e0b]/30 hover:bg-[#f59e0b]/5 rounded-2xl px-7 py-6 no-underline transition-all duration-150 group"
 					>
 						<div>
@@ -224,7 +224,7 @@ export default function AlphabetPage() {
 								Pronunciation Rules
 							</p>
 							<p className="text-[12px] text-[#3f3f46]">
-								10 rules — vowels, silent H, C & G sounds, the trill, accent
+								9 rules — vowels, silent H, C & G sounds, the trill, accent
 								marks and more
 							</p>
 						</div>

@@ -8,33 +8,6 @@ export default function GrammarPage() {
 
 	return (
 		<div className="min-h-screen bg-[#09090b] font-mono text-[#fafafa]">
-			{/* Navbar */}
-			<nav className="flex items-center justify-between px-8 h-14 border-b border-[#1c1c1f]">
-				<div className="flex items-center gap-3">
-					<span className="bg-[#f59e0b] text-[#09090b] text-[11px] font-semibold px-2 py-1 tracking-[0.05em]">
-						ES
-					</span>
-					<span className="text-[#a1a1aa] text-[13px] tracking-[0.08em]">
-						spanish·notes
-					</span>
-				</div>
-				<div className="flex gap-8">
-					{["vocab", "verbs", "grammar", "practice"].map((item) => (
-						<Link
-							key={item}
-							to={`/${item}`}
-							className={`text-[12px] tracking-[0.12em] transition-colors duration-150 ${
-								item === "grammar" ? "text-[#fafafa]" : (
-									"text-[#52525b] hover:text-[#a1a1aa]"
-								)
-							}`}
-						>
-							{item}
-						</Link>
-					))}
-				</div>
-			</nav>
-
 			<div className="max-w-5xl mx-auto px-8 py-12 pb-24">
 				{/* Header */}
 				<p className="text-[10px] tracking-[0.18em] text-[#3f3f46] uppercase mb-3">

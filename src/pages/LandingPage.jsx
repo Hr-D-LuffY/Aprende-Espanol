@@ -55,7 +55,7 @@ export default function LandingPage() {
 						</p>
 						<div className="flex items-center gap-4">
 							<Link
-								to="/grammar"
+								to="/a1"
 								className="bg-[#f59e0b] text-[#09090b] text-[13px] font-semibold px-5 py-2.5 rounded-lg tracking-wide hover:bg-[#fbbf24] transition-colors no-underline"
 							>
 								Lets Start →

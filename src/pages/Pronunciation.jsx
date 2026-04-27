@@ -18,8 +18,8 @@ export default function PronunciationPage() {
 						Pronunciation Rules
 					</h1>
 					<p className="text-[13px] text-[#52525b] leading-relaxed max-w-lg">
-						9 rules. Learn these once and you can read any Spanish word out
-						loud — no guessing.
+						9 rules. Learn these once and you can read any Spanish word out loud
+						— no guessing.
 					</p>
 				</div>
 
@@ -232,19 +232,43 @@ export default function PronunciationPage() {
 				</div>
 
 				{/* Back to alphabet link */}
-				<div className="mt-16 border-t border-[#1c1c1f] pt-10">
-					<Link
-						to="/alphabet"
-						className="inline-flex items-center gap-3 border border-[#1c1c1f] bg-[#111113] hover:border-[#27272a] hover:bg-[#18181b] rounded-xl px-6 py-4 no-underline transition-all duration-150 group"
-					>
-						<span className="text-[#3f3f46] group-hover:text-[#f59e0b] transition-colors">
-							←
-						</span>
-						<div>
-							<p className="text-[13px] text-[#a1a1aa]">Back to Alphabet</p>
-							<p className="text-[11px] text-[#3f3f46]">See all 27 letters</p>
-						</div>
-					</Link>
+				<div className="mt-16 border-t border-[#1c1c1f] pt-10 flex justify-between items-center">
+					<div>
+						<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-4">
+							Previous step
+						</p>
+						<Link
+							to="/a1/alphabet"
+							className="inline-flex items-center gap-3 border border-[#1c1c1f] bg-[#111113] hover:border-[#f59e0b]/30 hover:bg-[#f59e0b]/5 rounded-xl px-6 py-4 no-underline transition-all duration-150 group"
+						>
+							<span className="text-[#3f3f46] group-hover:text-[#f59e0b] transition-colors">
+								←
+							</span>
+							<div>
+								<p className="text-[13px] text-[#fafafa]">Back to Alphabet</p>
+								<p className="text-[11px] text-[#3f3f46]">See all 27 letters</p>
+							</div>
+						</Link>
+					</div>
+					<div>
+						<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-4">
+							Next step
+						</p>
+						<Link
+							to="/a1/alphabet"
+							className="inline-flex items-center gap-3 border border-[#1c1c1f] bg-[#111113] hover:border-[#f59e0b]/30 hover:bg-[#f59e0b]/5 rounded-xl px-6 py-4 no-underline transition-all duration-150 group"
+						>
+							<div className="text-right">
+								<p className="text-[13px] text-[#fafafa]">Next Topic</p>
+								<p className="text-[11px] text-[#3f3f46]">
+									Go to Pronunciation
+								</p>
+							</div>
+							<span className="text-[#3f3f46] group-hover:text-[#f59e0b] transition-colors">
+								→
+							</span>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
