@@ -1,260 +1,13 @@
 import { useState } from "react";
-
-const ALPHABET = [
-	{
-		letter: "A",
-		sound: "ah",
-		word: "amigo",
-		pronunciation: "ah-mee-go",
-		meaning: "friend",
-		note: 'Like "a" in "father"',
-	},
-	{
-		letter: "B",
-		sound: "beh",
-		word: "burro",
-		pronunciation: "boo-rroh",
-		meaning: "donkey",
-		note: "Softer than English B",
-	},
-	{
-		letter: "C",
-		sound: "seh",
-		word: "casa",
-		pronunciation: "kah-sah",
-		meaning: "house",
-		note: "K before a/o/u, S before e/i",
-	},
-	{
-		letter: "D",
-		sound: "deh",
-		word: "día",
-		pronunciation: "dee-ah",
-		meaning: "day",
-		note: "Softer than English D",
-	},
-	{
-		letter: "E",
-		sound: "eh",
-		word: "español",
-		pronunciation: "es-pah-nyol",
-		meaning: "Spanish",
-		note: 'Like "e" in "bed"',
-	},
-	{
-		letter: "F",
-		sound: "ef-eh",
-		word: "familia",
-		pronunciation: "fah-mee-lee-ah",
-		meaning: "family",
-		note: "Same as English F",
-	},
-	{
-		letter: "G",
-		sound: "heh",
-		word: "gato",
-		pronunciation: "gah-toh",
-		meaning: "cat",
-		note: "Hard G before a/o/u, like H before e/i",
-	},
-	{
-		letter: "H",
-		sound: "ah-cheh",
-		word: "hola",
-		pronunciation: "oh-lah",
-		meaning: "hello",
-		note: "Always silent in Spanish",
-	},
-	{
-		letter: "I",
-		sound: "ee",
-		word: "iglesia",
-		pronunciation: "ee-gleh-see-ah",
-		meaning: "church",
-		note: 'Like "ee" in "feet"',
-	},
-	{
-		letter: "J",
-		sound: "hoh-tah",
-		word: "jugo",
-		pronunciation: "hoo-goh",
-		meaning: "juice",
-		note: "Like a strong English H",
-	},
-	{
-		letter: "K",
-		sound: "kah",
-		word: "kilo",
-		pronunciation: "kee-loh",
-		meaning: "kilogram",
-		note: "Rare, mostly in loanwords",
-	},
-	{
-		letter: "L",
-		sound: "el-eh",
-		word: "luna",
-		pronunciation: "loo-nah",
-		meaning: "moon",
-		note: "Same as English L",
-	},
-	{
-		letter: "M",
-		sound: "em-eh",
-		word: "madre",
-		pronunciation: "mah-dreh",
-		meaning: "mother",
-		note: "Same as English M",
-	},
-	{
-		letter: "N",
-		sound: "en-eh",
-		word: "noche",
-		pronunciation: "noh-cheh",
-		meaning: "night",
-		note: "Same as English N",
-	},
-	{
-		letter: "Ñ",
-		sound: "en-yeh",
-		word: "niño",
-		pronunciation: "nee-nyoh",
-		meaning: "child/boy",
-		note: 'Like "ny" in "canyon"',
-	},
-	{
-		letter: "O",
-		sound: "oh",
-		word: "ojo",
-		pronunciation: "oh-hoh",
-		meaning: "eye",
-		note: 'Like "o" in "more"',
-	},
-	{
-		letter: "P",
-		sound: "peh",
-		word: "padre",
-		pronunciation: "pah-dreh",
-		meaning: "father",
-		note: "No puff of air like English P",
-	},
-	{
-		letter: "Q",
-		sound: "koo",
-		word: "queso",
-		pronunciation: "keh-soh",
-		meaning: "cheese",
-		note: "Always followed by silent U",
-	},
-	{
-		letter: "R",
-		sound: "er-eh",
-		word: "rojo",
-		pronunciation: "roh-hoh",
-		meaning: "red",
-		note: "Trilled at start of word",
-	},
-	{
-		letter: "S",
-		sound: "es-eh",
-		word: "sol",
-		pronunciation: "sohl",
-		meaning: "sun",
-		note: "Same as English S",
-	},
-	{
-		letter: "T",
-		sound: "teh",
-		word: "tiempo",
-		pronunciation: "tee-em-poh",
-		meaning: "weather/time",
-		note: "No puff of air like English T",
-	},
-	{
-		letter: "U",
-		sound: "oo",
-		word: "uva",
-		pronunciation: "oo-bah",
-		meaning: "grape",
-		note: 'Like "oo" in "food"',
-	},
-	{
-		letter: "V",
-		sound: "oo-beh",
-		word: "vino",
-		pronunciation: "bee-noh",
-		meaning: "wine",
-		note: "Almost identical to Spanish B",
-	},
-	{
-		letter: "W",
-		sound: "doh-bleh-oo",
-		word: "wifi",
-		pronunciation: "wee-fee",
-		meaning: "wifi",
-		note: "Only in foreign loanwords",
-	},
-	{
-		letter: "X",
-		sound: "eh-kees",
-		word: "éxito",
-		pronunciation: "ek-see-toh",
-		meaning: "success",
-		note: "Usually like English S or KS",
-	},
-	{
-		letter: "Y",
-		sound: "ee-gree-eh-gah",
-		word: "yo",
-		pronunciation: "yoh",
-		meaning: "I (myself)",
-		note: "Like English Y or J",
-	},
-	{
-		letter: "Z",
-		sound: "seh-tah",
-		word: "zapato",
-		pronunciation: "sah-pah-toh",
-		meaning: "shoe",
-		note: "Like S in Latin America",
-	},
-];
-
-const SPECIAL = [
-	{
-		letters: "CH",
-		sound: "cheh",
-		word: "chico",
-		pronunciation: "chee-koh",
-		meaning: "boy/small",
-		note: "Like English CH",
-	},
-	{
-		letters: "LL",
-		sound: "eh-yeh",
-		word: "lluvia",
-		pronunciation: "yoo-bee-ah",
-		meaning: "rain",
-		note: "Like English Y",
-	},
-	{
-		letters: "RR",
-		sound: "eh-rreh",
-		word: "perro",
-		pronunciation: "peh-rroh",
-		meaning: "dog",
-		note: "Strong rolled trill",
-	},
-];
+import { Link } from "react-router-dom";
+import { ALPHABET, SPECIAL } from "../context/alphabetCon";
 
 export default function AlphabetPage() {
 	const [active, setActive] = useState(null);
-	const [search, setSearch] = useState("");
 
 	const filtered = ALPHABET.filter(
 		(a) =>
-			a.letter.toLowerCase().includes(search.toLowerCase()) ||
-			a.word.toLowerCase().includes(search.toLowerCase()) ||
-			a.meaning.toLowerCase().includes(search.toLowerCase()),
+			a.letter.toLowerCase() || a.word.toLowerCase() || a.meaning.toLowerCase(),
 	);
 
 	const selected =
@@ -278,20 +31,6 @@ export default function AlphabetPage() {
 						27 letters. Click any to see pronunciation, an example word, and a
 						study note.
 					</p>
-				</div>
-
-				{/* Search */}
-				<div className="relative mb-10 max-w-xs">
-					<span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#3f3f46] text-[12px]">
-						→
-					</span>
-					<input
-						type="text"
-						placeholder="search letter, word, meaning..."
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-						className="w-full bg-[#111113] border border-[#1c1c1f] rounded-lg pl-8 pr-4 py-2 text-[12px] text-[#a1a1aa] placeholder-[#3f3f46] focus:outline-none focus:border-[#f59e0b]/40 tracking-wide transition-colors"
-					/>
 				</div>
 
 				{/* Main grid + detail panel */}
@@ -469,6 +208,30 @@ export default function AlphabetPage() {
 							</div>
 						))}
 					</div>
+				</div>
+
+				{/* Pronunciation rules link */}
+				<div className="mt-16 border-t border-[#1c1c1f] pt-10">
+					<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-4">
+						Next step
+					</p>
+					<Link
+						to="/pronunciation"
+						className="flex items-center justify-between border border-[#1c1c1f] bg-[#111113] hover:border-[#f59e0b]/30 hover:bg-[#f59e0b]/5 rounded-2xl px-7 py-6 no-underline transition-all duration-150 group"
+					>
+						<div>
+							<p className="text-[18px] font-light text-[#fafafa] tracking-[-0.02em] mb-1">
+								Pronunciation Rules
+							</p>
+							<p className="text-[12px] text-[#3f3f46]">
+								10 rules — vowels, silent H, C & G sounds, the trill, accent
+								marks and more
+							</p>
+						</div>
+						<span className="text-[#27272a] text-xl group-hover:text-[#f59e0b] transition-colors ml-6">
+							→
+						</span>
+					</Link>
 				</div>
 			</div>
 		</div>

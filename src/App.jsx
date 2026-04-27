@@ -8,6 +8,8 @@ import LandingPage from "./pages/LandingPage.jsx";
 import Navbar from "./components/NavBar.jsx";
 import FootBar from "./components/FootBar.jsx";
 import AlphabetPage from "./pages/Alphabet.jsx";
+import PronunciationPage from "./pages/Pronunciation.jsx";
+import GrammarPage from "./pages/GrammarPage.jsx";
 
 const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
@@ -21,6 +23,8 @@ const App = () => (
 			{/* Public landing page */}
 			<Route path="/" element={<LandingPage />} />
 			<Route path="/alphabet" element={<AlphabetPage />} />
+			<Route path="/pronunciation" element={<PronunciationPage />} />
+			<Route path="/grammar" element={<GrammarPage />} />
 		</Routes>
 		<FootBar />
 	</BrowserRouter>
