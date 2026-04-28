@@ -22,7 +22,7 @@ export default function AlphabetPage() {
 				{/* Header */}
 				<div className="mb-14">
 					<p className="text-[11px] tracking-[0.18em] uppercase text-[#3f3f46] mb-4">
-						Reference · A1 · Foundation
+						Reference — A1 · Foundation
 					</p>
 					<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
 						The Spanish Alphabet

@@ -1,10 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { a1Topics, a2Topics } from "../context/GrammarCon";
 
 export default function GrammarPage() {
-	const [level, setLevel] = useState("A1");
-	const topics = level === "A1" ? a1Topics : a2Topics;
+	const { level } = useParams();
+	const navigate = useNavigate();
+
+	// 🔥 state (optional, for UI smoothness)
+	const [currentLevel, setCurrentLevel] = useState("A1");
+
+	// 🔥 sync URL → state
+	useEffect(() => {
+		if (level?.toUpperCase() === "A2") {
+			setCurrentLevel("A2");
+		} else {
+			setCurrentLevel("A1");
+		}
+	}, [level]);
+
+	const topics = currentLevel === "A1" ? a1Topics : a2Topics;
+
+	// 🔥 when clicking tab → change URL
+	const handleTabClick = (lvl) => {
+		setCurrentLevel(lvl); // optional (instant UI)
+		navigate(`/${lvl.toLowerCase()}/grammar`);
+	};
 
 	return (
 		<div className="min-h-screen bg-[#09090b] font-mono text-[#fafafa]">
@@ -25,9 +45,9 @@ export default function GrammarPage() {
 					{["A1", "A2"].map((lvl) => (
 						<button
 							key={lvl}
-							onClick={() => setLevel(lvl)}
+							onClick={() => handleTabClick(lvl)}
 							className={`text-[11px] tracking-[0.1em] px-4 py-1.5 rounded-full border transition-all duration-150 font-mono ${
-								level === lvl ?
+								currentLevel === lvl ?
 									"bg-[#f59e0b] border-[#f59e0b] text-[#09090b] font-semibold"
 								:	"border-[#1c1c1f] text-[#52525b] hover:border-[#27272a] hover:text-[#a1a1aa]"
 							}`}

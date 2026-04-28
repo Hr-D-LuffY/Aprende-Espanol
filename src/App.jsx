@@ -12,6 +12,11 @@ import PronunciationPage from "./pages/Pronunciation.jsx";
 import GrammarPage from "./pages/GrammarPage.jsx";
 import A1Page from "./pages/A1Page.jsx";
 import NumbersPage from "./pages/NumbersPage.jsx";
+import NounGenderPage from "./pages/NounGenderPage.jsx";
+import ArticlesPage from "./pages/Article.jsx";
+import SingularPluralPage from "./pages/SingularPlural.jsx";
+import AdjectiveAgreementPage from "./pages/Adjectiveagreementpage.jsx";
+import SubjectPronounsPage from "./pages/Pronoun.jsx";
 
 const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
@@ -24,13 +29,37 @@ const App = () => (
 		<Routes>
 			{/* Public landing page */}
 			<Route path="/" element={<LandingPage />} />
-			<Route path="/grammar" element={<GrammarPage />} />
+
+			{/* redirect default */}
+			<Route path="/grammar" element={<Navigate to="/a1/grammar" />} />
+
+			{/* grammar page with level */}
+			{/* <Route path=":level/grammar" element={<GrammarPage />} /> */}
+
+			{/* <Route path="/grammar" element={<GrammarPage />} />
+			<Route path="/noun" element={<NounGenderPage />} />
+			<Route path="/pronouns" element={<SubjectPronounsPage />} />
+			<Route path="/article" element={<ArticlesPage />} />
+			<Route path="/singular-plural" element={<SingularPluralPage />} />
+			<Route path="/adjective-agreement" element={<AdjectiveAgreementPage />} /> */}
+
 			{/* A1 & its section Page */}
 			<Route path="a1">
 				<Route index element={<A1Page />} />
 				<Route path="alphabet" element={<AlphabetPage />} />
 				<Route path="pronunciation" element={<PronunciationPage />} />
 				<Route path="numbers" element={<NumbersPage />} />
+				<Route path="grammar">
+					<Route index element={<GrammarPage level="A1" />} />
+					<Route path="noun-gender" element={<NounGenderPage />} />
+					<Route path="pronouns" element={<SubjectPronounsPage />} />
+					<Route path="article" element={<ArticlesPage />} />
+					<Route path="singular-plural" element={<SingularPluralPage />} />
+					<Route
+						path="adjective"
+						element={<AdjectiveAgreementPage />}
+					/>
+				</Route>
 			</Route>
 		</Routes>
 		<FootBar />
