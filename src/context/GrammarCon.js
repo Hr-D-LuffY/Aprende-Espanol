@@ -57,7 +57,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Combine words into simple sentences.",
 		details: ["Yo como pan", "Ella bebe agua"],
-		path: "/grammar/sentence-structure",
+		path: "/a1/grammar/sentence-structure",
 	},
 	{
 		num: "07",
@@ -66,7 +66,7 @@ export const a1Topics = [
 		important: false,
 		preview: "Point to things: this, that, these.",
 		details: ["este, ese", "esta, esa", "esto, eso"],
-		path: "/grammar/demonstratives",
+		path: "/a1/grammar/demonstrative",
 	},
 	{
 		num: "08",
@@ -75,7 +75,7 @@ export const a1Topics = [
 		important: false,
 		preview: "Show ownership: my, your, his.",
 		details: ["mi, tu, su", "nuestro/a"],
-		path: "/grammar/possessives",
+		path: "/a1/grammar/possessive-adjectives",
 	},
 	{
 		num: "09",
@@ -126,7 +126,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Ask basic questions.",
 		details: ["¿Qué?", "¿Dónde?", "¿Cuándo?", "¿Por qué?", "¿Cómo?"],
-		path: "/grammar/questions",
+		path: "/a1/grammar/question-words",
 	},
 	{
 		num: "14",

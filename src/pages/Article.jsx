@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BackNext from "../components/BackNext";
 
 // ── Shared primitives ──────────────────────────────────────────────────────
 
@@ -138,7 +139,7 @@ export default function ArticlesPage() {
 
 	return (
 		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
-			<div className="max-w-3xl mx-auto px-8 pt-24 pb-20">
+			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
 				{/* Header */}
 				<Eyebrow>Grammar · A1</Eyebrow>
 				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
@@ -204,6 +205,14 @@ export default function ArticlesPage() {
 						feminine; only the article changes.
 					</p>
 				</div>
+
+				{/* Back & Next link */}
+				<BackNext
+					back="/a1/grammar/singular-plural"
+					next="/a1/grammar/adjective"
+					backLabel="Singular-Plural"
+					nextLabel="Adjective"
+				/>
 			</div>
 		</div>
 	);

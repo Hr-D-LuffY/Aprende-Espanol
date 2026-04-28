@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,Navigate} from "react-router-dom";
 import { ALPHABET, SPECIAL } from "../context/alphabetCon";
 
 export default function AlphabetPage() {

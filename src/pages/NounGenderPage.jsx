@@ -16,6 +16,7 @@ import RuleBlock from "../components/NounGender/RuleBlock.jsx";
 import InfoNote from "../components/NounGender/InfoNote.jsx";
 import PairTable from "../components/NounGender/PairTable.jsx";
 import GenderDot from "../components/NounGender/GenderDot.jsx";
+import BackNext from "../components/BackNext.jsx";
 
 const TABS = [
 	{ id: "masculine", label: "Masculine" },
@@ -199,6 +200,14 @@ export default function NounGenderPage() {
 				{activeTab === "masculine" && <MasculinePanel />}
 				{activeTab === "feminine" && <FemininePanel />}
 				{activeTab === "changing" && <ChangingPanel />}
+
+				{/* Back & Next link */}
+				<BackNext
+					back="/a1/pronunciation"
+					next="/a1/grammar/singular-plural"
+					backLabel="Pronunciation"
+					nextLabel="Singular-Plural"
+				/>
 			</div>
 		</div>
 	);

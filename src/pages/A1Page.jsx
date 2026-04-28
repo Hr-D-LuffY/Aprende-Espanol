@@ -165,7 +165,7 @@ export default function A1Page() {
 				{/* ── CTA ── */}
 				<div className="pt-10 flex items-center gap-5">
 					<Link
-						to="a1/foundation/alphabet"
+						to="/a1/alphabet"
 						className="bg-[#f59e0b] text-[#09090b] text-[13px] font-semibold px-5 py-2.5 rounded-lg tracking-wide hover:bg-[#fbbf24] transition-colors no-underline"
 					>
 						Start learning →

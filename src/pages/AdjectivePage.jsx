@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BackNext from "../components/BackNext";
 
 // ── Primitives ─────────────────────────────────────────────────────────────
 
@@ -137,10 +138,10 @@ const INVARIABLE_EXAMPLES = [
 
 // ── Page ──────────────────────────────────────────────────────────────────
 
-export default function AdjectiveAgreementPage() {
+export default function AdjectivePage() {
 	return (
 		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
-			<div className="max-w-3xl mx-auto px-8 pt-24 pb-20">
+			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
 				{/* Header */}
 				<Eyebrow>Grammar · A1</Eyebrow>
 				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
@@ -280,6 +281,14 @@ export default function AdjectiveAgreementPage() {
 						))}
 					</div>
 				</div>
+
+				{/* Back & Next link */}
+				<BackNext
+					back="/a1/grammar/article"
+					next="/a1/grammar/pronouns"
+					backLabel="Article"
+					nextLabel="Pronouns"
+				/>
 			</div>
 		</div>
 	);

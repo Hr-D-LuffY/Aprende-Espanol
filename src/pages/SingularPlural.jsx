@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BackNext from "../components/BackNext";
 
 // ── Shared primitives ──────────────────────────────────────────────────────
 
@@ -145,7 +146,7 @@ export default function SingularPluralPage() {
 
 	return (
 		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
-			<div className="max-w-3xl mx-auto px-8 pt-24 pb-20">
+			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
 				{/* Header */}
 				<Eyebrow>Grammar · A1</Eyebrow>
 				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
@@ -210,6 +211,14 @@ export default function SingularPluralPage() {
 						))}
 					</div>
 				</div>
+
+				{/* Back & Next link */}
+				<BackNext
+					back="/a1/grammar/noun-gender"
+					next="/a1/grammar/article"
+					backLabel="Noun-Gender"
+					nextLabel="Article"
+				/>
 			</div>
 		</div>
 	);
