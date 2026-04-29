@@ -55,23 +55,24 @@ const VOCAB = [
 
 export default function SerPage() {
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-6 pt-20 pb-24">
 				{/* Header */}
 				<div className="mb-14">
-					<p className="text-[10px] tracking-[0.18em] uppercase text-[#3f3f46] mb-3">
+					<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-3">
 						Grammar · To Be
 					</p>
 					<div className="flex items-baseline gap-4 mb-3">
-						<h1 className="text-7xl font-light tracking-[-0.05em] text-[#fafafa]">
+						<h1 className="text-7xl font-light tracking-[-0.05em] text-[var(--text-primary)]">
 							SER
 						</h1>
-						<span className="text-[13px] text-[#52525b]">
+						<span className="text-[13px] text-[var(--text-muted)]">
 							permanent / identity
 						</span>
 					</div>
-					<p className="text-[11px] text-[#3f3f46] tracking-[0.1em] uppercase">
-						Negation → <span className="text-[#52525b]">NO + verb</span>{" "}
+					<p className="text-[11px] text-[var(--text-label)] tracking-[0.1em] uppercase">
+						Negation →{" "}
+						<span className="text-[var(--text-muted)]">NO + verb</span>{" "}
 						&nbsp;·&nbsp; e.g. No soy → I am not
 					</p>
 				</div>
@@ -87,7 +88,7 @@ export default function SerPage() {
 				{/* Conjugation */}
 				<div className="mb-14">
 					<SectionHeading>Conjugation</SectionHeading>
-					<div className="border border-[#1c1c1f] rounded-xl overflow-hidden bg-[#111113] px-6">
+					<div className="border border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)] px-6">
 						{CONJUGATIONS.map((c) => (
 							<ConjRow key={c.pronoun} {...c} />
 						))}
@@ -99,14 +100,14 @@ export default function SerPage() {
 					<div className="flex items-baseline gap-3 mb-6">
 						<SectionHeading>Criteria</SectionHeading>
 					</div>
-					<div className="border border-[#1c1c1f] rounded-xl px-5 py-3 bg-[#111113] mb-6 inline-flex items-center gap-3">
-						<span className="text-[11px] tracking-[0.14em] uppercase text-[#3f3f46]">
+					<div className="border border-[var(--border)] rounded-xl px-5 py-3 bg-[var(--surface)] mb-6 inline-flex items-center gap-3">
+						<span className="text-[11px] tracking-[0.14em] uppercase text-[var(--text-label)]">
 							mnemonic
 						</span>
 						{"DOCTOR".split("").map((l, i) => (
 							<span
 								key={i}
-								className="text-[18px] font-semibold text-[#f59e0b] tracking-[0.12em]"
+								className="text-[18px] font-semibold text-[var(--accent)] tracking-[0.12em]"
 							>
 								{l}
 							</span>

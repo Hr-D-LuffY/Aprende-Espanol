@@ -4,8 +4,8 @@ import BackNext from "../../../components/BackNext";
 
 function Tag({ children, color = "zinc" }) {
 	const styles = {
-		amber: "border-[#f59e0b]/40 text-[#f59e0b] bg-[#f59e0b]/5",
-		zinc: "border-[#27272a] text-[#52525b] bg-transparent",
+		amber: "border-[#f59e0b]/40 text-[var(--accent)] bg-[var(--accent)]/5",
+		zinc: "border-[#27272a] text-[var(--text-muted)] bg-transparent",
 		blue: "border-[#3b82f6]/30 text-[#60a5fa] bg-[#3b82f6]/5",
 		green: "border-[#22c55e]/30 text-[#4ade80] bg-[#22c55e]/5",
 		rose: "border-[#f43f5e]/30 text-[#fb7185] bg-[#f43f5e]/5",
@@ -23,20 +23,22 @@ function Tag({ children, color = "zinc" }) {
 
 function ExampleRow({ es, en }) {
 	return (
-		<div className="py-2.5 border-b border-[#1c1c1f] last:border-0 flex flex-col gap-0.5">
-			<span className="text-[13px] text-[#fafafa] tracking-[-0.01em]">
+		<div className="py-2.5 border-b border-[var(--border)] last:border-0 flex flex-col gap-0.5">
+			<span className="text-[13px] text-[var(--text-primary)] tracking-[-0.01em]">
 				{es}
 			</span>
-			<span className="text-[11px] text-[#3f3f46] tracking-wide">{en}</span>
+			<span className="text-[11px] text-[var(--text-label)] tracking-wide">
+				{en}
+			</span>
 		</div>
 	);
 }
 
 function UseBlock({ title, examples }) {
 	return (
-		<div className="border border-[#1c1c1f] rounded-xl bg-[#111113] overflow-hidden">
-			<div className="px-5 py-3 border-b border-[#1c1c1f]">
-				<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46]">
+		<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] overflow-hidden">
+			<div className="px-5 py-3 border-b border-[var(--border)]">
+				<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)]">
 					{title}
 				</p>
 			</div>
@@ -51,9 +53,11 @@ function UseBlock({ title, examples }) {
 
 function VocabRow({ es, en }) {
 	return (
-		<div className="flex items-baseline justify-between py-2.5 border-b border-[#1c1c1f] last:border-0 hover:bg-[#f59e0b]/3 transition-colors px-1">
-			<span className="text-[13px] text-[#fafafa]">{es}</span>
-			<span className="text-[11px] text-[#52525b] tracking-wide">{en}</span>
+		<div className="flex items-baseline justify-between py-2.5 border-b border-[var(--border)] last:border-0 hover:bg-[var(--accent)]/3 transition-colors px-1">
+			<span className="text-[13px] text-[var(--text-primary)]">{es}</span>
+			<span className="text-[11px] text-[var(--text-muted)] tracking-wide">
+				{en}
+			</span>
 		</div>
 	);
 }
@@ -61,15 +65,15 @@ function VocabRow({ es, en }) {
 function AfterPrepNote({ pairs }) {
 	return (
 		<div className="border border-[#27272a] rounded-lg px-4 py-3 flex items-center gap-6">
-			<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] shrink-0">
+			<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] shrink-0">
 				After prep.
 			</p>
 			<div className="flex gap-6">
 				{pairs.map(([from, to]) => (
 					<div key={from} className="flex items-center gap-2">
-						<span className="text-[12px] text-[#52525b]">{from}</span>
+						<span className="text-[12px] text-[var(--text-muted)]">{from}</span>
 						<span className="text-[#27272a]">→</span>
-						<span className="text-[12px] text-[#f59e0b] font-semibold">
+						<span className="text-[12px] text-[var(--accent)] font-semibold">
 							{to}
 						</span>
 					</div>
@@ -602,17 +606,17 @@ export default function PrepositionPage() {
 	const prep = PREPOSITIONS.find((p) => p.id === active);
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-3xl mx-auto px-6 pt-20 pb-28">
 				{/* Header */}
 				<div className="mb-10">
-					<p className="text-[10px] tracking-[0.18em] uppercase text-[#3f3f46] mb-3">
+					<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-3">
 						Grammar · Prepositions
 					</p>
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[#fafafa] mb-4">
+					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-4">
 						Prepositions
 					</h1>
-					<p className="text-[12px] text-[#52525b] tracking-wide max-w-sm">
+					<p className="text-[12px] text-[var(--text-muted)] tracking-wide max-w-sm">
 						Small words, big impact. Each preposition pins a relationship —
 						time, place, cause, or company — to the rest of the sentence.
 					</p>
@@ -626,8 +630,8 @@ export default function PrepositionPage() {
 							onClick={() => setActive(p.id)}
 							className={`px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-widest border transition-all duration-150 cursor-pointer ${
 								active === p.id ?
-									"bg-[#f59e0b] text-[#09090b] border-[#f59e0b]"
-								:	"bg-transparent text-[#52525b] border-[#27272a] hover:text-[#71717a] hover:border-[#3f3f46]"
+									"bg-[var(--accent)] text-[var(--accent-text)] border-[#f59e0b]"
+								:	"bg-transparent text-[var(--text-muted)] border-[#27272a] hover:text-[#71717a] hover:border-[#3f3f46]"
 							}`}
 						>
 							{p.label}
@@ -639,15 +643,15 @@ export default function PrepositionPage() {
 				<div key={active}>
 					{/* Heading row */}
 					<div className="flex items-baseline gap-4 mb-2">
-						<span className="text-5xl font-light tracking-[-0.04em] text-[#fafafa]">
+						<span className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
 							{prep.label}
 						</span>
 						<Tag color={prep.tagColor}>{prep.tag}</Tag>
 					</div>
-					<p className="text-[12px] text-[#52525b] tracking-wide mb-1">
+					<p className="text-[12px] text-[var(--text-muted)] tracking-wide mb-1">
 						{prep.short}
 					</p>
-					<p className="text-[10px] text-[#3f3f46] tracking-[0.1em] uppercase mb-8">
+					<p className="text-[10px] text-[var(--text-label)] tracking-[0.1em] uppercase mb-8">
 						{prep.summary}
 					</p>
 
@@ -660,7 +664,7 @@ export default function PrepositionPage() {
 
 					{/* Uses */}
 					<div className="mb-10">
-						<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-4">
+						<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-4">
 							Uses
 						</p>
 						<div className="flex flex-col gap-3">
@@ -673,10 +677,10 @@ export default function PrepositionPage() {
 					{/* Vocab */}
 					{prep.vocab?.length > 0 && (
 						<div>
-							<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-4">
+							<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-4">
 								Vocabulary
 							</p>
-							<div className="border border-[#1c1c1f] rounded-xl bg-[#111113] px-5">
+							<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] px-5">
 								{prep.vocab.map((v) => (
 									<VocabRow key={v.es} {...v} />
 								))}

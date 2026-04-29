@@ -19,8 +19,8 @@ function MergeVisual({ parts, result, blocked }) {
 						className={`text-[13px] font-semibold px-2.5 py-1 rounded border
                             ${
 															p.accent ?
-																"text-[#f59e0b] border-[#f59e0b]/30 bg-[#f59e0b]/5"
-															:	"text-[#a1a1aa] border-[#1c1c1f]"
+																"text-[var(--accent)] border-[#f59e0b]/30 bg-[var(--accent)]/5"
+															:	"text-[var(--text-secondary)] border-[var(--border)]"
 														}`}
 					>
 						{p.word}
@@ -29,10 +29,10 @@ function MergeVisual({ parts, result, blocked }) {
 			</div>
 			<span className="text-[#27272a] text-sm">→</span>
 			{blocked ?
-				<span className="text-[12px] text-[#52525b] border border-[#1c1c1f] px-2.5 py-1 rounded line-through">
+				<span className="text-[12px] text-[var(--text-muted)] border border-[var(--border)] px-2.5 py-1 rounded line-through">
 					{result}
 				</span>
-			:	<span className="text-[13px] font-semibold text-[#f59e0b] border border-[#f59e0b]/30 bg-[#f59e0b]/5 px-2.5 py-1 rounded">
+			:	<span className="text-[13px] font-semibold text-[var(--accent)] border border-[#f59e0b]/30 bg-[var(--accent)]/5 px-2.5 py-1 rounded">
 					{result}
 				</span>
 			}
@@ -45,17 +45,17 @@ function ExPair({ es, en }) {
 	return (
 		<div
 			onClick={() => setShown((s) => !s)}
-			className={`py-3 border-b border-[#1c1c1f] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
-                ${shown ? "bg-[#f59e0b]/5 px-2 -mx-2" : "hover:bg-[#111113]"}`}
+			className={`py-3 border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
+                ${shown ? "bg-[var(--accent)]/5 px-2 -mx-2" : "hover:bg-[var(--surface)]"}`}
 		>
 			<p
-				className={`text-[13px] tracking-[-0.01em] transition-colors ${shown ? "text-[#f59e0b]" : "text-[#fafafa]"}`}
+				className={`text-[13px] tracking-[-0.01em] transition-colors ${shown ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
 			>
 				{es}
 			</p>
 			<p
 				className={`text-[11px] tracking-wide transition-all duration-150
-                ${shown ? "text-[#52525b] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
+                ${shown ? "text-[var(--text-muted)] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
 			>
 				{en}
 			</p>
@@ -108,10 +108,10 @@ export default function ContractionPage() {
 			<div className="mb-12">
 				<Eyebrow>Grammar · Contractions · Mandatory rules</Eyebrow>
 				<div className="flex items-baseline gap-4 mb-3">
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[#fafafa]">
+					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
 						al · del
 					</h1>
-					<span className="text-[16px] text-[#52525b] font-light">
+					<span className="text-[16px] text-[var(--text-muted)] font-light">
 						contractions
 					</span>
 				</div>
@@ -125,15 +125,17 @@ export default function ContractionPage() {
 			{/* Concept card */}
 			<Card className="mb-6 p-6">
 				<Eyebrow>What are they?</Eyebrow>
-				<p className="text-[12px] text-[#52525b] leading-relaxed mb-6 tracking-wide max-w-lg">
-					When the prepositions <span className="text-[#fafafa]">a</span> (to)
-					or <span className="text-[#fafafa]">de</span> (of/from) meet the
-					masculine article <span className="text-[#fafafa]">el</span>, they
-					always merge. This is not optional — it's a hard rule.
+				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed mb-6 tracking-wide max-w-lg">
+					When the prepositions{" "}
+					<span className="text-[var(--text-primary)]">a</span> (to) or{" "}
+					<span className="text-[var(--text-primary)]">de</span> (of/from) meet
+					the masculine article{" "}
+					<span className="text-[var(--text-primary)]">el</span>, they always
+					merge. This is not optional — it's a hard rule.
 				</p>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 					<div>
-						<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-4">
+						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-4">
 							AL — direction / to
 						</p>
 						<div className="space-y-3">
@@ -145,14 +147,14 @@ export default function ContractionPage() {
 								]}
 								result="al"
 							/>
-							<p className="text-[11px] text-[#3f3f46] tracking-wide pl-1">
-								Voy <span className="text-[#f59e0b]">al</span> mercado. → I go
-								to the market.
+							<p className="text-[11px] text-[var(--text-label)] tracking-wide pl-1">
+								Voy <span className="text-[var(--accent)]">al</span> mercado. →
+								I go to the market.
 							</p>
 						</div>
 					</div>
 					<div>
-						<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-4">
+						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-4">
 							DEL — possession / of
 						</p>
 						<div className="space-y-3">
@@ -164,9 +166,9 @@ export default function ContractionPage() {
 								]}
 								result="del"
 							/>
-							<p className="text-[11px] text-[#3f3f46] tracking-wide pl-1">
-								La casa <span className="text-[#f59e0b]">del</span> pueblo. →
-								The village house.
+							<p className="text-[11px] text-[var(--text-label)] tracking-wide pl-1">
+								La casa <span className="text-[var(--accent)]">del</span>{" "}
+								pueblo. → The village house.
 							</p>
 						</div>
 					</div>
@@ -178,7 +180,7 @@ export default function ContractionPage() {
 				<Card>
 					<div className="px-5 pt-5 pb-2">
 						<Eyebrow>AL — examples</Eyebrow>
-						<p className="text-[11px] text-[#52525b] tracking-wide mb-3">
+						<p className="text-[11px] text-[var(--text-muted)] tracking-wide mb-3">
 							used with movement / direction verbs: ir, volver, llegar...
 						</p>
 					</div>
@@ -195,7 +197,7 @@ export default function ContractionPage() {
 				<Card>
 					<div className="px-5 pt-5 pb-2">
 						<Eyebrow>DEL — examples</Eyebrow>
-						<p className="text-[11px] text-[#52525b] tracking-wide mb-3">
+						<p className="text-[11px] text-[var(--text-muted)] tracking-wide mb-3">
 							used for possession, origin, or belonging
 						</p>
 					</div>
@@ -213,14 +215,19 @@ export default function ContractionPage() {
 			{/* Exception card */}
 			<Card className="mt-6 p-6">
 				<Eyebrow>Exception — when NOT to contract</Eyebrow>
-				<p className="text-[12px] text-[#52525b] leading-relaxed mb-5 tracking-wide max-w-lg">
-					Only the <span className="text-[#fafafa]">article el</span> contracts.
-					The pronoun <span className="text-[#fafafa]">él</span> (he) never does
+				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed mb-5 tracking-wide max-w-lg">
+					Only the{" "}
+					<span className="text-[var(--text-primary)]">article el</span>{" "}
+					contracts. The pronoun{" "}
+					<span className="text-[var(--text-primary)]">él</span> (he) never does
 					— even though they sound the same.
 				</p>
 				<div className="space-y-4">
 					{NO_CONTRACTION.map((item, i) => (
-						<div key={i} className="border border-[#1c1c1f] rounded-lg p-4">
+						<div
+							key={i}
+							className="border border-[var(--border)] rounded-lg p-4"
+						>
 							<div className="flex items-center gap-3 mb-2">
 								<MergeVisual
 									parts={item.rule
@@ -232,8 +239,10 @@ export default function ContractionPage() {
 									blocked
 								/>
 							</div>
-							<p className="text-[12px] text-[#f59e0b] mb-1">{item.example}</p>
-							<p className="text-[10px] text-[#3f3f46] tracking-wide">
+							<p className="text-[12px] text-[var(--accent)] mb-1">
+								{item.example}
+							</p>
+							<p className="text-[10px] text-[var(--text-label)] tracking-wide">
 								{item.note}
 							</p>
 						</div>
@@ -244,7 +253,7 @@ export default function ContractionPage() {
 			{/* Summary table */}
 			<Card className="mt-6 p-6">
 				<Eyebrow>Summary</Eyebrow>
-				<div className="grid grid-cols-3 gap-0 border border-[#1c1c1f] rounded-lg overflow-hidden text-center">
+				<div className="grid grid-cols-3 gap-0 border border-[var(--border)] rounded-lg overflow-hidden text-center">
 					{[
 						{ label: "Preposition", val1: "a", val2: "de" },
 						{ label: "+ article", val1: "el", val2: "el" },
@@ -253,18 +262,18 @@ export default function ContractionPage() {
 						{ label: "gender", val1: "masculine only", val2: "masculine only" },
 					].map((row, i) => (
 						<div key={i} className="contents">
-							<div className="py-2.5 px-3 border-b border-[#1c1c1f] text-[10px] text-[#3f3f46] tracking-[0.1em] uppercase text-left">
+							<div className="py-2.5 px-3 border-b border-[var(--border)] text-[10px] text-[var(--text-label)] tracking-[0.1em] uppercase text-left">
 								{row.label}
 							</div>
 							<div
-								className={`py-2.5 px-3 border-b border-l border-[#1c1c1f] text-[12px]
-                                ${row.accent ? "text-[#f59e0b] font-semibold" : "text-[#a1a1aa]"}`}
+								className={`py-2.5 px-3 border-b border-l border-[var(--border)] text-[12px]
+                                ${row.accent ? "text-[var(--accent)] font-semibold" : "text-[var(--text-secondary)]"}`}
 							>
 								{row.val1}
 							</div>
 							<div
-								className={`py-2.5 px-3 border-b border-l border-[#1c1c1f] text-[12px]
-                                ${row.accent ? "text-[#f59e0b] font-semibold" : "text-[#a1a1aa]"}`}
+								className={`py-2.5 px-3 border-b border-l border-[var(--border)] text-[12px]
+                                ${row.accent ? "text-[var(--accent)] font-semibold" : "text-[var(--text-secondary)]"}`}
 							>
 								{row.val2}
 							</div>

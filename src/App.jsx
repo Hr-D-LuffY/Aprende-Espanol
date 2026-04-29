@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
+import { ThemeProvider } from "./context/ThemeContext.jsx";
+
 import LandingPage from "./pages/LandingPage.jsx";
 import GrammarPage from "./pages/GrammarPage.jsx";
 import Navbar from "./components/NavBar.jsx";
@@ -32,6 +34,8 @@ import NegationPage from "./pages/A1Pages/Grammar/Negation.jsx";
 import ContractionPage from "./pages/A1Pages/Grammar/Contractionpage.jsx";
 import PrepositionPage from "./pages/A1Pages/Grammar/Prepositionpage.jsx";
 import TimePage from "./pages/A1Pages/Usage/TimePage.jsx";
+import DaysMonthsPage from "./pages/A1Pages/Usage/DaysMonthPage.jsx";
+import VocabPage from "./pages/VocabPage.jsx";
 
 const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
@@ -39,51 +43,52 @@ const supabase = createClient(
 );
 
 const App = () => (
-	<BrowserRouter>
-		<Navbar />
-		<Routes>
-			{/* Public landing page */}
-			<Route path="/" element={<LandingPage />} />
-
-			{/* redirect default */}
-			<Route path="/grammar" element={<Navigate to="/a1/grammar" />} />
-
-			{/* A1 & its section Page */}
-			<Route path="a1">
-				<Route index element={<A1Page />} />
-				<Route path="alphabet" element={<AlphabetPage />} />
-				<Route path="pronunciation" element={<PronunciationPage />} />
-
-				<Route path="grammar">
-					<Route index element={<GrammarPage level="A1" />} />
-					<Route path="noun-gender" element={<NounGenderPage />} />
-					<Route path="pronouns" element={<PronounsPage />} />
-					<Route path="article" element={<ArticlesPage />} />
-					<Route path="singular-plural" element={<SingularPluralPage />} />
-					<Route path="adjective" element={<AdjectivePage />} />
-					<Route path="demonstrative" element={<DemonstrativePage />} />
-					<Route path="question-words" element={<QuestionWordsPage />} />
-					<Route
-						path="sentence-structure"
-						element={<SentenceStructurePage />}
-					/>
-					<Route path="possessive-adjectives" element={<PossessiveAdjPage />} />
-					<Route path="ser" element={<SerPage />} />
-					<Route path="estar" element={<EstarPage />} />
-					<Route path="tener" element={<TenerPage />} />
-					<Route path="gustar" element={<GustarPage />} />
-					<Route path="negation" element={<NegationPage />} />
-					<Route path="contraction" element={<ContractionPage />} />
-					<Route path="prepositions" element={<PrepositionPage />} />
+	<ThemeProvider>
+		<BrowserRouter>
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/vocabulary" element={<VocabPage />} />
+				<Route path="/grammar" element={<Navigate to="/a1/grammar" />} />
+				<Route path="a1">
+					<Route index element={<A1Page />} />
+					<Route path="alphabet" element={<AlphabetPage />} />
+					<Route path="pronunciation" element={<PronunciationPage />} />
+					<Route path="grammar">
+						<Route index element={<GrammarPage level="A1" />} />
+						<Route path="noun-gender" element={<NounGenderPage />} />
+						<Route path="pronouns" element={<PronounsPage />} />
+						<Route path="article" element={<ArticlesPage />} />
+						<Route path="singular-plural" element={<SingularPluralPage />} />
+						<Route path="adjective" element={<AdjectivePage />} />
+						<Route path="demonstrative" element={<DemonstrativePage />} />
+						<Route path="question-words" element={<QuestionWordsPage />} />
+						<Route
+							path="sentence-structure"
+							element={<SentenceStructurePage />}
+						/>
+						<Route
+							path="possessive-adjectives"
+							element={<PossessiveAdjPage />}
+						/>
+						<Route path="ser" element={<SerPage />} />
+						<Route path="estar" element={<EstarPage />} />
+						<Route path="tener" element={<TenerPage />} />
+						<Route path="gustar" element={<GustarPage />} />
+						<Route path="negation" element={<NegationPage />} />
+						<Route path="contraction" element={<ContractionPage />} />
+						<Route path="prepositions" element={<PrepositionPage />} />
+					</Route>
+					<Route path="usage">
+						<Route path="numbers" element={<NumbersPage />} />
+						<Route path="time" element={<TimePage />} />
+						<Route path="days-months" element={<DaysMonthsPage />} />
+					</Route>
 				</Route>
-				<Route path="usage">
-					<Route path="numbers" element={<NumbersPage />} />
-					<Route path="time" element={<TimePage />} />
-				</Route>
-			</Route>
-		</Routes>
-		<FootBar />
-	</BrowserRouter>
+			</Routes>
+			<FootBar />
+		</BrowserRouter>
+	</ThemeProvider>
 );
 
 export default App;

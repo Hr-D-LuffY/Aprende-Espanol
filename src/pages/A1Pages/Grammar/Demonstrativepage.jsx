@@ -171,17 +171,23 @@ function GenderBadge({ gender }) {
 
 function DemoCard({ item }) {
 	return (
-		<div className="group border border-[#1c1c1f] rounded-xl bg-[#09090b] p-4 hover:border-[#27272a] hover:bg-[#111113] transition-all duration-150">
+		<div className="group border border-[var(--border)] rounded-xl bg-[var(--bg)] p-4 hover:border-[#27272a] hover:bg-[var(--surface)] transition-all duration-150">
 			<div className="flex items-start justify-between mb-2">
-				<p className="text-[22px] font-light text-[#fafafa] tracking-[-0.02em]">
+				<p className="text-[22px] font-light text-[var(--text-primary)] tracking-[-0.02em]">
 					{item.spanish}
 				</p>
 				<GenderBadge gender={item.gender} />
 			</div>
-			<p className="text-[12px] text-[#52525b] mb-3">{item.meaning}</p>
-			<div className="border-t border-[#1c1c1f] pt-3">
-				<p className="text-[11px] text-[#a1a1aa] italic">{item.example}</p>
-				<p className="text-[10px] text-[#3f3f46] mt-0.5">{item.ex_en}</p>
+			<p className="text-[12px] text-[var(--text-muted)] mb-3">
+				{item.meaning}
+			</p>
+			<div className="border-t border-[var(--border)] pt-3">
+				<p className="text-[11px] text-[var(--text-secondary)] italic">
+					{item.example}
+				</p>
+				<p className="text-[10px] text-[var(--text-label)] mt-0.5">
+					{item.ex_en}
+				</p>
 			</div>
 		</div>
 	);
@@ -192,31 +198,31 @@ function DistanceGroup({ group, isActive, onClick }) {
 		<div
 			className={`border rounded-2xl overflow-hidden transition-all duration-200 cursor-pointer ${
 				isActive ?
-					"border-[#f59e0b]/40 bg-[#111113]"
-				:	"border-[#1c1c1f] bg-[#111113] hover:border-[#27272a]"
+					"border-[#f59e0b]/40 bg-[var(--surface)]"
+				:	"border-[var(--border)] bg-[var(--surface)] hover:border-[#27272a]"
 			}`}
 			onClick={onClick}
 		>
 			{/* Group header */}
 			<div
-				className={`px-6 py-5 border-b ${isActive ? "border-[#f59e0b]/20" : "border-[#1c1c1f]"}`}
+				className={`px-6 py-5 border-b ${isActive ? "border-[#f59e0b]/20" : "border-[var(--border)]"}`}
 			>
 				<div className="flex items-center gap-3 mb-1">
 					<span
-						className={`text-[18px] ${isActive ? "text-[#f59e0b]" : "text-[#27272a]"} transition-colors`}
+						className={`text-[18px] ${isActive ? "text-[var(--accent)]" : "text-[#27272a]"} transition-colors`}
 					>
 						{group.marker}
 					</span>
 					<p
-						className={`text-[13px] font-semibold tracking-[-0.01em] ${isActive ? "text-[#fafafa]" : "text-[#52525b]"} transition-colors`}
+						className={`text-[13px] font-semibold tracking-[-0.01em] ${isActive ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"} transition-colors`}
 					>
 						{group.label}
 					</p>
-					<span className="text-[10px] text-[#3f3f46] tracking-wide ml-auto">
+					<span className="text-[10px] text-[var(--text-label)] tracking-wide ml-auto">
 						{group.sublabel}
 					</span>
 				</div>
-				<p className="text-[11px] text-[#3f3f46] leading-relaxed">
+				<p className="text-[11px] text-[var(--text-label)] leading-relaxed">
 					{group.desc}
 				</p>
 			</div>
@@ -235,12 +241,14 @@ function DistanceGroup({ group, isActive, onClick }) {
 
 function LocationRow({ item }) {
 	return (
-		<div className="grid grid-cols-[100px_120px_1fr] gap-4 items-center py-3 border-b border-[#1c1c1f] last:border-0">
-			<span className="text-[18px] font-light text-[#f59e0b]">
+		<div className="grid grid-cols-[100px_120px_1fr] gap-4 items-center py-3 border-b border-[var(--border)] last:border-0">
+			<span className="text-[18px] font-light text-[var(--accent)]">
 				{item.spanish}
 			</span>
-			<span className="text-[13px] text-[#a1a1aa]">{item.meaning}</span>
-			<span className="text-[11px] text-[#3f3f46]">{item.note}</span>
+			<span className="text-[13px] text-[var(--text-secondary)]">
+				{item.meaning}
+			</span>
+			<span className="text-[11px] text-[var(--text-label)]">{item.note}</span>
 		</div>
 	);
 }
@@ -251,17 +259,17 @@ export default function DemonstrativePage() {
 	const [activeGroup, setActiveGroup] = useState("near");
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-16 pb-24">
 				{/* Header */}
 				<div className="mb-14">
-					<p className="text-[11px] tracking-[0.18em] uppercase text-[#3f3f46] mb-4">
+					<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
 						Grammar — A1 · Foundation
 					</p>
-					<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+					<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 						Demonstratives
 					</h1>
-					<p className="text-[13px] text-[#52525b] leading-relaxed max-w-lg">
+					<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-lg">
 						Point at things near, mid-range, or far away. Three distances, three
 						sets — masculine, feminine, and neuter.
 					</p>
@@ -270,18 +278,18 @@ export default function DemonstrativePage() {
 				{/* Distance legend */}
 				<div className="flex items-center gap-6 mb-8 px-1">
 					<div className="flex items-center gap-2">
-						<span className="w-2 h-2 rounded-full bg-[#f59e0b] inline-block" />
-						<span className="text-[10px] text-[#52525b] tracking-[0.1em] uppercase">
+						<span className="w-2 h-2 rounded-full bg-[var(--accent)] inline-block" />
+						<span className="text-[10px] text-[var(--text-muted)] tracking-[0.1em] uppercase">
 							Speaker
 						</span>
 					</div>
-					<div className="flex-1 border-t border-dashed border-[#1c1c1f]" />
+					<div className="flex-1 border-t border-dashed border-[var(--border)]" />
 					<div className="flex items-center gap-2">
-						<span className="text-[10px] text-[#3f3f46] tracking-[0.1em] uppercase">
+						<span className="text-[10px] text-[var(--text-label)] tracking-[0.1em] uppercase">
 							Listener
 						</span>
 					</div>
-					<div className="flex-1 border-t border-dashed border-[#1c1c1f]" />
+					<div className="flex-1 border-t border-dashed border-[var(--border)]" />
 					<div className="flex items-center gap-2">
 						<span className="text-[10px] text-[#27272a] tracking-[0.1em] uppercase">
 							Far away
@@ -321,12 +329,12 @@ export default function DemonstrativePage() {
 				</div>
 
 				{/* Location words */}
-				<div className="border border-[#1c1c1f] rounded-2xl bg-[#111113] overflow-hidden">
-					<div className="border-b border-[#1c1c1f] px-8 py-5">
-						<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-1">
+				<div className="border border-[var(--border)] rounded-2xl bg-[var(--surface)] overflow-hidden">
+					<div className="border-b border-[var(--border)] px-8 py-5">
+						<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-1">
 							Location adverbs
 						</p>
-						<h2 className="text-xl font-light tracking-[-0.03em] text-[#fafafa]">
+						<h2 className="text-xl font-light tracking-[-0.03em] text-[var(--text-primary)]">
 							Aquí · Allí · Hay
 						</h2>
 					</div>
@@ -335,15 +343,15 @@ export default function DemonstrativePage() {
 							<LocationRow key={item.spanish} item={item} />
 						))}
 					</div>
-					<div className="border-t border-[#1c1c1f] px-8 py-4">
+					<div className="border-t border-[var(--border)] px-8 py-4">
 						<div className="border-l-2 border-[#f59e0b]/40 pl-4">
-							<p className="text-[10px] tracking-[0.12em] uppercase text-[#f59e0b]/60 mb-1">
+							<p className="text-[10px] tracking-[0.12em] uppercase text-[var(--accent)]/60 mb-1">
 								tip
 							</p>
-							<p className="text-[12px] text-[#52525b] leading-relaxed">
-								<span className="text-[#a1a1aa]">Hay</span> never changes — use
-								it for both "there is" and "there are". Hay un libro. Hay tres
-								libros.
+							<p className="text-[12px] text-[var(--text-muted)] leading-relaxed">
+								<span className="text-[var(--text-secondary)]">Hay</span> never
+								changes — use it for both "there is" and "there are". Hay un
+								libro. Hay tres libros.
 							</p>
 						</div>
 					</div>

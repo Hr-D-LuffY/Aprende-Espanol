@@ -26,7 +26,7 @@ const TABS = [
 
 function SectionLabel({ children }) {
 	return (
-		<p className="text-[10px] tracking-[0.16em] uppercase text-[#f59e0b]/80 mb-3 mt-8">
+		<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--accent)]/80 mb-3 mt-8">
 			{children}
 		</p>
 	);
@@ -38,9 +38,10 @@ function MasculinePanel() {
 	return (
 		<div>
 			<InfoNote gender="M">
-				Masculine nouns use <strong className="text-[#a1a1aa]">el</strong>{" "}
-				(singular) and <strong className="text-[#a1a1aa]">los</strong> (plural).
-				We will learn about articles later.
+				Masculine nouns use{" "}
+				<strong className="text-[var(--text-secondary)]">el</strong> (singular)
+				and <strong className="text-[var(--text-secondary)]">los</strong>{" "}
+				(plural). We will learn about articles later.
 			</InfoNote>
 			{MASCULINE_RULES.map((rule, i) => (
 				<div key={rule.num}>
@@ -60,9 +61,10 @@ function FemininePanel() {
 	return (
 		<div>
 			<InfoNote gender="F">
-				Feminine nouns use <strong className="text-[#a1a1aa]">la</strong>{" "}
-				(singular) and <strong className="text-[#a1a1aa]">las</strong> (plural).
-				We will learn about articles later.
+				Feminine nouns use{" "}
+				<strong className="text-[var(--text-secondary)]">la</strong> (singular)
+				and <strong className="text-[var(--text-secondary)]">las</strong>{" "}
+				(plural). We will learn about articles later.
 			</InfoNote>
 			{FEMININE_RULES.map((rule, i) => (
 				<div key={rule.num}>
@@ -83,7 +85,7 @@ function ChangingPanel() {
 		<div>
 			<InfoNote gender="M">
 				Most nouns change gender by swapping the ending. Base pattern:{" "}
-				<strong className="text-[#a1a1aa]">-o → -a</strong>.
+				<strong className="text-[var(--text-secondary)]">-o → -a</strong>.
 			</InfoNote>
 
 			<PairTable
@@ -98,9 +100,9 @@ function ChangingPanel() {
 			/>
 
 			{/* Exceptions */}
-			<div className="mt-8 border border-[#1c1c1f] rounded-xl overflow-hidden">
-				<div className="px-4 py-2.5 bg-[#111113] border-b border-[#1c1c1f]">
-					<span className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46]">
+			<div className="mt-8 border border-[var(--border)] rounded-xl overflow-hidden">
+				<div className="px-4 py-2.5 bg-[var(--surface)] border-b border-[var(--border)]">
+					<span className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)]">
 						⚡ Exceptions — surprising genders
 					</span>
 				</div>
@@ -108,10 +110,12 @@ function ChangingPanel() {
 					{EXCEPTIONS.map((exc) => (
 						<div
 							key={exc.es}
-							className="bg-[#09090b] p-3 hover:bg-[#111113] transition-colors duration-150"
+							className="bg-[var(--bg)] p-3 hover:bg-[var(--surface)] transition-colors duration-150"
 						>
 							<div className="flex items-center gap-2 mb-0.5">
-								<span className="text-[13px] text-[#fafafa]">{exc.es}</span>
+								<span className="text-[13px] text-[var(--text-primary)]">
+									{exc.es}
+								</span>
 								<span
 									className="text-[10px] px-1.5 py-0.5 rounded-full border"
 									style={
@@ -131,10 +135,10 @@ function ChangingPanel() {
 									{exc.gender}
 								</span>
 							</div>
-							<p className="text-[10px] text-[#3f3f46] tracking-[0.04em] mb-0.5">
+							<p className="text-[10px] text-[var(--text-label)] tracking-[0.04em] mb-0.5">
 								{exc.pron}
 							</p>
-							<p className="text-[11px] text-[#52525b] leading-snug">
+							<p className="text-[11px] text-[var(--text-muted)] leading-snug">
 								{exc.en}
 							</p>
 						</div>
@@ -143,11 +147,11 @@ function ChangingPanel() {
 			</div>
 
 			{/* Tip */}
-			<div className="mt-6 border border-[#1c1c1f] rounded-xl p-4 bg-[#111113]">
-				<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+			<div className="mt-6 border border-[var(--border)] rounded-xl p-4 bg-[var(--surface)]">
+				<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 					Tip
 				</p>
-				<p className="text-[12px] text-[#52525b] leading-relaxed tracking-[0.02em]">
+				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed tracking-[0.02em]">
 					The safest approach is to learn each noun with its article —{" "}
 					<span className="text-[#60a5fa]">el libro</span>,{" "}
 					<span className="text-[#f472b6]">la casa</span>. Over time, patterns
@@ -164,22 +168,22 @@ export default function NounGenderPage() {
 	const [activeTab, setActiveTab] = useState("masculine");
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-16 pb-24">
 				{/* Header */}
-				<p className="text-[11px] tracking-[0.18em] uppercase text-[#3f3f46] mb-4">
+				<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
 					Reference — A1 · Grammar · Noun Gender
 				</p>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 					Noun Gender
 				</h1>
-				<p className="text-[13px] text-[#52525b] leading-relaxed mb-8 tracking-wide max-w-lg">
+				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-8 tracking-wide max-w-lg">
 					Every Spanish noun is Masculine or Feminine — even objects and things
 					have gender.
 				</p>
 
 				{/* Tabs */}
-				<div className="flex gap-0 border-b border-[#1c1c1f] mb-9">
+				<div className="flex gap-0 border-b border-[var(--border)] mb-9">
 					{TABS.map((tab) => (
 						<button
 							key={tab.id}
@@ -187,8 +191,8 @@ export default function NounGenderPage() {
 							className={`px-5 py-2.5 text-[11px] tracking-[0.12em] uppercase border-b-2 -mb-px transition-colors duration-150 cursor-pointer bg-transparent
                 ${
 									activeTab === tab.id ?
-										"text-[#f59e0b] border-[#f59e0b]"
-									:	"text-[#52525b] border-transparent hover:text-[#a1a1aa]"
+										"text-[var(--accent)] border-[#f59e0b]"
+									:	"text-[var(--text-muted)] border-transparent hover:text-[var(--text-secondary)]"
 								}`}
 						>
 							{tab.label}

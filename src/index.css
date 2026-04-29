@@ -1,1 +1,94 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap");
+
+/* ── Font variables ─────────────────────────────────────────── */
+:root {
+	--font-serif: "Lora", Georgia, serif;
+	--font-mono: "DM Mono", monospace;
+}
+
+/* ── Light theme (Palette 2 — Sage & Amber) ─────────────────── */
+[data-theme="light"] {
+	--bg: #f8f5e4;
+	--bg-nav: #f8f5e4e6; /* 90% opacity for backdrop */
+	--surface: #ebe8d4;
+	--surface-deep: #e0dcc8;
+	--border: #d8d4bc;
+	--border-hover: #c8c4a8;
+	--text-primary: #1e2820;
+	--text-secondary: #607868;
+	--text-muted: #1a1a1a;
+	--text-label: #8aaa90;
+	--text-ghost: #c8c4a8;
+	--accent: #f79c1d;
+	--footer: #002b5b;
+	--accent-hover: #f6a830;
+	--accent-text: #1e2820;
+	--sage: #7fa99b;
+	--sage-surface: #e8ede6;
+}
+
+/* ── Dark theme (original zinc) ─────────────────────────────── */
+[data-theme="dark"] {
+	--bg: #09090b;
+	--bg-nav: #09090be6; /* 90% opacity for backdrop */
+	--surface: #111113;
+	--surface-deep: #0d0d0f;
+	--border: #1c1c1f;
+	--border-hover: #27272a;
+	--text-primary: #fafafa;
+	--text-secondary: #a1a1aa;
+	--text-muted: #52525b;
+	--text-label: #3f3f46;
+	--text-ghost: #27272a;
+	--accent: #f59e0b;
+	--footer: #f59e0b;
+	--accent-hover: #fbbf24;
+	--accent-text: #09090b;
+	--sage: #3f3f46;
+	--sage-surface: #111113;
+}
+
+/* ── Global base styles ─────────────────────────────────────── */
+html {
+	background-color: var(--bg);
+	color: var(--text-primary);
+	font-family: var(--font-mono);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+}
+
+body {
+	background-color: var(--bg);
+	min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-serif);
+}
+
+/* ── Tailwind CSS variable shorthand utilities ───────────────── */
+/*
+    Use these classes in your components instead of hardcoded hex:
+
+    bg-[var(--bg)]              → page background
+    bg-[var(--surface)]         → cards, nav
+    bg-[var(--surface-deep)]    → deeper surfaces
+    bg-[var(--accent)]          → primary button, active pill
+    bg-[var(--sage-surface)]    → level card surface
+
+    text-[var(--text-primary)]  → headings, body
+    text-[var(--text-secondary)]→ descriptions
+    text-[var(--text-muted)]    → muted labels
+    text-[var(--text-label)]    → eyebrows, small labels
+    text-[var(--text-ghost)]    → very faint text
+    text-[var(--accent)]        → accent text (arrows, active)
+    text-[var(--accent-text)]   → text ON accent bg (btn label)
+    text-[var(--sage)]          → sage green accent text
+
+    border-[var(--border)]      → default borders
+    border-[var(--border-hover)]→ hover borders
+*/

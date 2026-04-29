@@ -11,17 +11,17 @@ export default function PronunciationPage() {
 	const current = RULES.find((r) => r.id === activeRule);
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-16 pb-24">
 				{/* Header */}
 				<div className="mb-14">
-					<p className="text-[11px] tracking-[0.18em] uppercase text-[#3f3f46] mb-4">
+					<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
 						Reference — A1 · Foundation
 					</p>
-					<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+					<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 						Pronunciation Rules
 					</h1>
-					<p className="text-[13px] text-[#52525b] leading-relaxed max-w-lg">
+					<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-lg">
 						9 rules. Learn these once and you can read any Spanish word out loud
 						— no guessing.
 					</p>
@@ -43,16 +43,16 @@ export default function PronunciationPage() {
 
 					{/* Rule detail */}
 					{current && (
-						<div className="border border-[#1c1c1f] rounded-2xl bg-[#111113] overflow-hidden">
+						<div className="border border-[var(--border)] rounded-2xl bg-[var(--surface)] overflow-hidden">
 							{/* Rule header */}
-							<div className="border-b border-[#1c1c1f] px-8 py-7">
+							<div className="border-b border-[var(--border)] px-8 py-7">
 								<div className="flex items-center gap-3 mb-3">
 									<RuleTag tag={current.tag} tagColor={current.tagColor} />
 								</div>
-								<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-2">
+								<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-2">
 									{current.title}
 								</h2>
-								<p className="text-[13px] text-[#52525b] leading-relaxed">
+								<p className="text-[13px] text-[var(--text-muted)] leading-relaxed">
 									{current.summary}
 								</p>
 							</div>
@@ -65,10 +65,10 @@ export default function PronunciationPage() {
 
 								{/* Tip */}
 								<div className="border-l-2 border-[#f59e0b]/40 pl-4 mt-2">
-									<p className="text-[10px] tracking-[0.12em] uppercase text-[#f59e0b]/60 mb-1">
+									<p className="text-[10px] tracking-[0.12em] uppercase text-[var(--accent)]/60 mb-1">
 										tip
 									</p>
-									<p className="text-[12px] text-[#52525b] leading-relaxed">
+									<p className="text-[12px] text-[var(--text-muted)] leading-relaxed">
 										{current.tip}
 									</p>
 								</div>

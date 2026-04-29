@@ -4,11 +4,13 @@
 function WordRow({ word, pron, meaning, className = "" }) {
 	return (
 		<div
-			className={`grid grid-cols-[120px_140px_1fr] gap-4 items-center py-3 border-b border-[#1c1c1f] last:border-0 ${className}`}
+			className={`grid grid-cols-[120px_140px_1fr] gap-4 items-center py-3 border-b border-[var(--border)] last:border-0 ${className}`}
 		>
-			<span className="text-[16px] font-light text-[#fafafa]">{word}</span>
-			<span className="text-[12px] text-[#52525b]">({pron})</span>
-			<span className="text-[12px] text-[#3f3f46]">= {meaning}</span>
+			<span className="text-[16px] font-light text-[var(--text-primary)]">
+				{word}
+			</span>
+			<span className="text-[12px] text-[var(--text-muted)]">({pron})</span>
+			<span className="text-[12px] text-[var(--text-label)]">= {meaning}</span>
 		</div>
 	);
 }
@@ -17,8 +19,10 @@ function WordRow({ word, pron, meaning, className = "" }) {
 function WordInline({ word, pron, meaning }) {
 	return (
 		<div>
-			<p className="text-[15px] font-light text-[#fafafa]">{word}</p>
-			<p className="text-[11px] text-[#52525b]">
+			<p className="text-[15px] font-light text-[var(--text-primary)]">
+				{word}
+			</p>
+			<p className="text-[11px] text-[var(--text-muted)]">
 				({pron}) = {meaning}
 			</p>
 		</div>
@@ -32,16 +36,24 @@ function VowelGrid({ items }) {
 			{items.map((v) => (
 				<div
 					key={v.letter}
-					className="border border-[#1c1c1f] rounded-xl bg-[#09090b] p-4 text-center"
+					className="border border-[var(--border)] rounded-xl bg-[var(--bg)] p-4 text-center"
 				>
-					<p className="text-3xl font-extralight text-[#f59e0b] mb-1">
+					<p className="text-3xl font-extralight text-[var(--accent)] mb-1">
 						{v.letter}
 					</p>
-					<p className="text-[13px] text-[#a1a1aa] mb-3">"{v.sound}"</p>
-					<div className="border-t border-[#1c1c1f] pt-3">
-						<p className="text-[12px] text-[#fafafa]">{v.example}</p>
-						<p className="text-[10px] text-[#3f3f46] mt-0.5">({v.pron})</p>
-						<p className="text-[10px] text-[#52525b] mt-0.5">= {v.meaning}</p>
+					<p className="text-[13px] text-[var(--text-secondary)] mb-3">
+						"{v.sound}"
+					</p>
+					<div className="border-t border-[var(--border)] pt-3">
+						<p className="text-[12px] text-[var(--text-primary)]">
+							{v.example}
+						</p>
+						<p className="text-[10px] text-[var(--text-label)] mt-0.5">
+							({v.pron})
+						</p>
+						<p className="text-[10px] text-[var(--text-muted)] mt-0.5">
+							= {v.meaning}
+						</p>
 					</div>
 				</div>
 			))}
@@ -67,9 +79,9 @@ function Split({ left, right }) {
 			{[left, right].map((col, i) => (
 				<div
 					key={i}
-					className="border border-[#1c1c1f] rounded-xl bg-[#09090b] p-5"
+					className="border border-[var(--border)] rounded-xl bg-[var(--bg)] p-5"
 				>
-					<p className="text-[10px] tracking-[0.1em] uppercase text-[#f59e0b] mb-4">
+					<p className="text-[10px] tracking-[0.1em] uppercase text-[var(--accent)] mb-4">
 						{col.label}
 					</p>
 					<div className="flex flex-col gap-3">
@@ -86,19 +98,25 @@ function Split({ left, right }) {
 /** note-block */
 function NoteBlock({ label, body, items }) {
 	return (
-		<div className="border border-[#f59e0b]/20 bg-[#f59e0b]/5 rounded-xl p-5">
-			<p className="text-[10px] tracking-[0.1em] uppercase text-[#f59e0b] mb-1">
+		<div className="border border-[#f59e0b]/20 bg-[var(--accent)]/5 rounded-xl p-5">
+			<p className="text-[10px] tracking-[0.1em] uppercase text-[var(--accent)] mb-1">
 				{label}
 			</p>
-			<p className="text-[12px] text-[#52525b] mb-4 leading-relaxed">{body}</p>
+			<p className="text-[12px] text-[var(--text-muted)] mb-4 leading-relaxed">
+				{body}
+			</p>
 			<div className="flex flex-col gap-2">
 				{items.map((ex, i) => (
 					<div key={i} className="flex items-center gap-4">
-						<span className="text-[15px] font-light text-[#fafafa]">
+						<span className="text-[15px] font-light text-[var(--text-primary)]">
 							{ex.word}
 						</span>
-						<span className="text-[11px] text-[#52525b]">({ex.pron})</span>
-						<span className="text-[11px] text-[#3f3f46]">= {ex.meaning}</span>
+						<span className="text-[11px] text-[var(--text-muted)]">
+							({ex.pron})
+						</span>
+						<span className="text-[11px] text-[var(--text-label)]">
+							= {ex.meaning}
+						</span>
 					</div>
 				))}
 			</div>

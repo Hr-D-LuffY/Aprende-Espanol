@@ -93,9 +93,9 @@ export const LEVELS = [
 
 export default function LevelRoadMap() {
 	return (
-		<section className="border-t border-[#1c1c1f] py-10 px-8">
+		<section className="border-t border-[var(--border)] py-10 px-8">
 			<div className="max-w-5xl mx-auto">
-				<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-10">
+				<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-10">
 					What you need to reach each level
 				</h2>
 				<div className="flex flex-col">
@@ -106,7 +106,7 @@ export default function LevelRoadMap() {
 						>
 							{/* Badge */}
 							<div
-								className="rounded-xl p-3 bg-[#09090b] flex flex-col gap-0.5 border"
+								className="rounded-xl p-3 bg-[var(--bg)] flex flex-col gap-0.5 border"
 								style={{ borderColor: lvl.color + "30" }}
 							>
 								<span
@@ -115,7 +115,7 @@ export default function LevelRoadMap() {
 								>
 									{lvl.code}
 								</span>
-								<span className="text-[9px] text-[#3f3f46] tracking-[0.08em] uppercase">
+								<span className="text-[9px] text-[var(--text-label)] tracking-[0.08em] uppercase">
 									{lvl.label}
 								</span>
 							</div>
@@ -128,7 +128,7 @@ export default function LevelRoadMap() {
 								{lvl.topics.map((topic) => (
 									<span
 										key={topic}
-										className="border border-[#1c1c1f] bg-[#111113] text-[#52525b] rounded-lg px-3.5 py-1.5 text-[12px] tracking-wide no-underline transition-all duration-150 hover:text-[#fafafa] hover:border-[#f59e0b]/30 hover:bg-[#f59e0b]/5"
+										className="border border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] rounded-lg px-3.5 py-1.5 text-[12px] tracking-wide no-underline transition-all duration-150 hover:text-[var(--text-primary)] hover:border-[#f59e0b]/30 hover:bg-[var(--accent)]/5"
 									>
 										{topic}
 									</span>

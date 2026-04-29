@@ -48,10 +48,12 @@ export default function TenerPage() {
 			<div className="mb-12">
 				<Eyebrow>Verb · Irregular · GO verb</Eyebrow>
 				<div className="flex items-baseline gap-4 mb-3">
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[#fafafa]">
+					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
 						tener
 					</h1>
-					<span className="text-[16px] text-[#52525b] font-light">to have</span>
+					<span className="text-[16px] text-[var(--text-muted)] font-light">
+						to have
+					</span>
 				</div>
 				<div className="flex flex-wrap gap-2 mt-4">
 					{USES.map((u) => (
@@ -63,29 +65,30 @@ export default function TenerPage() {
 			{/* What is conjugation */}
 			<Card className="mb-6 p-6">
 				<Eyebrow>What is conjugation?</Eyebrow>
-				<p className="text-[12px] text-[#52525b] leading-relaxed mb-5 tracking-wide max-w-lg">
+				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed mb-5 tracking-wide max-w-lg">
 					Conjugation = changing a verb's form depending on the subject (who
 					does the action). In Spanish, the verb changes more than in English.
 				</p>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-0">
 					<div>
-						<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							English
 						</p>
 						<ConjugationNote subject="I" verb="speak" />
 						<ConjugationNote subject="He" verb="speaks" note="← changes" />
 					</div>
 					<div>
-						<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							Spanish
 						</p>
 						<ConjugationNote subject="yo" verb="hablo" />
 						<ConjugationNote subject="él" verb="habla" note="← changes more" />
 					</div>
 				</div>
-				<div className="mt-4 pt-4 border-t border-[#1c1c1f]">
-					<p className="text-[11px] text-[#3f3f46] tracking-wide">
-						This change = <span className="text-[#f59e0b]">conjugation</span>
+				<div className="mt-4 pt-4 border-t border-[var(--border)]">
+					<p className="text-[11px] text-[var(--text-label)] tracking-wide">
+						This change ={" "}
+						<span className="text-[var(--accent)]">conjugation</span>
 					</p>
 				</div>
 			</Card>
@@ -120,18 +123,18 @@ export default function TenerPage() {
 								<div
 									key={i}
 									onClick={() => setActiveEx(activeEx === i ? null : i)}
-									className={`py-3 border-b border-[#1c1c1f] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
-                                        ${activeEx === i ? "bg-[#f59e0b]/5 px-2 -mx-2" : "hover:bg-[#111113]"}`}
+									className={`py-3 border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
+                                        ${activeEx === i ? "bg-[var(--accent)]/5 px-2 -mx-2" : "hover:bg-[var(--surface)]"}`}
 								>
 									<p
 										className={`text-[13px] tracking-[-0.01em] mb-0.5 transition-colors
-                                        ${activeEx === i ? "text-[#f59e0b]" : "text-[#fafafa]"}`}
+                                        ${activeEx === i ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
 									>
 										{ex.es}
 									</p>
 									<p
 										className={`text-[11px] tracking-wide transition-all duration-150
-                                        ${activeEx === i ? "text-[#52525b] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
+                                        ${activeEx === i ? "text-[var(--text-muted)] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
 									>
 										{ex.en}
 									</p>
@@ -148,26 +151,28 @@ export default function TenerPage() {
 			{/* Age pattern highlight */}
 			<Card className="mt-6 p-6">
 				<Eyebrow>Special pattern · Age</Eyebrow>
-				<p className="text-[12px] text-[#52525b] leading-relaxed mb-4 tracking-wide">
-					In Spanish, age uses <span className="text-[#fafafa]">tener</span> —
-					not "to be".
+				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed mb-4 tracking-wide">
+					In Spanish, age uses{" "}
+					<span className="text-[var(--text-primary)]">tener</span> — not "to
+					be".
 				</p>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-					<div className="border border-[#1c1c1f] rounded-lg p-4">
-						<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+					<div className="border border-[var(--border)] rounded-lg p-4">
+						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							English
 						</p>
-						<p className="text-[13px] text-[#a1a1aa]">
-							I <span className="text-[#52525b] line-through">am</span> 20 years
-							old
+						<p className="text-[13px] text-[var(--text-secondary)]">
+							I{" "}
+							<span className="text-[var(--text-muted)] line-through">am</span>{" "}
+							20 years old
 						</p>
 					</div>
-					<div className="border border-[#f59e0b]/30 rounded-lg p-4 bg-[#f59e0b]/5">
-						<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+					<div className="border border-[#f59e0b]/30 rounded-lg p-4 bg-[var(--accent)]/5">
+						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							Spanish
 						</p>
-						<p className="text-[13px] text-[#fafafa]">
-							Tengo <span className="text-[#f59e0b]">20 años</span>
+						<p className="text-[13px] text-[var(--text-primary)]">
+							Tengo <span className="text-[var(--accent)]">20 años</span>
 						</p>
 					</div>
 				</div>

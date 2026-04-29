@@ -140,8 +140,8 @@ function SlotPill({ slot, text, dim }) {
 
 function ExampleCard({ ex, activeSlot }) {
 	return (
-		<div className="border border-[#1c1c1f] rounded-xl bg-[#09090b] p-5">
-			<p className="text-[9px] tracking-[0.14em] uppercase text-[#3f3f46] mb-4">
+		<div className="border border-[var(--border)] rounded-xl bg-[var(--bg)] p-5">
+			<p className="text-[9px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-4">
 				{ex.label}
 			</p>
 			<div className="flex items-end gap-3 flex-wrap mb-4">
@@ -154,10 +154,12 @@ function ExampleCard({ ex, activeSlot }) {
 					/>
 				))}
 			</div>
-			<div className="border-t border-[#1c1c1f] pt-3">
-				<p className="text-[12px] text-[#52525b] italic">{ex.translation}</p>
+			<div className="border-t border-[var(--border)] pt-3">
+				<p className="text-[12px] text-[var(--text-muted)] italic">
+					{ex.translation}
+				</p>
 				{ex.note && (
-					<p className="text-[10px] text-[#3f3f46] mt-1">{ex.note}</p>
+					<p className="text-[10px] text-[var(--text-label)] mt-1">{ex.note}</p>
 				)}
 			</div>
 		</div>
@@ -170,8 +172,8 @@ function SlotCard({ slot, isActive, onClick }) {
 			onClick={onClick}
 			className={`text-left p-5 rounded-xl border transition-all duration-150 cursor-pointer ${
 				isActive ?
-					"bg-[#111113] border-[#27272a]"
-				:	"bg-transparent border-[#1c1c1f] hover:bg-[#111113] hover:border-[#27272a]"
+					"bg-[var(--surface)] border-[#27272a]"
+				:	"bg-transparent border-[var(--border)] hover:bg-[var(--surface)] hover:border-[#27272a]"
 			}`}
 		>
 			<div className="flex items-center gap-3 mb-3">
@@ -181,13 +183,15 @@ function SlotCard({ slot, isActive, onClick }) {
 				>
 					{slot.abbr}
 				</span>
-				<span className="text-[12px] text-[#a1a1aa]">{slot.label}</span>
+				<span className="text-[12px] text-[var(--text-secondary)]">
+					{slot.label}
+				</span>
 			</div>
-			<p className="text-[11px] text-[#52525b] leading-relaxed mb-3">
+			<p className="text-[11px] text-[var(--text-muted)] leading-relaxed mb-3">
 				{slot.desc}
 			</p>
 			{isActive && (
-				<ul className="flex flex-col gap-1.5 border-t border-[#1c1c1f] pt-3">
+				<ul className="flex flex-col gap-1.5 border-t border-[var(--border)] pt-3">
 					{slot.notes.map((n, i) => (
 						<li key={i} className="flex items-start gap-2">
 							<span
@@ -196,7 +200,7 @@ function SlotCard({ slot, isActive, onClick }) {
 							>
 								→
 							</span>
-							<span className="text-[11px] text-[#3f3f46] leading-relaxed">
+							<span className="text-[11px] text-[var(--text-label)] leading-relaxed">
 								{n}
 							</span>
 						</li>
@@ -215,25 +219,25 @@ export default function SentenceStructurePage() {
 	const toggleSlot = (id) => setActiveSlot(activeSlot === id ? null : id);
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-16 pb-24">
 				{/* Header */}
 				<div className="mb-14">
-					<p className="text-[11px] tracking-[0.18em] uppercase text-[#3f3f46] mb-4">
+					<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
 						Grammar — A1 · Foundation
 					</p>
-					<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+					<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 						Sentence Structure
 					</h1>
-					<p className="text-[13px] text-[#52525b] leading-relaxed max-w-lg">
+					<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-lg">
 						Spanish follows Subject → Verb → Object. But it's flexible — and the
 						verb does a lot of the work.
 					</p>
 				</div>
 
 				{/* SVO diagram */}
-				<div className="border border-[#1c1c1f] rounded-2xl bg-[#111113] p-8 mb-6">
-					<p className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46] mb-6">
+				<div className="border border-[var(--border)] rounded-2xl bg-[var(--surface)] p-8 mb-6">
+					<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-6">
 						Basic order — tap a slot to explore
 					</p>
 
@@ -274,8 +278,8 @@ export default function SentenceStructurePage() {
 							</div>
 						))}
 
-						<div className="ml-auto border border-[#1c1c1f] rounded-xl px-5 py-3 hidden lg:block">
-							<p className="text-[11px] text-[#3f3f46] mb-1">
+						<div className="ml-auto border border-[var(--border)] rounded-xl px-5 py-3 hidden lg:block">
+							<p className="text-[11px] text-[var(--text-label)] mb-1">
 								Canonical example
 							</p>
 							<p className="text-[15px] font-light">
@@ -283,7 +287,9 @@ export default function SentenceStructurePage() {
 								<span style={{ color: "#f59e0b" }}>come</span>{" "}
 								<span style={{ color: "#6EE7B7" }}>pan</span>.
 							</p>
-							<p className="text-[10px] text-[#3f3f46] mt-1">She eats bread.</p>
+							<p className="text-[10px] text-[var(--text-label)] mt-1">
+								She eats bread.
+							</p>
 						</div>
 					</div>
 
@@ -303,11 +309,11 @@ export default function SentenceStructurePage() {
 				{/* Example sentences */}
 				<div className="mb-14">
 					<div className="flex items-center gap-4 mb-5">
-						<h2 className="text-[13px] font-light tracking-[-0.01em] text-[#a1a1aa]">
+						<h2 className="text-[13px] font-light tracking-[-0.01em] text-[var(--text-secondary)]">
 							Sentence patterns
 						</h2>
 						{activeSlot && (
-							<span className="text-[10px] tracking-[0.1em] uppercase text-[#52525b]">
+							<span className="text-[10px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
 								— highlighting{" "}
 								<span style={{ color: SLOT_COLOR[activeSlot] }}>
 									{activeSlot}
@@ -318,7 +324,7 @@ export default function SentenceStructurePage() {
 						{activeSlot && (
 							<button
 								onClick={() => setActiveSlot(null)}
-								className="ml-auto text-[10px] text-[#27272a] hover:text-[#52525b] transition-colors cursor-pointer"
+								className="ml-auto text-[10px] text-[#27272a] hover:text-[var(--text-muted)] transition-colors cursor-pointer"
 							>
 								clear ✕
 							</button>

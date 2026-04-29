@@ -5,7 +5,7 @@ import BackNext from "/src/components/BackNext.jsx";
 
 function Eyebrow({ children }) {
 	return (
-		<p className="text-[10px] tracking-[0.18em] uppercase text-[#3f3f46] mb-5">
+		<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-5">
 			{children}
 		</p>
 	);
@@ -13,7 +13,7 @@ function Eyebrow({ children }) {
 
 function SectionTitle({ children }) {
 	return (
-		<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-8">
+		<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-8">
 			{children}
 		</h2>
 	);
@@ -21,7 +21,7 @@ function SectionTitle({ children }) {
 
 function TabBar({ tabs, active, onChange }) {
 	return (
-		<div className="flex gap-1 border border-[#1c1c1f] rounded-lg p-1 w-fit mb-8">
+		<div className="flex gap-1 border border-[var(--border)] rounded-lg p-1 w-fit mb-8">
 			{tabs.map((t) => (
 				<button
 					key={t}
@@ -43,20 +43,20 @@ function TabBar({ tabs, active, onChange }) {
 function ExamplePair({ es, en }) {
 	return (
 		<div className="flex items-baseline gap-3">
-			<span className="text-[13px] text-[#a1a1aa]">{es}</span>
-			<span className="text-[11px] text-[#3f3f46]">= {en}</span>
+			<span className="text-[13px] text-[var(--text-secondary)]">{es}</span>
+			<span className="text-[11px] text-[var(--text-label)]">= {en}</span>
 		</div>
 	);
 }
 
 function ArticleTable({ rows }) {
 	return (
-		<div className="border border-[#1c1c1f] rounded-xl overflow-hidden mb-6">
-			<div className="grid grid-cols-3 border-b border-[#1c1c1f]">
+		<div className="border border-[var(--border)] rounded-xl overflow-hidden mb-6">
+			<div className="grid grid-cols-3 border-b border-[var(--border)]">
 				{["", "Singular", "Plural"].map((h) => (
 					<div
 						key={h}
-						className="px-5 py-3 text-[10px] tracking-[0.14em] uppercase text-[#3f3f46]"
+						className="px-5 py-3 text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)]"
 					>
 						{h}
 					</div>
@@ -65,15 +65,15 @@ function ArticleTable({ rows }) {
 			{rows.map((row) => (
 				<div
 					key={row.gender}
-					className="grid grid-cols-3 border-b border-[#1c1c1f] last:border-b-0 hover:bg-[#111113] transition-colors duration-150"
+					className="grid grid-cols-3 border-b border-[var(--border)] last:border-b-0 hover:bg-[var(--surface)] transition-colors duration-150"
 				>
-					<div className="px-5 py-3 text-[11px] tracking-[0.12em] uppercase text-[#52525b]">
+					<div className="px-5 py-3 text-[11px] tracking-[0.12em] uppercase text-[var(--text-muted)]">
 						{row.gender}
 					</div>
-					<div className="px-5 py-3 text-[15px] font-semibold text-[#f59e0b]">
+					<div className="px-5 py-3 text-[15px] font-semibold text-[var(--accent)]">
 						{row.singular}
 					</div>
-					<div className="px-5 py-3 text-[15px] font-semibold text-[#f59e0b]">
+					<div className="px-5 py-3 text-[15px] font-semibold text-[var(--accent)]">
 						{row.plural}
 					</div>
 				</div>
@@ -84,7 +84,7 @@ function ArticleTable({ rows }) {
 
 function ExamplesBlock({ pairs }) {
 	return (
-		<div className="border border-[#1c1c1f] rounded-xl p-5 bg-[#111113] flex flex-col gap-2">
+		<div className="border border-[var(--border)] rounded-xl p-5 bg-[var(--surface)] flex flex-col gap-2">
 			{pairs.map((p, i) => (
 				<ExamplePair key={i} {...p} />
 			))}
@@ -138,14 +138,14 @@ export default function ArticlesPage() {
 	const content = tab === "Definite" ? DEFINITE_CONTENT : INDEFINITE_CONTENT;
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
 				{/* Header */}
 				<Eyebrow>Grammar · A1</Eyebrow>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 					Articles
 				</h1>
-				<p className="text-[13px] text-[#52525b] leading-relaxed mb-12 max-w-lg">
+				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-12 max-w-lg">
 					Spanish articles agree in gender and number with the noun they modify.
 					Master definite and indefinite forms to sound natural.
 				</p>
@@ -159,10 +159,10 @@ export default function ArticlesPage() {
 
 				{/* Type label */}
 				<div className="flex items-center gap-3 mb-6">
-					<span className="text-[10px] tracking-[0.16em] uppercase text-[#3f3f46]">
+					<span className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)]">
 						Type
 					</span>
-					<span className="text-[12px] text-[#f59e0b] border border-[#f59e0b]/30 bg-[#f59e0b]/5 px-3 py-0.5 rounded-full">
+					<span className="text-[12px] text-[var(--accent)] border border-[#f59e0b]/30 bg-[var(--accent)]/5 px-3 py-0.5 rounded-full">
 						{content.label}
 					</span>
 				</div>
@@ -171,38 +171,44 @@ export default function ArticlesPage() {
 				<ArticleTable rows={content.rows} />
 
 				{/* Quick examples */}
-				<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-3">
+				<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-3">
 					Quick examples
 				</p>
 				<ExamplesBlock pairs={content.examples} />
 
 				{/* Sentence examples */}
 				<div className="mt-10">
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-4">
+					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-4">
 						In a sentence
 					</p>
 					<div className="flex flex-col gap-3">
 						{content.sentences.map((s, i) => (
 							<div key={i} className="border-l-2 border-[#f59e0b]/40 pl-4">
-								<p className="text-[14px] text-[#a1a1aa]">{s.es}</p>
-								<p className="text-[11px] text-[#3f3f46] mt-0.5">{s.en}</p>
+								<p className="text-[14px] text-[var(--text-secondary)]">
+									{s.es}
+								</p>
+								<p className="text-[11px] text-[var(--text-label)] mt-0.5">
+									{s.en}
+								</p>
 							</div>
 						))}
 					</div>
 				</div>
 
 				{/* Note */}
-				<div className="mt-12 border border-[#1c1c1f] rounded-xl p-5 bg-[#111113]">
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+				<div className="mt-12 border border-[var(--border)] rounded-xl p-5 bg-[var(--surface)]">
+					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 						Note
 					</p>
-					<p className="text-[12px] text-[#52525b] leading-relaxed">
-						Use <span className="text-[#a1a1aa]">el</span> before feminine nouns
-						starting with a stressed <span className="text-[#a1a1aa]">a-</span>{" "}
-						or <span className="text-[#a1a1aa]">ha-</span> sound in singular —
-						e.g. <span className="text-[#a1a1aa]">el agua</span>,{" "}
-						<span className="text-[#a1a1aa]">el hacha</span>. The noun is still
-						feminine; only the article changes.
+					<p className="text-[12px] text-[var(--text-muted)] leading-relaxed">
+						Use <span className="text-[var(--text-secondary)]">el</span> before
+						feminine nouns starting with a stressed{" "}
+						<span className="text-[var(--text-secondary)]">a-</span> or{" "}
+						<span className="text-[var(--text-secondary)]">ha-</span> sound in
+						singular — e.g.{" "}
+						<span className="text-[var(--text-secondary)]">el agua</span>,{" "}
+						<span className="text-[var(--text-secondary)]">el hacha</span>. The
+						noun is still feminine; only the article changes.
 					</p>
 				</div>
 

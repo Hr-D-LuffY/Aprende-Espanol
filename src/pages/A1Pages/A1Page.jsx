@@ -40,12 +40,13 @@ const TOPIC_GROUPS = [
 		],
 	},
 	{
-		title: "Vocabulary",
-		topics: ["Family", "Colors"],
-	},
-	{
 		title: "Usage",
-		topics: ["Numbers", "Time & Days", "Location", "Common Phrases"],
+		topics: ["Numbers", "Time", "Days & Months", "Location", "Common Phrases"],
+	},
+
+	{
+		title: "Vocabulary",
+		topics: [],
 	},
 ];
 
@@ -60,22 +61,22 @@ const CAN_DO_ITEMS = [
 
 export default function A1Page() {
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-4xl mx-auto px-8 pb-24">
 				{/* ── HERO ── */}
-				<section className="pt-14 pb-12 border-b border-[#1c1c1f]">
-					<h1 className="text-[clamp(3rem,7vw,5rem)] font-light leading-[1.02] tracking-[-0.04em] text-[#fafafa] mb-4">
-						A1 <span className="text-[#f59e0b] italic">Beginner</span>
+				<section className="pt-14 pb-12 border-b border-[var(--border)]">
+					<h1 className="text-[clamp(3rem,7vw,5rem)] font-light leading-[1.02] tracking-[-0.04em] text-[var(--text-primary)] mb-4">
+						A1 <span className="text-[var(--accent)] italic">Beginner</span>
 					</h1>
 
 					<div className="flex items-center gap-3 mb-5">
-						<span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] shadow-[0_0_6px_#f59e0b]" />
-						<span className="text-[11px] text-[#52525b] tracking-[0.08em]">
+						<span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_#f59e0b]" />
+						<span className="text-[11px] text-[var(--text-muted)] tracking-[0.08em]">
 							Start here
 						</span>
 					</div>
 
-					<p className="text-[13px] text-[#52525b] leading-relaxed max-w-xl tracking-wide mb-6">
+					<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-xl tracking-wide mb-6">
 						Learn Spanish from the ground up. Build your foundation step by step
 						— from understanding how words work to forming real sentences you
 						can use in daily life.
@@ -86,28 +87,28 @@ export default function A1Page() {
 						{["A1", "A2", "B1", "B2", "C1", "C2"].map((lvl, i) => (
 							<div
 								key={lvl}
-								className={`h-[3px] flex-1 rounded-full transition-colors duration-200 ${i === 0 ? "bg-[#f59e0b]" : "bg-[#1c1c1f]"}`}
+								className={`h-[3px] flex-1 rounded-full transition-colors duration-200 ${i === 0 ? "bg-[var(--accent)]" : "bg-[#1c1c1f]"}`}
 							/>
 						))}
-						<span className="text-[10px] text-[#3f3f46] tracking-[0.1em] ml-2 whitespace-nowrap">
+						<span className="text-[10px] text-[var(--text-label)] tracking-[0.1em] ml-2 whitespace-nowrap">
 							1 / 6
 						</span>
 					</div>
 				</section>
 
 				{/* ── WHAT YOU'LL LEARN ── */}
-				<section className="py-10 border-b border-[#1c1c1f]">
+				<section className="py-10 border-b border-[var(--border)]">
 					<SectionLabel>Curriculum</SectionLabel>
-					<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-7">
+					<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 						What you'll learn
 					</h2>
 					<ul className="flex flex-col gap-3">
 						{LEARN_ITEMS.map((item) => (
 							<li
 								key={item}
-								className="flex items-start gap-3 text-[13px] text-[#a1a1aa] leading-relaxed tracking-[0.01em]"
+								className="flex items-start gap-3 text-[13px] text-[var(--text-secondary)] leading-relaxed tracking-[0.01em]"
 							>
-								<span className="text-[#f59e0b] mt-[2px] flex-shrink-0 text-[12px]">
+								<span className="text-[var(--accent)] mt-[2px] flex-shrink-0 text-[12px]">
 									→
 								</span>
 								{item}
@@ -117,15 +118,15 @@ export default function A1Page() {
 				</section>
 
 				{/* ── TOPICS ── */}
-				<section className="py-10 border-b border-[#1c1c1f]">
+				<section className="py-10 border-b border-[var(--border)]">
 					<SectionLabel>Topics</SectionLabel>
-					<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-7">
+					<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 						What's covered
 					</h2>
 					{TOPIC_GROUPS.map((group) => (
 						<div key={group.title} className="mb-8">
 							{/* Section Title */}
-							<h3 className="text-sm text-[#f59e0b] mb-3 uppercase tracking-wider">
+							<h3 className="text-sm text-[var(--accent)] mb-3 uppercase tracking-wider">
 								{group.title}
 							</h3>
 
@@ -140,21 +141,21 @@ export default function A1Page() {
 				</section>
 
 				{/* ── WHAT YOU CAN DO ── */}
-				<section className="py-10 border-b border-[#1c1c1f]">
+				<section className="py-10 border-b border-[var(--border)]">
 					<SectionLabel>Goals</SectionLabel>
-					<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-7">
+					<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 						What you'll be able to do
 					</h2>
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border border-[#1c1c1f] rounded-xl overflow-hidden">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border border-[var(--border)] rounded-xl overflow-hidden">
 						{CAN_DO_ITEMS.map((item) => (
 							<div
 								key={item}
-								className="group bg-[#09090b] border border-[#1c1c1f] p-5 relative hover:bg-[#111113] hover:border-[#27272a] transition-all duration-150"
+								className="group bg-[var(--bg)] border border-[var(--border)] p-5 relative hover:bg-[var(--surface)] hover:border-[#27272a] transition-all duration-150"
 							>
-								<p className="text-[13px] text-[#a1a1aa] leading-relaxed tracking-[0.01em] pr-5">
+								<p className="text-[13px] text-[var(--text-secondary)] leading-relaxed tracking-[0.01em] pr-5">
 									{item}
 								</p>
-								<span className="absolute top-5 right-5 text-[#27272a] text-sm group-hover:text-[#f59e0b] transition-colors">
+								<span className="absolute top-5 right-5 text-[#27272a] text-sm group-hover:text-[var(--accent)] transition-colors">
 									→
 								</span>
 							</div>
@@ -166,13 +167,13 @@ export default function A1Page() {
 				<div className="pt-10 flex items-center gap-5">
 					<Link
 						to="/a1/alphabet"
-						className="bg-[#f59e0b] text-[#09090b] text-[13px] font-semibold px-5 py-2.5 rounded-lg tracking-wide hover:bg-[#fbbf24] transition-colors no-underline"
+						className="bg-[var(--accent)] text-[var(--accent-text)] text-[13px] font-semibold px-5 py-2.5 rounded-lg tracking-wide hover:bg-[#fbbf24] transition-colors no-underline"
 					>
 						Start learning →
 					</Link>
 					<a
 						href="#secNav"
-						className="text-[#52525b] text-[13px] tracking-wide hover:text-[#71717a] transition-colors no-underline"
+						className="text-[var(--text-muted)] text-[13px] tracking-wide hover:text-[#71717a] transition-colors no-underline"
 					>
 						View A1 Section
 					</a>
@@ -181,19 +182,19 @@ export default function A1Page() {
 				{/* ── SECTION NAVIGATION ── */}
 				<section id="secNav" className="pt-16">
 					<SectionLabel>Explore</SectionLabel>
-					<h2 className="text-2xl font-light tracking-[-0.03em] text-[#fafafa] mb-7">
+					<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 						Jump to a section
 					</h2>
 					<SectionGrid />
 				</section>
 
 				{/* ── MINDSET ── */}
-				<section className="pt-10 border-b border-[#1c1c1f]">
+				<section className="pt-10 border-b border-[var(--border)]">
 					<SectionLabel>Mindset</SectionLabel>
-					<div className="bg-[#111113] border border-[#1c1c1f] rounded-xl p-6 flex items-start gap-4">
+					<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex items-start gap-4">
 						<span className="text-lg flex-shrink-0 mt-0.5">⚡</span>
-						<p className="text-[12px] text-[#52525b] leading-[1.75] tracking-[0.01em]">
-							<span className="text-[#a1a1aa] font-semibold">
+						<p className="text-[12px] text-[var(--text-muted)] leading-[1.75] tracking-[0.01em]">
+							<span className="text-[var(--text-secondary)] font-semibold">
 								Focus on understanding, not memorizing.
 							</span>{" "}
 							A1 is about building confidence. Every word and sentence you grasp

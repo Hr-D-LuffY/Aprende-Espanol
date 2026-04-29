@@ -6,7 +6,7 @@ import DetailPanel from "../../../components/DetailPanel";
 
 function Eyebrow({ children }) {
 	return (
-		<p className="text-[10px] tracking-[0.18em] uppercase text-[#3f3f46] mb-5">
+		<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-5">
 			{children}
 		</p>
 	);
@@ -123,7 +123,9 @@ function PronounCard({ pronoun, active, onClick }) {
 					>
 						{pronoun.es}
 					</p>
-					<p className="text-[11px] text-[#3f3f46] mt-0.5">{pronoun.en}</p>
+					<p className="text-[11px] text-[var(--text-label)] mt-0.5">
+						{pronoun.en}
+					</p>
 				</div>
 				<span
 					className="text-[9px] tracking-[0.12em] uppercase px-2 py-0.5 rounded-full border shrink-0 mt-0.5"
@@ -150,14 +152,14 @@ export default function PronounsPage() {
 	const plural = PRONOUNS.filter((p) => p.number === "plural");
 
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
 				{/* Header */}
 				<Eyebrow>Grammar · A1</Eyebrow>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 					Subject Pronouns
 				</h1>
-				<p className="text-[13px] text-[#52525b] leading-relaxed mb-14 max-w-lg">
+				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-14 max-w-lg">
 					Spanish pronouns identify who is performing the action. They're often
 					omitted in speech since verb endings already encode person — but
 					essential to know.
@@ -169,7 +171,7 @@ export default function PronounsPage() {
 					<div className="flex flex-col gap-6">
 						{/* Singular group */}
 						<div>
-							<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-3 flex items-center gap-2">
+							<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-3 flex items-center gap-2">
 								<span className="w-4 h-px bg-[#27272a] inline-block" />
 								Singular
 							</p>
@@ -187,7 +189,7 @@ export default function PronounsPage() {
 
 						{/* Plural group */}
 						<div>
-							<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-3 flex items-center gap-2">
+							<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-3 flex items-center gap-2">
 								<span className="w-4 h-px bg-[#27272a] inline-block" />
 								Plural
 							</p>
@@ -211,7 +213,7 @@ export default function PronounsPage() {
 										className="w-1.5 h-1.5 rounded-full"
 										style={{ background: color }}
 									/>
-									<span className="text-[10px] tracking-[0.1em] uppercase text-[#3f3f46]">
+									<span className="text-[10px] tracking-[0.1em] uppercase text-[var(--text-label)]">
 										{person} person
 									</span>
 								</div>
@@ -227,15 +229,15 @@ export default function PronounsPage() {
 
 				{/* Full table reference */}
 				<div className="mt-14">
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-4">
+					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-4">
 						Full table
 					</p>
-					<div className="border border-[#1c1c1f] rounded-xl overflow-hidden">
-						<div className="grid grid-cols-2 border-b border-[#1c1c1f] bg-[#111113]">
-							<div className="px-5 py-3 text-[10px] tracking-[0.12em] uppercase text-[#3f3f46]">
+					<div className="border border-[var(--border)] rounded-xl overflow-hidden">
+						<div className="grid grid-cols-2 border-b border-[var(--border)] bg-[var(--surface)]">
+							<div className="px-5 py-3 text-[10px] tracking-[0.12em] uppercase text-[var(--text-label)]">
 								Singular
 							</div>
-							<div className="px-5 py-3 text-[10px] tracking-[0.12em] uppercase text-[#3f3f46] border-l border-[#1c1c1f]">
+							<div className="px-5 py-3 text-[10px] tracking-[0.12em] uppercase text-[var(--text-label)] border-l border-[var(--border)]">
 								Plural
 							</div>
 						</div>
@@ -255,15 +257,17 @@ export default function PronounsPage() {
 						].map((row, i) => (
 							<div
 								key={i}
-								className="grid grid-cols-2 border-b border-[#1c1c1f] last:border-b-0 hover:bg-[#111113] transition-colors duration-150"
+								className="grid grid-cols-2 border-b border-[var(--border)] last:border-b-0 hover:bg-[var(--surface)] transition-colors duration-150"
 							>
 								{[row.s, row.p].map((cell, ci) => (
 									<div
 										key={ci}
-										className={`px-5 py-3.5 ${ci === 1 ? "border-l border-[#1c1c1f]" : ""}`}
+										className={`px-5 py-3.5 ${ci === 1 ? "border-l border-[var(--border)]" : ""}`}
 									>
-										<p className="text-[14px] text-[#a1a1aa]">{cell.es}</p>
-										<p className="text-[11px] text-[#3f3f46] mt-0.5">
+										<p className="text-[14px] text-[var(--text-secondary)]">
+											{cell.es}
+										</p>
+										<p className="text-[11px] text-[var(--text-label)] mt-0.5">
 											{cell.en}
 										</p>
 									</div>

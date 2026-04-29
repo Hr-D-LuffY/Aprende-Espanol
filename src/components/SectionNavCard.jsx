@@ -34,22 +34,6 @@ const SECTIONS = [
 		},
 	},
 	{
-		label: "Vocabulary",
-		sub: "Words by topic",
-		to: "/a1/vocabulary",
-		index: "03",
-		color: {
-			bg: "bg-[#2a1a1a]",
-			hoverBg: "hover:bg-[#2e1e1e]",
-			border: "border-[#4a2a2a]",
-			hoverBorder: "hover:border-[#6a3a3a]",
-			accent: "text-[#f87171]",
-			hoverAccent: "group-hover:text-[#fca5a5]",
-			dot: "bg-[#f87171]",
-			indexColor: "text-[#6a3a3a]",
-		},
-	},
-	{
 		label: "Usage",
 		sub: "Real-life practice",
 		to: "/a1/usage/numbers",
@@ -63,6 +47,22 @@ const SECTIONS = [
 			hoverAccent: "group-hover:text-[#7dd3fc]",
 			dot: "bg-[#38bdf8]",
 			indexColor: "text-[#3a5a6a]",
+		},
+	},
+	{
+		label: "Vocabulary",
+		sub: "Words by topic",
+		to: "/vocabulary",
+		index: "03",
+		color: {
+			bg: "bg-[#2a1a1a]",
+			hoverBg: "hover:bg-[#2e1e1e]",
+			border: "border-[#4a2a2a]",
+			hoverBorder: "hover:border-[#6a3a3a]",
+			accent: "text-[#f87171]",
+			hoverAccent: "group-hover:text-[#fca5a5]",
+			dot: "bg-[#f87171]",
+			indexColor: "text-[#6a3a3a]",
 		},
 	},
 ];
@@ -92,7 +92,9 @@ export default function SectionNavCard({ label, sub, to, index, color }) {
 				>
 					{label}
 				</p>
-				<p className="text-[11px] text-[#52525b] tracking-[0.06em]">{sub}</p>
+				<p className="text-[11px] text-[var(--text-muted)] tracking-[0.06em]">
+					{sub}
+				</p>
 			</div>
 
 			{/* Arrow */}

@@ -117,10 +117,10 @@ const TABS = [
 		id: "0-10",
 		label: "0 – 10",
 		color: "amber",
-		dot: "bg-[#f59e0b]",
-		active: "bg-[#f59e0b] text-[#09090b] border-[#f59e0b]",
+		dot: "bg-[var(--accent)]",
+		active: "bg-[var(--accent)] text-[var(--accent-text)] border-[#f59e0b]",
 		inactive:
-			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+			"text-[var(--text-muted)] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
 		filter: (n) => n >= 0 && n <= 10,
 		note: {
 			title: "0 – 10 · the core set",
@@ -134,9 +134,9 @@ const TABS = [
 		label: "11 – 20",
 		color: "red",
 		dot: "bg-[#f87171]",
-		active: "bg-[#f87171] text-[#09090b] border-[#f87171]",
+		active: "bg-[#f87171] text-[var(--accent-text)] border-[#f87171]",
 		inactive:
-			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+			"text-[var(--text-muted)] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
 		filter: (n) => n >= 11 && n <= 20,
 		note: {
 			title: "11 – 20 · the irregular teens",
@@ -150,9 +150,9 @@ const TABS = [
 		label: "21 – 29",
 		color: "purple",
 		dot: "bg-[#a78bfa]",
-		active: "bg-[#a78bfa] text-[#09090b] border-[#a78bfa]",
+		active: "bg-[#a78bfa] text-[var(--accent-text)] border-[#a78bfa]",
 		inactive:
-			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+			"text-[var(--text-muted)] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
 		filter: (n) => n >= 21 && n <= 29,
 		note: {
 			title: "21 – 29 · veinti- compounds",
@@ -166,9 +166,9 @@ const TABS = [
 		label: "30 – 100",
 		color: "green",
 		dot: "bg-[#4ade80]",
-		active: "bg-[#4ade80] text-[#09090b] border-[#4ade80]",
+		active: "bg-[#4ade80] text-[var(--accent-text)] border-[#4ade80]",
 		inactive:
-			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+			"text-[var(--text-muted)] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
 		filter: (n) => n >= 30 && n <= 100,
 		note: {
 			title: "31 – 99 · tens + y + unit",
@@ -182,9 +182,9 @@ const TABS = [
 		label: "101 – 999",
 		color: "sky",
 		dot: "bg-[#38bdf8]",
-		active: "bg-[#38bdf8] text-[#09090b] border-[#38bdf8]",
+		active: "bg-[#38bdf8] text-[var(--accent-text)] border-[#38bdf8]",
 		inactive:
-			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+			"text-[var(--text-muted)] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
 		filter: (n) => n >= 101 && n <= 999,
 		note: {
 			title: "100 vs 101+",
@@ -198,9 +198,9 @@ const TABS = [
 		label: "1000+",
 		color: "pink",
 		dot: "bg-[#e879f9]",
-		active: "bg-[#e879f9] text-[#09090b] border-[#e879f9]",
+		active: "bg-[#e879f9] text-[var(--accent-text)] border-[#e879f9]",
 		inactive:
-			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+			"text-[var(--text-muted)] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
 		filter: (n) => n >= 1000,
 		note: null, // uses the special year block
 	},
@@ -209,7 +209,7 @@ const TABS = [
 // ── Colour helpers ────────────────────────────────────────────────────────────
 
 const numColor = (n) => {
-	if (n <= 10) return "text-[#f59e0b]";
+	if (n <= 10) return "text-[var(--accent)]";
 	if (n <= 20) return "text-[#f87171]";
 	if (n <= 29) return "text-[#a78bfa]";
 	if (n <= 100) return "text-[#4ade80]";
@@ -220,9 +220,9 @@ const numColor = (n) => {
 const noteStyles = {
 	amber: {
 		border: "border-[#f59e0b]/30",
-		bg: "bg-[#f59e0b]/5",
-		tag: "text-[#f59e0b] border-[#f59e0b]/30 bg-[#f59e0b]/10",
-		dot: "bg-[#f59e0b]",
+		bg: "bg-[var(--accent)]/5",
+		tag: "text-[var(--accent)] border-[#f59e0b]/30 bg-[var(--accent)]/10",
+		dot: "bg-[var(--accent)]",
 	},
 	red: {
 		border: "border-[#f87171]/30",
@@ -276,26 +276,28 @@ function NoteBlock({ title, body, tag, color }) {
 					{tag}
 				</span>
 			</div>
-			<p className="text-[12px] font-semibold text-[#fafafa] tracking-[-0.01em] mb-1">
+			<p className="text-[12px] font-semibold text-[var(--text-primary)] tracking-[-0.01em] mb-1">
 				{title}
 			</p>
-			<p className="text-[12px] text-[#a1a1aa] leading-relaxed">{body}</p>
+			<p className="text-[12px] text-[var(--text-secondary)] leading-relaxed">
+				{body}
+			</p>
 		</div>
 	);
 }
 
 function NumberRow({ n, es, pron }) {
 	return (
-		<div className="group flex items-baseline border-b border-[#0f0f11] hover:bg-[#111113] transition-colors duration-100">
+		<div className="group flex items-baseline border-b border-[#0f0f11] hover:bg-[var(--surface)] transition-colors duration-100">
 			<span
 				className={`w-20 shrink-0 text-[13px] font-semibold tracking-[-0.01em] py-3 pl-5 ${numColor(n)}`}
 			>
 				{n}
 			</span>
-			<span className="flex-1 text-[13px] text-[#fafafa] font-normal tracking-[-0.01em] py-3">
+			<span className="flex-1 text-[13px] text-[var(--text-primary)] font-normal tracking-[-0.01em] py-3">
 				{es}
 			</span>
-			<span className="w-52 shrink-0 text-[11px] text-[#52525b] tracking-[0.02em] py-3 pr-5 text-right group-hover:text-[#71717a] transition-colors">
+			<span className="w-52 shrink-0 text-[11px] text-[var(--text-muted)] tracking-[0.02em] py-3 pr-5 text-right group-hover:text-[#71717a] transition-colors">
 				{pron}
 			</span>
 		</div>
@@ -304,13 +306,13 @@ function NumberRow({ n, es, pron }) {
 
 function YearRow({ n, es, note }) {
 	return (
-		<div className="group flex items-start border-b border-[#0f0f11] hover:bg-[#111113] transition-colors duration-100">
+		<div className="group flex items-start border-b border-[#0f0f11] hover:bg-[var(--surface)] transition-colors duration-100">
 			<span className="w-20 shrink-0 text-[13px] font-semibold text-[#e879f9] py-3 pl-5 tracking-[-0.01em]">
 				{n}
 			</span>
 			<div className="flex-1 py-3">
-				<p className="text-[13px] text-[#fafafa]">{es}</p>
-				<p className="text-[11px] text-[#52525b] mt-0.5">{note}</p>
+				<p className="text-[13px] text-[var(--text-primary)]">{es}</p>
+				<p className="text-[11px] text-[var(--text-muted)] mt-0.5">{note}</p>
 			</div>
 		</div>
 	);
@@ -324,17 +326,17 @@ export default function NumbersPage() {
 	const filtered = numbers.filter((num) => tab.filter(num.n));
 
 	return (
-		<div className="min-h-screen bg-[#09090b] font-mono text-[#fafafa]">
+		<div className="min-h-screen bg-[var(--bg)] font-mono text-[var(--text-primary)]">
 			<div className="max-w-3xl mx-auto px-0 pb-24">
 				{/* Header */}
 				<div className="px-5 pt-10 pb-6">
-					<p className="text-[10px] tracking-[0.18em] text-[#3f3f46] uppercase mb-3">
+					<p className="text-[10px] tracking-[0.18em] text-[var(--text-label)] uppercase mb-3">
 						Reference · A1 · Numbers
 					</p>
-					<h1 className="text-[36px] font-light tracking-[-0.04em] text-[#fafafa] mb-2">
-						Numbers <span className="text-[#3f3f46]">0 – 1000+</span>
+					<h1 className="text-[36px] font-light tracking-[-0.04em] text-[var(--text-primary)] mb-2">
+						Numbers <span className="text-[var(--text-label)]">0 – 1000+</span>
 					</h1>
-					<p className="text-[13px] text-[#52525b] leading-relaxed">
+					<p className="text-[13px] text-[var(--text-muted)] leading-relaxed">
 						Complete reference with pronunciation. Select a range to focus on
 						that section.
 					</p>
@@ -351,7 +353,7 @@ export default function NumbersPage() {
 							}`}
 						>
 							<span
-								className={`w-1.5 h-1.5 rounded-full ${activeTab === t.id ? "bg-[#09090b]" : t.dot}`}
+								className={`w-1.5 h-1.5 rounded-full ${activeTab === t.id ? "bg-[var(--bg)]" : t.dot}`}
 							/>
 							{t.label}
 						</button>
@@ -367,7 +369,7 @@ export default function NumbersPage() {
 
 				{/* Table header */}
 				{activeTab !== "1000+" && (
-					<div className="flex items-center border-y border-[#1c1c1f] bg-[#0d0d0f]">
+					<div className="flex items-center border-y border-[var(--border)] bg-[#0d0d0f]">
 						<span className="w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pl-5">
 							NUM
 						</span>
@@ -399,22 +401,23 @@ export default function NumbersPage() {
 									key rule
 								</span>
 							</div>
-							<p className="text-[12px] font-semibold text-[#fafafa] mb-1">
+							<p className="text-[12px] font-semibold text-[var(--text-primary)] mb-1">
 								mil, dos mil, tres mil — never "un mil"
 							</p>
-							<p className="text-[12px] text-[#a1a1aa] leading-relaxed">
-								1000 is just <span className="text-[#fafafa]">mil</span> (never
+							<p className="text-[12px] text-[var(--text-secondary)] leading-relaxed">
+								1000 is just{" "}
+								<span className="text-[var(--text-primary)]">mil</span> (never
 								un mil). For compound years: mil + hundreds + tens + units — no
 								"y" directly after mil. 2001 = dos mil uno, not dos mil y uno.
 							</p>
 						</div>
 
-						<p className="text-[10px] tracking-[0.18em] text-[#3f3f46] uppercase mb-4">
+						<p className="text-[10px] tracking-[0.18em] text-[var(--text-label)] uppercase mb-4">
 							Years 1000 – 3000
 						</p>
 
 						{/* Year table header */}
-						<div className="flex items-center border-y border-[#1c1c1f] bg-[#0d0d0f]">
+						<div className="flex items-center border-y border-[var(--border)] bg-[#0d0d0f]">
 							<span className="w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pl-5">
 								YEAR
 							</span>

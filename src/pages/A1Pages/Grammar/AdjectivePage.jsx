@@ -5,7 +5,7 @@ import BackNext from "/src/components/BackNext.jsx";
 
 function Eyebrow({ children }) {
 	return (
-		<p className="text-[10px] tracking-[0.18em] uppercase text-[#3f3f46] mb-5">
+		<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-5">
 			{children}
 		</p>
 	);
@@ -13,7 +13,7 @@ function Eyebrow({ children }) {
 
 function Tag({ children }) {
 	return (
-		<span className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#f59e0b] border border-[#f59e0b]/30 bg-[#f59e0b]/5 px-2.5 py-0.5 rounded-full">
+		<span className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[var(--accent)] border border-[#f59e0b]/30 bg-[var(--accent)]/5 px-2.5 py-0.5 rounded-full">
 			{children}
 		</span>
 	);
@@ -21,16 +21,16 @@ function Tag({ children }) {
 
 function ExampleRow({ es, pronunciation, en }) {
 	return (
-		<div className="grid grid-cols-[1fr_auto] gap-4 items-start py-3 border-b border-[#1c1c1f] last:border-b-0">
+		<div className="grid grid-cols-[1fr_auto] gap-4 items-start py-3 border-b border-[var(--border)] last:border-b-0">
 			<div>
-				<p className="text-[14px] text-[#a1a1aa]">{es}</p>
+				<p className="text-[14px] text-[var(--text-secondary)]">{es}</p>
 				{pronunciation && (
-					<p className="text-[11px] text-[#3f3f46] mt-0.5 italic">
+					<p className="text-[11px] text-[var(--text-label)] mt-0.5 italic">
 						{pronunciation}
 					</p>
 				)}
 			</div>
-			<p className="text-[12px] text-[#52525b] text-right">{en}</p>
+			<p className="text-[12px] text-[var(--text-muted)] text-right">{en}</p>
 		</div>
 	);
 }
@@ -39,26 +39,28 @@ function RuleBlock({ number, title, subtitle, badge, children }) {
 	const [open, setOpen] = useState(true);
 
 	return (
-		<div className="border border-[#1c1c1f] rounded-2xl overflow-hidden">
+		<div className="border border-[var(--border)] rounded-2xl overflow-hidden">
 			<button
 				onClick={() => setOpen((o) => !o)}
-				className="w-full flex items-center justify-between px-6 py-5 hover:bg-[#111113] transition-colors duration-150 cursor-pointer text-left"
+				className="w-full flex items-center justify-between px-6 py-5 hover:bg-[var(--surface)] transition-colors duration-150 cursor-pointer text-left"
 			>
 				<div className="flex items-center gap-4">
-					<span className="text-[11px] font-semibold tracking-[0.14em] text-[#3f3f46]">
+					<span className="text-[11px] font-semibold tracking-[0.14em] text-[var(--text-label)]">
 						{String(number).padStart(2, "0")}
 					</span>
 					<div>
-						<p className="text-[14px] text-[#a1a1aa]">{title}</p>
+						<p className="text-[14px] text-[var(--text-secondary)]">{title}</p>
 						{subtitle && (
-							<p className="text-[11px] text-[#3f3f46] mt-0.5">{subtitle}</p>
+							<p className="text-[11px] text-[var(--text-label)] mt-0.5">
+								{subtitle}
+							</p>
 						)}
 					</div>
 				</div>
 				<div className="flex items-center gap-3">
 					{badge && <Tag>{badge}</Tag>}
 					<span
-						className="text-[#3f3f46] text-sm transition-transform duration-200"
+						className="text-[var(--text-label)] text-sm transition-transform duration-200"
 						style={{ transform: open ? "rotate(90deg)" : "none" }}
 					>
 						→
@@ -66,7 +68,7 @@ function RuleBlock({ number, title, subtitle, badge, children }) {
 				</div>
 			</button>
 			{open && (
-				<div className="px-6 pb-6 border-t border-[#1c1c1f] bg-[#111113]">
+				<div className="px-6 pb-6 border-t border-[var(--border)] bg-[var(--surface)]">
 					<div className="pt-5">{children}</div>
 				</div>
 			)}
@@ -80,13 +82,13 @@ function GenderGrid({ rows }) {
 			{rows.map((r, i) => (
 				<div
 					key={i}
-					className="border border-[#1c1c1f] rounded-xl p-4 bg-[#09090b]"
+					className="border border-[var(--border)] rounded-xl p-4 bg-[var(--bg)]"
 				>
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-2">
+					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 						{r.label}
 					</p>
-					<p className="text-[15px] text-[#f59e0b]">{r.es}</p>
-					<p className="text-[11px] text-[#52525b] mt-1">{r.en}</p>
+					<p className="text-[15px] text-[var(--accent)]">{r.es}</p>
+					<p className="text-[11px] text-[var(--text-muted)] mt-1">{r.en}</p>
 				</div>
 			))}
 		</div>
@@ -140,33 +142,33 @@ const INVARIABLE_EXAMPLES = [
 
 export default function AdjectivePage() {
 	return (
-		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
+		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
 				{/* Header */}
 				<Eyebrow>Grammar · A1</Eyebrow>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[#fafafa] mb-3">
+				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 					Adjective
 				</h1>
-				<p className="text-[13px] text-[#52525b] leading-relaxed mb-10 max-w-lg">
+				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-10 max-w-lg">
 					Unlike English, Spanish adjectives must match the gender and number of
 					the noun they describe. Three rules cover almost every case.
 				</p>
 
 				{/* Structure formula */}
 				<div className="mb-12">
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-3">
+					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-3">
 						Structure
 					</p>
-					<div className="flex items-center gap-2 border border-[#1c1c1f] rounded-xl px-5 py-3 bg-[#111113] w-fit">
-						<span className="text-[13px] text-[#f59e0b] font-semibold tracking-wide">
+					<div className="flex items-center gap-2 border border-[var(--border)] rounded-xl px-5 py-3 bg-[var(--surface)] w-fit">
+						<span className="text-[13px] text-[var(--accent)] font-semibold tracking-wide">
 							NOUN
 						</span>
-						<span className="text-[#f59e0b] text-[11px]">+</span>
-						<span className="text-[13px] text-[#f59e0b] font-semibold tracking-wide">
+						<span className="text-[var(--accent)] text-[11px]">+</span>
+						<span className="text-[13px] text-[var(--accent)] font-semibold tracking-wide">
 							ADJECTIVE
 						</span>
 					</div>
-					<p className="text-[11px] text-[#f59e0b]/50 mt-3">
+					<p className="text-[11px] text-[var(--accent)]/50 mt-3">
 						Adjective always follows the noun · must match gender + number
 					</p>
 				</div>
@@ -182,11 +184,12 @@ export default function AdjectivePage() {
 					>
 						<GenderGrid rows={GENDER_PAIRS} />
 						<div className="mt-4 border-l-2 border-[#f59e0b]/40 pl-4">
-							<p className="text-[11px] text-[#52525b] leading-relaxed">
-								Adjectives ending in <span className="text-[#a1a1aa]">-o</span>{" "}
-								change to <span className="text-[#a1a1aa]">-a</span> for
+							<p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
+								Adjectives ending in{" "}
+								<span className="text-[var(--text-secondary)]">-o</span> change
+								to <span className="text-[var(--text-secondary)]">-a</span> for
 								feminine nouns. The plural simply adds{" "}
-								<span className="text-[#a1a1aa]">-s</span>.
+								<span className="text-[var(--text-secondary)]">-s</span>.
 							</p>
 						</div>
 					</RuleBlock>
@@ -198,7 +201,7 @@ export default function AdjectivePage() {
 						subtitle="Adjective plural mirrors noun plural"
 						badge="+ S / + ES"
 					>
-						<div className="border border-[#1c1c1f] rounded-xl px-5 bg-[#09090b]">
+						<div className="border border-[var(--border)] rounded-xl px-5 bg-[var(--bg)]">
 							{PLURAL_EXAMPLES.map((ex, i) => (
 								<ExampleRow key={i} {...ex} />
 							))}
@@ -217,18 +220,18 @@ export default function AdjectivePage() {
 							{INVARIABLE_WORDS.map((w) => (
 								<span
 									key={w}
-									className="text-[12px] text-[#a1a1aa] border border-[#27272a] px-3 py-1 rounded-full"
+									className="text-[12px] text-[var(--text-secondary)] border border-[#27272a] px-3 py-1 rounded-full"
 								>
 									{w}
 								</span>
 							))}
 						</div>
-						<div className="border border-[#1c1c1f] rounded-xl px-5 bg-[#09090b]">
+						<div className="border border-[var(--border)] rounded-xl px-5 bg-[var(--bg)]">
 							{INVARIABLE_EXAMPLES.map((ex, i) => (
 								<ExampleRow key={i} {...ex} />
 							))}
 						</div>
-						<p className="text-[11px] text-[#52525b] mt-4 leading-relaxed border-l-2 border-[#f59e0b]/40 pl-4">
+						<p className="text-[11px] text-[var(--text-muted)] mt-4 leading-relaxed border-l-2 border-[#f59e0b]/40 pl-4">
 							These adjectives only change for plural (add -s or -es), never for
 							gender.
 						</p>
@@ -237,15 +240,15 @@ export default function AdjectivePage() {
 
 				{/* Quick summary table */}
 				<div className="mt-12">
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[#3f3f46] mb-4">
+					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-4">
 						Quick reference
 					</p>
-					<div className="border border-[#1c1c1f] rounded-xl overflow-hidden">
-						<div className="grid grid-cols-4 border-b border-[#1c1c1f] bg-[#111113]">
+					<div className="border border-[var(--border)] rounded-xl overflow-hidden">
+						<div className="grid grid-cols-4 border-b border-[var(--border)] bg-[var(--surface)]">
 							{["", "M. Singular", "F. Singular", "Plural"].map((h) => (
 								<div
 									key={h}
-									className="px-4 py-3 text-[10px] tracking-[0.12em] uppercase text-[#3f3f46]"
+									className="px-4 py-3 text-[10px] tracking-[0.12em] uppercase text-[var(--text-label)]"
 								>
 									{h}
 								</div>
@@ -263,18 +266,18 @@ export default function AdjectivePage() {
 						].map((row) => (
 							<div
 								key={row.type}
-								className="grid grid-cols-4 border-b border-[#1c1c1f] last:border-b-0 hover:bg-[#111113] transition-colors duration-150"
+								className="grid grid-cols-4 border-b border-[var(--border)] last:border-b-0 hover:bg-[var(--surface)] transition-colors duration-150"
 							>
-								<div className="px-4 py-3 text-[11px] text-[#52525b]">
+								<div className="px-4 py-3 text-[11px] text-[var(--text-muted)]">
 									{row.type}
 								</div>
-								<div className="px-4 py-3 text-[13px] text-[#f59e0b]">
+								<div className="px-4 py-3 text-[13px] text-[var(--accent)]">
 									{row.ms}
 								</div>
-								<div className="px-4 py-3 text-[13px] text-[#f59e0b]">
+								<div className="px-4 py-3 text-[13px] text-[var(--accent)]">
 									{row.fs}
 								</div>
-								<div className="px-4 py-3 text-[12px] text-[#a1a1aa]">
+								<div className="px-4 py-3 text-[12px] text-[var(--text-secondary)]">
 									{row.pl}
 								</div>
 							</div>
