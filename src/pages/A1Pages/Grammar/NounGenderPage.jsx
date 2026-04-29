@@ -7,16 +7,16 @@ import {
 	GENDER_PAIRS,
 	CONSONANT_PAIRS,
 	EXCEPTIONS,
-} from "../context/NounCon.js";
+} from "../../../context/NounCon.js";
 
-import RuleTag from "../components/NounGender/RuleTag.jsx";
-import WordCard from "../components/NounGender/WordCard.jsx";
-import WordGrid from "../components/NounGender/WordGrid.jsx";
-import RuleBlock from "../components/NounGender/RuleBlock.jsx";
-import InfoNote from "../components/NounGender/InfoNote.jsx";
-import PairTable from "../components/NounGender/PairTable.jsx";
-import GenderDot from "../components/NounGender/GenderDot.jsx";
-import BackNext from "../components/BackNext.jsx";
+import RuleTag from "../../../components/NounGender/RuleTag.jsx";
+import WordCard from "../../../components/NounGender/WordCard.jsx";
+import WordGrid from "../../../components/NounGender/WordGrid.jsx";
+import RuleBlock from "../../../components/NounGender/RuleBlock.jsx";
+import InfoNote from "../../../components/NounGender/InfoNote.jsx";
+import PairTable from "../../../components/NounGender/PairTable.jsx";
+import GenderDot from "../../../components/NounGender/GenderDot.jsx";
+import BackNext from "../../../components/BackNext.jsx";
 
 const TABS = [
 	{ id: "masculine", label: "Masculine" },

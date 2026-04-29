@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link ,Navigate} from "react-router-dom";
-import { ALPHABET, SPECIAL } from "../context/alphabetCon";
+import { ALPHABET, SPECIAL } from "../../../context/alphabetCon";
 
 export default function AlphabetPage() {
 	const [active, setActive] = useState(null);

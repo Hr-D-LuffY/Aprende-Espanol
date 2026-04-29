@@ -2,25 +2,35 @@ import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
-//landing
-
 import LandingPage from "./pages/LandingPage.jsx";
+import GrammarPage from "./pages/GrammarPage.jsx";
 import Navbar from "./components/NavBar.jsx";
 import FootBar from "./components/FootBar.jsx";
-import AlphabetPage from "./pages/Alphabet.jsx";
-import PronunciationPage from "./pages/Pronunciation.jsx";
-import GrammarPage from "./pages/GrammarPage.jsx";
-import A1Page from "./pages/A1Page.jsx";
-import NumbersPage from "./pages/NumbersPage.jsx";
-import NounGenderPage from "./pages/NounGenderPage.jsx";
-import ArticlesPage from "./pages/Article.jsx";
-import SingularPluralPage from "./pages/SingularPlural.jsx";
-import AdjectivePage from "./pages/AdjectivePage.jsx";
-import PronounsPage from "./pages/Pronoun.jsx";
-import DemonstrativePage from "./pages/Demonstrativepage.jsx";
-import QuestionWordsPage from "./pages/Questionwordspage.jsx";
-import SentenceStructurePage from "./pages/SentenceStructurepage.jsx";
-import PossessiveAdjPage from "./pages/PossesiveAdj.jsx";
+
+import A1Page from "./pages/A1Pages/A1Page.jsx";
+
+import AlphabetPage from "./pages/A1Pages/Foundation/Alphabet.jsx";
+import PronunciationPage from "./pages/A1Pages/Foundation/Pronunciation.jsx";
+
+import AdjectivePage from "./pages/A1Pages/Grammar/AdjectivePage.jsx";
+
+import NumbersPage from "./pages/A1Pages/Usage/NumbersPage.jsx";
+import NounGenderPage from "./pages/A1Pages/Grammar/NounGenderPage.jsx";
+import ArticlesPage from "./pages/A1Pages/Grammar/Article.jsx";
+import SingularPluralPage from "./pages/A1Pages/Grammar/SingularPlural.jsx";
+
+import PronounsPage from "./pages/A1Pages/Grammar/Pronoun.jsx";
+import DemonstrativePage from "./pages/A1Pages/Grammar/Demonstrativepage.jsx";
+import QuestionWordsPage from "./pages/A1Pages/Grammar/Questionwordspage.jsx";
+import SentenceStructurePage from "./pages/A1Pages/Grammar/SentenceStructurepage.jsx";
+import PossessiveAdjPage from "./pages/A1Pages/Grammar/PossesiveAdj.jsx";
+import SerPage from "./pages/A1Pages/Grammar/SerPage.jsx";
+import EstarPage from "./pages/A1Pages/Grammar/EstarPage.jsx";
+import TenerPage from "./pages/A1Pages/Grammar/TenerPage.jsx";
+import GustarPage from "./pages/A1Pages/Grammar/GustarPage.jsx";
+import NegationPage from "./pages/A1Pages/Grammar/Negation.jsx";
+import ContractionPage from "./pages/A1Pages/Grammar/Contractionpage.jsx";
+import PrepositionPage from "./pages/A1Pages/Grammar/Prepositionpage.jsx";
 
 const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
@@ -57,6 +67,9 @@ const App = () => (
 						element={<SentenceStructurePage />}
 					/>
 					<Route path="possessive-adjectives" element={<PossessiveAdjPage />} />
+					<Route path="ser" element={<SerPage />} />
+					<Route path="estar" element={<EstarPage />} />
+					<Route path="tener" element={<TenerPage />} />
 				</Route>
 			</Route>
 		</Routes>

@@ -84,7 +84,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Used for identity and description.",
 		details: ["soy, eres, es", "Soy estudiante"],
-		path: "/grammar/ser",
+		path: "/a1/grammar/ser",
 	},
 	{
 		num: "10",
@@ -93,7 +93,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Used for state and location.",
 		details: ["estoy, estás, está", "Estoy cansado"],
-		path: "/grammar/estar",
+		path: "/a1/grammar/estar",
 	},
 	{
 		num: "11",
@@ -102,7 +102,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Express possession, age, and basic needs.",
 		details: ["tengo, tienes, tiene", "Tengo 20 años", "Tengo hambre"],
-		path: "/grammar/tener",
+		path: "/a1/grammar/tener",
 	},
 	{
 		num: "12",
@@ -117,7 +117,7 @@ export const a1Topics = [
 			"me gustan libros",
 			"Me gusta el café",
 		],
-		path: "/grammar/gustar",
+		path: "/a1/grammar/gustar",
 	},
 	{
 		num: "13",
@@ -135,7 +135,7 @@ export const a1Topics = [
 		important: false,
 		preview: "Make negative sentences.",
 		details: ["No + verb", "No entiendo"],
-		path: "/grammar/negation",
+		path: "/a1/grammar/negation",
 	},
 	{
 		num: "15",
@@ -144,7 +144,7 @@ export const a1Topics = [
 		important: false,
 		preview: "Connect words and show relationships.",
 		details: ["en, a, de, con", "en la casa"],
-		path: "/grammar/prepositions",
+		path: "/a1/grammar/prepositions",
 	},
 	{
 		num: "16",
@@ -158,7 +158,7 @@ export const a1Topics = [
 			"Voy al mercado",
 			"Vengo del trabajo",
 		],
-		path: "/grammar/contractions",
+		path: "/a1/grammar/contraction",
 	},
 	{
 		num: "17",

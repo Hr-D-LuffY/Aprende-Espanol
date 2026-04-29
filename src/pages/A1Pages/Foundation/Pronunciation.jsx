@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { RULES } from "../context/PronunRules";
+import { RULES } from "../../../context/PronunRules";
 
-import BackNext from "../components/BackNext";
-import SidebarButton from "../components/Pronunciation/SidebarButton";
-import RuleTag from "../components/Pronunciation/RuleTag";
-import ContentBlock from "../components/Pronunciation/ContentBlock";
+import BackNext from "/src/components/BackNext.jsx";
+import SidebarButton from "../../../components/Pronunciation/SidebarButton";
+import RuleTag from "../../../components/Pronunciation/RuleTag";
+import ContentBlock from "../../../components/Pronunciation/ContentBlock";
 
 export default function PronunciationPage() {
 	const [activeRule, setActiveRule] = useState("vowels");

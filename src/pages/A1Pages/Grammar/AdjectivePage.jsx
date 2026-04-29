@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BackNext from "../components/BackNext";
+import BackNext from "/src/components/BackNext.jsx";
 
 // ── Primitives ─────────────────────────────────────────────────────────────
 

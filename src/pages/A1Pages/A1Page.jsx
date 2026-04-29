@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import SectionLabel from "../components/SectionLabel";
-import TopicPill from "../components/TopicPill";
-import { SectionGrid } from "../components/SectionNavCard";
+import SectionLabel from "../../components/SectionLabel";
+import TopicPill from "../../components/TopicPill";
+import { SectionGrid } from "../../components/SectionNavCard";
 
 const LEARN_ITEMS = [
 	"How Spanish words are structured — gender, articles, and noun agreement",
