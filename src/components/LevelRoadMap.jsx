@@ -93,24 +93,32 @@ export const LEVELS = [
 
 export default function LevelRoadMap() {
 	return (
-		<section className="border-t border-[var(--border)] py-10 px-8">
+		<section className="border-t border-[var(--border)] py-10 px-4 sm:px-6 md:px-8">
 			<div className="max-w-5xl mx-auto">
-				<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-10">
+				<h2 className="text-xl sm:text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-8 sm:mb-10">
 					What you need to reach each level
 				</h2>
+
 				<div className="flex flex-col">
 					{LEVELS.map((lvl, index) => (
 						<div
 							key={lvl.code}
-							className="grid grid-cols-[130px_1px_1fr] gap-x-8 pb-9 items-start"
+							className="
+								grid 
+								grid-cols-1 
+								sm:grid-cols-[120px_1px_1fr] 
+								gap-y-4 sm:gap-y-0 
+								gap-x-6 
+								pb-8
+							"
 						>
 							{/* Badge */}
 							<div
-								className="rounded-xl p-3 bg-[var(--bg)] flex flex-col gap-0.5 border"
+								className="rounded-xl p-3 bg-[var(--bg)] flex flex-col gap-0.5 border w-fit"
 								style={{ borderColor: lvl.color + "30" }}
 							>
 								<span
-									className="text-2xl font-extralight tracking-[-0.04em] leading-none"
+									className="text-xl sm:text-2xl font-extralight tracking-[-0.04em] leading-none"
 									style={{ color: lvl.color }}
 								>
 									{lvl.code}
@@ -120,23 +128,36 @@ export default function LevelRoadMap() {
 								</span>
 							</div>
 
-							{/* Vertical line */}
-							<div className="bg-[#1c1c1f] w-px self-stretch" />
+							{/* Vertical line (hidden on mobile) */}
+							<div className="hidden sm:block bg-[#1c1c1f] w-px" />
 
-							{/* Topic pills */}
-							<div className="flex flex-wrap gap-2 pt-1">
+							{/* Topics */}
+							<div className="flex flex-wrap gap-2">
 								{lvl.topics.map((topic) => (
 									<span
 										key={topic}
-										className="border border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] rounded-lg px-3.5 py-1.5 text-[12px] tracking-wide no-underline transition-all duration-150 hover:text-[var(--text-primary)] hover:border-[#f59e0b]/30 hover:bg-[var(--accent)]/5"
+										className="
+											border border-[var(--border)] 
+											bg-[var(--surface)] 
+											text-[var(--text-muted)] 
+											rounded-lg 
+											px-3 py-1.5 
+											text-[11px] sm:text-[12px] 
+											tracking-wide 
+											transition-all duration-150 
+											hover:text-[var(--text-primary)] 
+											hover:border-[#f59e0b]/30 
+											hover:bg-[var(--accent)]/5
+										"
 									>
 										{topic}
 									</span>
 								))}
 							</div>
-							{/* 🔥 Horizontal line (divider) */}
+
+							{/* Divider */}
 							{index !== LEVELS.length - 1 && (
-								<div className="w-screen h-px bg-gradient-to-r from-transparent via-[#2a2a2e] to-transparent m-4" />
+								<div className="col-span-1 sm:col-span-3 w-full h-px bg-gradient-to-r from-transparent via-[#2a2a2e] to-transparent mt-6" />
 							)}
 						</div>
 					))}

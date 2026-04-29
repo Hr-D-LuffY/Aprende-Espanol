@@ -65,7 +65,9 @@ export function UsePill({ children }) {
 export function PageWrapper({ children }) {
 	return (
 		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
-			<div className="max-w-5xl mx-auto px-8 pt-20 pb-24">{children}</div>
+			<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24">
+				{children}
+			</div>
 		</div>
 	);
 }

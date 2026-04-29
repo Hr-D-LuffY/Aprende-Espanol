@@ -115,11 +115,6 @@ export default function GrammarPage() {
 						</Link>
 					))}
 				</div>
-
-				{/* Footer */}
-				<p className="text-center text-[#27272a] text-[12px] tracking-[0.05em] mt-16">
-					Study hard 💪
-				</p>
 			</div>
 		</div>
 	);

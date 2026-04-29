@@ -167,7 +167,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Learn -ar, -er, -ir verb patterns.",
 		details: ["hablo, comes, vive"],
-		path: "/grammar/present-tense",
+		path: "/a1/grammar/regular-verbs",
 	},
 	{
 		num: "18",
@@ -176,7 +176,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Most-used irregular verbs.",
 		details: ["ir → voy", "hacer → hago", "venir → vengo"],
-		path: "/grammar/irregular-verbs",
+		path: "/a1/grammar/irregular-verbs",
 	},
 ];
 

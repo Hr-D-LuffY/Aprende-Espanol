@@ -4,7 +4,7 @@ import { useTheme } from "../context/ThemeContext.jsx";
 
 const NAV_LINKS = [
 	{ label: "Alphabet", to: "/a1/alphabet" },
-	{ label: "Verbs", to: "/verbs" },
+	{ label: "A1 Level", to: "/a1" },
 	{ label: "Vocabulary", to: "/vocabulary" },
 	{ label: "Grammar", to: "/grammar" },
 ];
@@ -82,16 +82,16 @@ export default function Navbar() {
 					className="flex items-center gap-2 no-underline mr-auto shrink-0"
 				>
 					<span
-						className="text-[10px] font-bold px-2 py-0.5 rounded tracking-[0.06em] font-mono transition-colors duration-300"
-						style={{ background: "var(--accent)", color: "var(--accent-text)" }}
-					>
-						Spanish
-					</span>
-					<span
-						className="text-[13px] tracking-[0.12em] font-mono transition-colors duration-300"
+						className="text-[10px] tracking-[0.12em] font-mono transition-colors duration-300"
 						style={{ color: "var(--text-label)" }}
 					>
-						notes
+						Aprende
+					</span>
+					<span
+						className="text-[14px] font-bold px-2 py-0.5 rounded tracking-[0.06em] font-mono transition-colors duration-300"
+						style={{ background: "var(--accent)", color: "var(--accent-text)" }}
+					>
+						Español
 					</span>
 				</Link>
 

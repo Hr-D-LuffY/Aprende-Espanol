@@ -8,7 +8,7 @@ export default function FootBar() {
 				flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0 text-center sm:text-left"
 			>
 				<span className="text-[14px] font-semibold text-[var(--footer)] tracking-[0.05em]">
-					© 2026 Spanish Notes
+					© 2026 Aprande Español
 				</span>
 
 				<span className="text-[14px]  font-semibold text-[var(--footer)] tracking-[0.05em]">

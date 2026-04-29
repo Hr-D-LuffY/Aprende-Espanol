@@ -36,8 +36,10 @@ import PrepositionPage from "./pages/A1Pages/Grammar/Prepositionpage.jsx";
 import TimePage from "./pages/A1Pages/Usage/TimePage.jsx";
 import DaysMonthsPage from "./pages/A1Pages/Usage/DaysMonthPage.jsx";
 import VocabPage from "./pages/VocabPage.jsx";
+import RegularVerbsPage from "./pages/A1Pages/Grammar/RegularVerbPage.jsx";
+import IrregularVerbsPage from "./pages/A1Pages/Grammar/IrregularVerbPage.jsx";
 
-const supabase = createClient(
+export const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
 	import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 );
@@ -78,6 +80,8 @@ const App = () => (
 						<Route path="negation" element={<NegationPage />} />
 						<Route path="contraction" element={<ContractionPage />} />
 						<Route path="prepositions" element={<PrepositionPage />} />
+						<Route path="regular-verbs" element={<RegularVerbsPage />} />
+						<Route path="irregular-verbs" element={<IrregularVerbsPage />} />
 					</Route>
 					<Route path="usage">
 						<Route path="numbers" element={<NumbersPage />} />
