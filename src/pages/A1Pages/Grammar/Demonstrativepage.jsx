@@ -351,7 +351,7 @@ export default function DemonstrativePage() {
 
 				<BackNext
 					back="/a1/grammar/sentence-structure"
-					next="#"
+					next="/a1/grammar/possessive-adjectives"
 					backLabel="Sentence Structure"
 					nextLabel="Possessive Adjectives"
 				/>

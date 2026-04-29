@@ -285,10 +285,10 @@ export default function QuestionWordsPage() {
 				</div>
 
 				<BackNext
-					back="/a1/grammar/demonstratives"
-					next="/a1/grammar/sentence-structure"
-					backLabel="Demonstratives"
-					nextLabel="Sentence Structure"
+					back="/a1/grammar/gustar"
+					next="/a1/grammar/negation"
+					backLabel="Gustar Verb"
+					nextLabel="Negation"
 				/>
 			</div>
 		</div>

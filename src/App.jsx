@@ -31,6 +31,7 @@ import GustarPage from "./pages/A1Pages/Grammar/GustarPage.jsx";
 import NegationPage from "./pages/A1Pages/Grammar/Negation.jsx";
 import ContractionPage from "./pages/A1Pages/Grammar/Contractionpage.jsx";
 import PrepositionPage from "./pages/A1Pages/Grammar/Prepositionpage.jsx";
+import TimePage from "./pages/A1Pages/Usage/TimePage.jsx";
 
 const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
@@ -52,7 +53,7 @@ const App = () => (
 				<Route index element={<A1Page />} />
 				<Route path="alphabet" element={<AlphabetPage />} />
 				<Route path="pronunciation" element={<PronunciationPage />} />
-				<Route path="numbers" element={<NumbersPage />} />
+
 				<Route path="grammar">
 					<Route index element={<GrammarPage level="A1" />} />
 					<Route path="noun-gender" element={<NounGenderPage />} />
@@ -70,6 +71,14 @@ const App = () => (
 					<Route path="ser" element={<SerPage />} />
 					<Route path="estar" element={<EstarPage />} />
 					<Route path="tener" element={<TenerPage />} />
+					<Route path="gustar" element={<GustarPage />} />
+					<Route path="negation" element={<NegationPage />} />
+					<Route path="contraction" element={<ContractionPage />} />
+					<Route path="prepositions" element={<PrepositionPage />} />
+				</Route>
+				<Route path="usage">
+					<Route path="numbers" element={<NumbersPage />} />
+					<Route path="time" element={<TimePage />} />
 				</Route>
 			</Route>
 		</Routes>

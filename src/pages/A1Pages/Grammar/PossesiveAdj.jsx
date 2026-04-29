@@ -218,10 +218,10 @@ export default function PossessiveAdjPage() {
 
 				{/* Back & Next link */}
 				<BackNext
-					back="/a1/grammar/adjective"
-					next="/a1/grammar/sentence-structure"
-					backLabel="Adjective"
-					nextLabel="Sentence Structure"
+					back="/a1/grammar/demonstrative"
+					next="/a1/grammar/ser"
+					backLabel="Demonstratives"
+					nextLabel="Ser Verb"
 				/>
 			</div>
 		</div>

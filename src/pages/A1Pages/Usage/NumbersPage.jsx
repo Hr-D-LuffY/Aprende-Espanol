@@ -1,9 +1,9 @@
 import { useState } from "react";
+import BackNext from "../../../components/BackNext";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const numbers = [
-	// 0–10
 	{ n: 0, es: "cero", pron: "seh-ro" },
 	{ n: 1, es: "uno", pron: "oo-no" },
 	{ n: 2, es: "dos", pron: "dohs" },
@@ -15,7 +15,6 @@ const numbers = [
 	{ n: 8, es: "ocho", pron: "oh-cho" },
 	{ n: 9, es: "nueve", pron: "nweh-beh" },
 	{ n: 10, es: "diez", pron: "dyehs" },
-	// 11–20
 	{ n: 11, es: "once", pron: "on-seh" },
 	{ n: 12, es: "doce", pron: "doh-seh" },
 	{ n: 13, es: "trece", pron: "treh-seh" },
@@ -26,7 +25,6 @@ const numbers = [
 	{ n: 18, es: "dieciocho", pron: "dyeh-see-oh-cho" },
 	{ n: 19, es: "diecinueve", pron: "dyeh-see-nweh-beh" },
 	{ n: 20, es: "veinte", pron: "bayn-teh" },
-	// 21–29
 	{ n: 21, es: "veintiuno", pron: "bayn-tyoo-no" },
 	{ n: 22, es: "veintidós", pron: "bayn-tee-dohs" },
 	{ n: 23, es: "veintitrés", pron: "bayn-tee-trehs" },
@@ -36,7 +34,6 @@ const numbers = [
 	{ n: 27, es: "veintisiete", pron: "bayn-tee-syeh-teh" },
 	{ n: 28, es: "veintiocho", pron: "bayn-tee-oh-cho" },
 	{ n: 29, es: "veintinueve", pron: "bayn-tee-nweh-beh" },
-	// 30–100 tens
 	{ n: 30, es: "treinta", pron: "trayn-tah" },
 	{ n: 40, es: "cuarenta", pron: "kwah-ren-tah" },
 	{ n: 50, es: "cincuenta", pron: "seen-kwen-tah" },
@@ -45,7 +42,6 @@ const numbers = [
 	{ n: 80, es: "ochenta", pron: "oh-chen-tah" },
 	{ n: 90, es: "noventa", pron: "noh-ben-tah" },
 	{ n: 100, es: "cien", pron: "syen" },
-	// 101–900 hundreds
 	{ n: 101, es: "ciento uno", pron: "syen-to oo-no" },
 	{ n: 200, es: "doscientos", pron: "dos-syen-tos" },
 	{
@@ -98,44 +94,6 @@ const numbers = [
 	{ n: 1000, es: "mil", pron: "meel" },
 ];
 
-const notes = [
-	{
-		afterIndex: 10, // after n=10
-		title: "0 – 10 · the core set",
-		body: "These are the atoms. Every other number is built from these. Drill them until they're automatic — you'll use them in every compound number.",
-		tag: "memorise first",
-		color: "amber",
-	},
-	{
-		afterIndex: 20,
-		title: "11 – 20 · the irregular teens",
-		body: "11–15 are completely unique words (once, doce…). 16–19 are fused forms of diez + the unit — written as one word. 20 is veinte, not veintiuno yet.",
-		tag: "watch out",
-		color: "red",
-	},
-	{
-		afterIndex: 29,
-		title: "21 – 29 · veinti- compounds",
-		body: "All fused with veinti-. Note: veintiún (before masculine noun), veintiuna (before feminine noun). After 29 the pattern switches — treinta y uno (separate words).",
-		tag: "pattern shift at 30",
-		color: "blue",
-	},
-	{
-		afterIndex: 37, // after 100
-		title: "31 – 99 · tens + y + unit",
-		body: "From 31 onwards: [ten] y [unit]. Treinta y uno, cuarenta y dos… The y (and) is always there. Tens are regular except sesenta (not seisenta) and setenta (not sietenta).",
-		tag: "formula: ten + y + unit",
-		color: "green",
-	},
-	{
-		afterIndex: 38, // after 101
-		title: "100 vs 101+",
-		body: "Cien is used alone (exactly 100). The moment you go above 100, it becomes ciento — ciento uno, ciento veinte. This is one of the most common mistakes.",
-		tag: "cien ≠ ciento",
-		color: "purple",
-	},
-];
-
 const yearExamples = [
 	{
 		n: 1492,
@@ -152,15 +110,111 @@ const yearExamples = [
 	{ n: 3000, es: "tres mil", note: "upper boundary example" },
 ];
 
-// ── Color helpers ─────────────────────────────────────────────────────────────
+// ── Tabs config ───────────────────────────────────────────────────────────────
+
+const TABS = [
+	{
+		id: "0-10",
+		label: "0 – 10",
+		color: "amber",
+		dot: "bg-[#f59e0b]",
+		active: "bg-[#f59e0b] text-[#09090b] border-[#f59e0b]",
+		inactive:
+			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+		filter: (n) => n >= 0 && n <= 10,
+		note: {
+			title: "0 – 10 · the core set",
+			body: "These are the atoms. Every other number is built from these. Drill them until they're automatic — you'll use them in every compound number.",
+			tag: "memorise first",
+			color: "amber",
+		},
+	},
+	{
+		id: "11-20",
+		label: "11 – 20",
+		color: "red",
+		dot: "bg-[#f87171]",
+		active: "bg-[#f87171] text-[#09090b] border-[#f87171]",
+		inactive:
+			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+		filter: (n) => n >= 11 && n <= 20,
+		note: {
+			title: "11 – 20 · the irregular teens",
+			body: "11–15 are completely unique words (once, doce…). 16–19 are fused forms of diez + the unit — written as one word. 20 is veinte, not veintiuno yet.",
+			tag: "watch out",
+			color: "red",
+		},
+	},
+	{
+		id: "21-29",
+		label: "21 – 29",
+		color: "purple",
+		dot: "bg-[#a78bfa]",
+		active: "bg-[#a78bfa] text-[#09090b] border-[#a78bfa]",
+		inactive:
+			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+		filter: (n) => n >= 21 && n <= 29,
+		note: {
+			title: "21 – 29 · veinti- compounds",
+			body: "All fused with veinti-. Note: veintiún (before masculine noun), veintiuna (before feminine noun). After 29 the pattern switches — treinta y uno (separate words).",
+			tag: "pattern shift at 30",
+			color: "purple",
+		},
+	},
+	{
+		id: "30-100",
+		label: "30 – 100",
+		color: "green",
+		dot: "bg-[#4ade80]",
+		active: "bg-[#4ade80] text-[#09090b] border-[#4ade80]",
+		inactive:
+			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+		filter: (n) => n >= 30 && n <= 100,
+		note: {
+			title: "31 – 99 · tens + y + unit",
+			body: "From 31 onwards: [ten] y [unit]. Treinta y uno, cuarenta y dos… The y (and) is always there. Tens are regular except sesenta (not seisenta) and setenta (not sietenta).",
+			tag: "formula: ten + y + unit",
+			color: "green",
+		},
+	},
+	{
+		id: "101-999",
+		label: "101 – 999",
+		color: "sky",
+		dot: "bg-[#38bdf8]",
+		active: "bg-[#38bdf8] text-[#09090b] border-[#38bdf8]",
+		inactive:
+			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+		filter: (n) => n >= 101 && n <= 999,
+		note: {
+			title: "100 vs 101+",
+			body: "Cien is used alone (exactly 100). The moment you go above 100, it becomes ciento — ciento uno, ciento veinte. This is one of the most common mistakes.",
+			tag: "cien ≠ ciento",
+			color: "sky",
+		},
+	},
+	{
+		id: "1000+",
+		label: "1000+",
+		color: "pink",
+		dot: "bg-[#e879f9]",
+		active: "bg-[#e879f9] text-[#09090b] border-[#e879f9]",
+		inactive:
+			"text-[#52525b] border-[#27272a] hover:border-[#3f3f46] hover:text-[#71717a]",
+		filter: (n) => n >= 1000,
+		note: null, // uses the special year block
+	},
+];
+
+// ── Colour helpers ────────────────────────────────────────────────────────────
 
 const numColor = (n) => {
-	if (n <= 10) return "text-[#f59e0b]"; // amber  — core set
-	if (n <= 20) return "text-[#f87171]"; // red    — irregular teens
-	if (n <= 29) return "text-[#a78bfa]"; // purple — veinti
-	if (n <= 100) return "text-[#4ade80]"; // green  — tens
-	if (n <= 999) return "text-[#38bdf8]"; // sky    — hundreds
-	return "text-[#e879f9]"; // pink   — thousands
+	if (n <= 10) return "text-[#f59e0b]";
+	if (n <= 20) return "text-[#f87171]";
+	if (n <= 29) return "text-[#a78bfa]";
+	if (n <= 100) return "text-[#4ade80]";
+	if (n <= 999) return "text-[#38bdf8]";
+	return "text-[#e879f9]";
 };
 
 const noteStyles = {
@@ -182,6 +236,12 @@ const noteStyles = {
 		tag: "text-[#38bdf8] border-[#38bdf8]/30 bg-[#38bdf8]/10",
 		dot: "bg-[#38bdf8]",
 	},
+	sky: {
+		border: "border-[#38bdf8]/30",
+		bg: "bg-[#38bdf8]/5",
+		tag: "text-[#38bdf8] border-[#38bdf8]/30 bg-[#38bdf8]/10",
+		dot: "bg-[#38bdf8]",
+	},
 	green: {
 		border: "border-[#4ade80]/30",
 		bg: "bg-[#4ade80]/5",
@@ -194,6 +254,12 @@ const noteStyles = {
 		tag: "text-[#a78bfa] border-[#a78bfa]/30 bg-[#a78bfa]/10",
 		dot: "bg-[#a78bfa]",
 	},
+	pink: {
+		border: "border-[#e879f9]/30",
+		bg: "bg-[#e879f9]/5",
+		tag: "text-[#e879f9] border-[#e879f9]/30 bg-[#e879f9]/10",
+		dot: "bg-[#e879f9]",
+	},
 };
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -201,7 +267,7 @@ const noteStyles = {
 function NoteBlock({ title, body, tag, color }) {
 	const s = noteStyles[color];
 	return (
-		<div className={`border ${s.border} ${s.bg} px-5 py-4 my-6`}>
+		<div className={`border ${s.border} ${s.bg} px-5 py-4 mb-4`}>
 			<div className="flex items-center gap-2 mb-2">
 				<span className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />
 				<span
@@ -220,18 +286,15 @@ function NoteBlock({ title, body, tag, color }) {
 
 function NumberRow({ n, es, pron }) {
 	return (
-		<div className="group flex items-baseline gap-0 border-b border-[#0f0f11] hover:bg-[#111113] transition-colors duration-100 px-0 py-0">
-			{/* number */}
+		<div className="group flex items-baseline border-b border-[#0f0f11] hover:bg-[#111113] transition-colors duration-100">
 			<span
 				className={`w-20 shrink-0 text-[13px] font-semibold tracking-[-0.01em] py-3 pl-5 ${numColor(n)}`}
 			>
 				{n}
 			</span>
-			{/* spanish */}
 			<span className="flex-1 text-[13px] text-[#fafafa] font-normal tracking-[-0.01em] py-3">
 				{es}
 			</span>
-			{/* pronunciation */}
 			<span className="w-52 shrink-0 text-[11px] text-[#52525b] tracking-[0.02em] py-3 pr-5 text-right group-hover:text-[#71717a] transition-colors">
 				{pron}
 			</span>
@@ -239,19 +302,9 @@ function NumberRow({ n, es, pron }) {
 	);
 }
 
-function SectionDivider({ label }) {
-	return (
-		<div className="flex items-center gap-3 my-2 px-5 py-2 bg-[#0d0d0f] border-y border-[#1c1c1f]">
-			<span className="text-[9px] tracking-[0.2em] text-[#27272a] uppercase">
-				{label}
-			</span>
-		</div>
-	);
-}
-
 function YearRow({ n, es, note }) {
 	return (
-		<div className="group flex items-start gap-0 border-b border-[#0f0f11] hover:bg-[#111113] transition-colors duration-100">
+		<div className="group flex items-start border-b border-[#0f0f11] hover:bg-[#111113] transition-colors duration-100">
 			<span className="w-20 shrink-0 text-[13px] font-semibold text-[#e879f9] py-3 pl-5 tracking-[-0.01em]">
 				{n}
 			</span>
@@ -263,72 +316,12 @@ function YearRow({ n, es, note }) {
 	);
 }
 
-// ── Legend ────────────────────────────────────────────────────────────────────
-
-const legend = [
-	{ label: "0 – 10", color: "bg-[#f59e0b]" },
-	{ label: "11 – 20", color: "bg-[#f87171]" },
-	{ label: "21 – 29", color: "bg-[#a78bfa]" },
-	{ label: "30 – 100", color: "bg-[#4ade80]" },
-	{ label: "101 – 999", color: "bg-[#38bdf8]" },
-	{ label: "1000+", color: "bg-[#e879f9]" },
-];
-
-// ── Build rows with notes injected ───────────────────────────────────────────
-
-function buildRows() {
-	const rows = [];
-	// map afterIndex → note
-	const noteMap = {};
-	notes.forEach((note) => {
-		noteMap[note.afterIndex] = note;
-	});
-
-	numbers.forEach((num, idx) => {
-		// section dividers
-		if (num.n === 0)
-			rows.push({ type: "divider", label: "0 – 10 · core set", key: "d0" });
-		if (num.n === 11)
-			rows.push({
-				type: "divider",
-				label: "11 – 20 · irregular teens",
-				key: "d11",
-			});
-		if (num.n === 21)
-			rows.push({
-				type: "divider",
-				label: "21 – 29 · veinti- forms",
-				key: "d21",
-			});
-		if (num.n === 30)
-			rows.push({ type: "divider", label: "30 – 100 · tens", key: "d30" });
-		if (num.n === 101)
-			rows.push({
-				type: "divider",
-				label: "101+ · hundreds (milestones only)",
-				key: "d101",
-			});
-
-		rows.push({ type: "number", ...num, key: `n${num.n}` });
-
-		// inject note after specific indices
-		if (noteMap[idx])
-			rows.push({ type: "note", ...noteMap[idx], key: `note${idx}` });
-	});
-
-	return rows;
-}
-
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function NumbersPage() {
-	const [search, setSearch] = useState("");
-	const rows = buildRows();
-
-	const filtered =
-		search.trim() ?
-			numbers.filter((num) => String(num.n) || num.es.toLowerCase())
-		:	null;
+	const [activeTab, setActiveTab] = useState("0-10");
+	const tab = TABS.find((t) => t.id === activeTab);
+	const filtered = numbers.filter((num) => tab.filter(num.n));
 
 	return (
 		<div className="min-h-screen bg-[#09090b] font-mono text-[#fafafa]">
@@ -336,94 +329,70 @@ export default function NumbersPage() {
 				{/* Header */}
 				<div className="px-5 pt-10 pb-6">
 					<p className="text-[10px] tracking-[0.18em] text-[#3f3f46] uppercase mb-3">
-						Reference · A1 · Usage
+						Reference · A1 · Numbers
 					</p>
 					<h1 className="text-[36px] font-light tracking-[-0.04em] text-[#fafafa] mb-2">
 						Numbers <span className="text-[#3f3f46]">0 – 1000+</span>
 					</h1>
-					<p className="text-[13px] text-[#52525b] leading-relaxed mb-6">
-						Complete reference with pronunciation. Notes explain the patterns
-						and tricky points at each stage.
+					<p className="text-[13px] text-[#52525b] leading-relaxed">
+						Complete reference with pronunciation. Select a range to focus on
+						that section.
 					</p>
-
-					{/* Legend */}
-					<div className="flex flex-wrap gap-3 mb-6">
-						{legend.map((l) => (
-							<div key={l.label} className="flex items-center gap-1.5">
-								<span className={`w-2 h-2 rounded-full ${l.color}`} />
-								<span className="text-[10px] text-[#52525b] tracking-[0.06em]">
-									{l.label}
-								</span>
-							</div>
-						))}
-					</div>
 				</div>
+
+				{/* Tab pills */}
+				<div className="px-5 mb-6 flex flex-wrap gap-2">
+					{TABS.map((t) => (
+						<button
+							key={t.id}
+							onClick={() => setActiveTab(t.id)}
+							className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-widest border transition-all duration-150 cursor-pointer ${
+								activeTab === t.id ? t.active : t.inactive
+							}`}
+						>
+							<span
+								className={`w-1.5 h-1.5 rounded-full ${activeTab === t.id ? "bg-[#09090b]" : t.dot}`}
+							/>
+							{t.label}
+						</button>
+					))}
+				</div>
+
+				{/* Note for active tab */}
+				{tab.note && (
+					<div className="px-5">
+						<NoteBlock {...tab.note} />
+					</div>
+				)}
 
 				{/* Table header */}
-				<div className="flex items-center gap-0 border-y border-[#1c1c1f] bg-[#0d0d0f] px-0">
-					<span className="w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pl-5">
-						NUM
-					</span>
-					<span className="flex-1 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5">
-						ESPAÑOL
-					</span>
-					<span className="w-52 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pr-5 text-right">
-						PRONUNCIATION
-					</span>
-				</div>
-
-				{/* Filtered results */}
-				{filtered ?
-					<div>
-						{filtered.length === 0 ?
-							<p className="text-[13px] text-[#52525b] px-5 py-8">
-								no results for "{search}"
-							</p>
-						:	filtered.map((num) => <NumberRow key={num.n} {...num} />)}
+				{activeTab !== "1000+" && (
+					<div className="flex items-center border-y border-[#1c1c1f] bg-[#0d0d0f]">
+						<span className="w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pl-5">
+							NUM
+						</span>
+						<span className="flex-1 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5">
+							ESPAÑOL
+						</span>
+						<span className="w-52 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pr-5 text-right">
+							PRONUNCIATION
+						</span>
 					</div>
-				:	/* Full list with notes and dividers */
+				)}
+
+				{/* Number rows */}
+				{activeTab !== "1000+" && (
 					<div>
-						{rows.map((row) => {
-							if (row.type === "divider")
-								return <SectionDivider key={row.key} label={row.label} />;
-							if (row.type === "note")
-								return (
-									<div key={row.key} className="px-5">
-										<NoteBlock
-											title={row.title}
-											body={row.body}
-											tag={row.tag}
-											color={row.color}
-										/>
-									</div>
-								);
-							return (
-								<NumberRow
-									key={row.key}
-									n={row.n}
-									es={row.es}
-									pron={row.pron}
-								/>
-							);
-						})}
+						{filtered.map((num) => (
+							<NumberRow key={num.n} {...num} />
+						))}
 					</div>
-				}
+				)}
 
-				{/* ── Year examples 1000–3000 ── */}
-				<div className="mt-10 px-5">
-					<div className="border-t border-[#1c1c1f] pt-8">
-						<p className="text-[10px] tracking-[0.18em] text-[#3f3f46] uppercase mb-1">
-							bonus
-						</p>
-						<h2 className="text-[20px] font-light tracking-[-0.03em] text-[#fafafa] mb-1">
-							years <span className="text-[#3f3f46]">1000 – 3000</span>
-						</h2>
-						<p className="text-[12px] text-[#52525b] mb-1 leading-relaxed">
-							Spanish years are read as plain numbers — no special
-							"nineteen-ninety" split like English.
-						</p>
-
-						<div className="border border-[#e879f9]/20 bg-[#e879f9]/5 px-5 py-4 my-5">
+				{/* 1000+ — year examples */}
+				{activeTab === "1000+" && (
+					<div className="px-5">
+						<div className="border border-[#e879f9]/20 bg-[#e879f9]/5 px-5 py-4 mb-5">
 							<div className="flex items-center gap-2 mb-2">
 								<span className="w-1.5 h-1.5 rounded-full bg-[#e879f9]" />
 								<span className="text-[10px] tracking-[0.14em] uppercase text-[#e879f9] border border-[#e879f9]/30 bg-[#e879f9]/10 px-2 py-0.5">
@@ -439,24 +408,32 @@ export default function NumbersPage() {
 								"y" directly after mil. 2001 = dos mil uno, not dos mil y uno.
 							</p>
 						</div>
+
+						<p className="text-[10px] tracking-[0.18em] text-[#3f3f46] uppercase mb-4">
+							Years 1000 – 3000
+						</p>
+
+						{/* Year table header */}
+						<div className="flex items-center border-y border-[#1c1c1f] bg-[#0d0d0f]">
+							<span className="w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pl-5">
+								YEAR
+							</span>
+							<span className="flex-1 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5">
+								EN ESPAÑOL
+							</span>
+						</div>
+
+						{yearExamples.map((y) => (
+							<YearRow key={y.n} {...y} />
+						))}
 					</div>
-				</div>
-
-				{/* Year table header */}
-				<div className="flex items-center gap-0 border-y border-[#1c1c1f] bg-[#0d0d0f] px-0 mx-5">
-					<span className="w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5 pl-5">
-						YEAR
-					</span>
-					<span className="flex-1 text-[9px] tracking-[0.2em] text-[#27272a] uppercase py-2.5">
-						EN ESPAÑOL
-					</span>
-				</div>
-
-				<div className="mx-5 border-x border-[#1c1c1f]">
-					{yearExamples.map((y) => (
-						<YearRow key={y.n} {...y} />
-					))}
-				</div>
+				)}
+				<BackNext
+					back="/a1/grammar/negation"
+					next="/a1/usage/time"
+					backLabel="Negation"
+					nextLabel="Time"
+				/>
 			</div>
 		</div>
 	);

@@ -52,7 +52,7 @@ const SECTIONS = [
 	{
 		label: "Usage",
 		sub: "Real-life practice",
-		to: "/a1/numbers",
+		to: "/a1/usage/numbers",
 		index: "04",
 		color: {
 			bg: "bg-[#1a1f2a]",

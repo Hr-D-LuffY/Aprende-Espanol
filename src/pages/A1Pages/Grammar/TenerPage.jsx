@@ -9,6 +9,7 @@ import {
 	BackNav,
 	ConjugationNote,
 } from "../../../components/VerbComponents";
+import BackNext from "../../../components/BackNext";
 
 const CONJUGATIONS = [
 	{ pronoun: "yo", form: "tengo", highlight: true },
@@ -171,6 +172,13 @@ export default function TenerPage() {
 					</div>
 				</div>
 			</Card>
+			{/* Back & Next link */}
+			<BackNext
+				back="/a1/grammar/estar"
+				next="/a1/grammar/gustar"
+				backLabel="Estar Verb"
+				nextLabel="Gustar Verb"
+			/>
 		</PageWrapper>
 	);
 }

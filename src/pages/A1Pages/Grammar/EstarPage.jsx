@@ -5,6 +5,7 @@ import {
 	SectionHeading,
 	RuleBanner,
 } from "../../../components/VerbShared";
+import BackNext from "../../../components/BackNext";
 
 const CONJUGATIONS = [
 	{ pronoun: "Yo", form: "Estoy", meaning: "I am" },
@@ -72,7 +73,7 @@ const VOCAB = [
 export default function EstarPage() {
 	return (
 		<div className="min-h-screen bg-[#09090b] text-[#fafafa] font-mono">
-			<div className="max-w-3xl mx-auto px-6 pt-20 pb-24">
+			<div className="max-w-5xl mx-auto px-6 pt-20 pb-24">
 				{/* Header */}
 				<div className="mb-14">
 					<p className="text-[10px] tracking-[0.18em] uppercase text-[#3f3f46] mb-3">
@@ -125,6 +126,13 @@ export default function EstarPage() {
 					<SectionHeading>Vocabulary</SectionHeading>
 					<VocabGrid items={VOCAB} />
 				</div>
+				{/* Back & Next link */}
+				<BackNext
+					back="/a1/grammar/ser"
+					next="/a1/grammar/tener"
+					backLabel="Ser Verb"
+					nextLabel="Tener Verb"
+				/>
 			</div>
 		</div>
 	);
