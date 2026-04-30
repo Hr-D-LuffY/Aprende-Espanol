@@ -38,6 +38,8 @@ import DaysMonthsPage from "./pages/A1Pages/Usage/DaysMonthPage.jsx";
 import VocabPage from "./pages/VocabPage.jsx";
 import RegularVerbsPage from "./pages/A1Pages/Grammar/RegularVerbPage.jsx";
 import IrregularVerbsPage from "./pages/A1Pages/Grammar/IrregularVerbPage.jsx";
+import LocationPage from "./pages/A1Pages/Usage/LocationPage.jsx";
+import DailyPhrasesPage from "./pages/PharasesPage.jsx";
 
 export const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL,
@@ -52,6 +54,7 @@ const App = () => (
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/vocabulary" element={<VocabPage />} />
 				<Route path="/grammar" element={<Navigate to="/a1/grammar" />} />
+				<Route path="/phrases" element={<DailyPhrasesPage />} />
 				<Route path="a1">
 					<Route index element={<A1Page />} />
 					<Route path="alphabet" element={<AlphabetPage />} />
@@ -87,6 +90,7 @@ const App = () => (
 						<Route path="numbers" element={<NumbersPage />} />
 						<Route path="time" element={<TimePage />} />
 						<Route path="days-months" element={<DaysMonthsPage />} />
+						<Route path="location" element={<LocationPage />} />
 					</Route>
 				</Route>
 			</Routes>

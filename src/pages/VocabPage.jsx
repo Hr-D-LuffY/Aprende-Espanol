@@ -3,6 +3,7 @@ import { Card } from "../components/VerbComponents";
 import { PageWrapper } from "../components/PageWrapper";
 import { supabase } from "../App.jsx";
 
+import PageHeader from "../components/PageHeader.jsx";
 import FlipCard from "../components/Vocabulary/FlipCard.jsx";
 import CategoryCard from "../components/Vocabulary/CategoryCard.jsx";
 import Modal from "../components/Vocabulary/Modal.jsx";
@@ -53,15 +54,10 @@ export default function VocabPage() {
 		<PageWrapper>
 			{/* Header */}
 			<div className="mb-10">
-				<div className="flex items-baseline gap-4 mb-3">
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
-						Vocabulary
-					</h1>
-				</div>
-				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-md tracking-wide">
-					Browse by category. Tap a category to open all words. Flip cards to
-					test yourself.
-				</p>
+				<PageHeader
+					title="Vocabulary"
+					description="Browse by category. Tap a category to open all words. Flip cards to test yourself →"
+				/>
 
 				{/* Stats row */}
 				{!loading && !error && (
@@ -79,6 +75,8 @@ export default function VocabPage() {
 					</div>
 				)}
 			</div>
+
+			<div className="border-t border-[var(--border)] mb-10" />
 
 			{/* Error state */}
 			{error && (

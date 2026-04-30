@@ -44,11 +44,6 @@ const TOPIC_GROUPS = [
 		title: "Usage",
 		topics: ["Numbers", "Time", "Days & Months", "Location", "Common Phrases"],
 	},
-
-	{
-		title: "Vocabulary",
-		topics: [],
-	},
 ];
 
 const CAN_DO_ITEMS = [
@@ -64,7 +59,7 @@ export default function A1Page() {
 	return (
 		<PageWrapper>
 			{/* ── HERO ── */}
-			<section className=" border-b border-[var(--border)]">
+			<section className="pb-8 border-b border-[var(--border)]">
 				<h1 className="text-[clamp(3rem,7vw,5rem)] font-light leading-[1.02] tracking-[-0.04em] text-[var(--text-primary)] mb-4">
 					A1 <span className="text-[var(--accent)] italic">Beginner</span>
 				</h1>
@@ -95,9 +90,8 @@ export default function A1Page() {
 					</span>
 				</div>
 			</section>
-
 			{/* ── WHAT YOU'LL LEARN ── */}
-			<section className="py-10 border-b border-[var(--border)]">
+			<section className="py-8 border-b border-[var(--border)]">
 				<SectionLabel>Curriculum</SectionLabel>
 				<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 					What you'll learn
@@ -116,9 +110,8 @@ export default function A1Page() {
 					))}
 				</ul>
 			</section>
-
 			{/* ── TOPICS ── */}
-			<section className="py-10 border-b border-[var(--border)]">
+			<section className="py-8 border-b border-[var(--border)]">
 				<SectionLabel>Topics</SectionLabel>
 				<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 					What's covered
@@ -139,57 +132,45 @@ export default function A1Page() {
 					</div>
 				))}
 			</section>
-
 			{/* ── WHAT YOU CAN DO ── */}
-			<section className="py-10 border-b border-[var(--border)]">
+			<section className="py-8 border-b border-[var(--border)]">
 				<SectionLabel>Goals</SectionLabel>
 				<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 					What you'll be able to do
 				</h2>
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border border-[var(--border)] rounded-xl overflow-hidden">
+				<ul className="flex flex-col gap-3">
 					{CAN_DO_ITEMS.map((item) => (
-						<div
+						<li
 							key={item}
-							className="group bg-[var(--bg)] border border-[var(--border)] p-5 relative hover:bg-[var(--surface)] hover:border-[#27272a] transition-all duration-150"
+							className="flex items-start gap-3 text-[13px] text-[var(--text-secondary)] leading-relaxed tracking-[0.01em]"
 						>
-							<p className="text-[13px] text-[var(--text-secondary)] leading-relaxed tracking-[0.01em] pr-5">
-								{item}
-							</p>
-							<span className="absolute top-5 right-5 text-[#27272a] text-sm group-hover:text-[var(--accent)] transition-colors">
+							<span className="text-[var(--accent)] mt-[2px] flex-shrink-0 text-[12px]">
 								→
 							</span>
-						</div>
+							{item}
+						</li>
 					))}
-				</div>
+				</ul>
 			</section>
-
 			{/* ── CTA ── */}
-			<div className="pt-10 flex items-center gap-5">
+			<div className="py-8 flex items-center gap-5 ">
 				<Link
 					to="/a1/alphabet"
 					className="bg-[var(--accent)] text-[var(--accent-text)] text-[13px] font-semibold px-5 py-2.5 rounded-lg tracking-wide hover:bg-[#fbbf24] transition-colors no-underline"
 				>
 					Start learning →
 				</Link>
-				<a
-					href="#secNav"
-					className="text-[var(--text-muted)] text-[13px] tracking-wide hover:text-[#71717a] transition-colors no-underline"
-				>
-					View A1 Section
-				</a>
 			</div>
-
 			{/* ── SECTION NAVIGATION ── */}
-			<section id="secNav" className="pt-16">
+			<section className="py-8 border-b border-[var(--border)]">
 				<SectionLabel>Explore</SectionLabel>
 				<h2 className="text-2xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-7">
 					Jump to a section
 				</h2>
 				<SectionGrid />
 			</section>
-
 			{/* ── MINDSET ── */}
-			<section className="pt-10 border-b border-[var(--border)]">
+			<section className="pt-10 ">
 				<SectionLabel>Mindset</SectionLabel>
 				<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex items-start gap-4">
 					<span className="text-lg flex-shrink-0 mt-0.5">⚡</span>

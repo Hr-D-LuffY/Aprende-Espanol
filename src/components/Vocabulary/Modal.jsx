@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import FlipCard from "./FlipCard.jsx";
 
-export default function Modal({ category, words, onClose }) {
+// Default is "v" (3-col), pass type="p" for 2-col
+export default function Modal({ category, words, onClose, type = "v" }) {
 	const [resetKey, setResetKey] = useState(0);
 
 	// close on Escape
@@ -68,7 +69,10 @@ export default function Modal({ category, words, onClose }) {
 
 				{/* Flip cards grid — scrollable */}
 				<div className="overflow-y-auto flex-1 p-5">
-					<div key={resetKey} className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+					<div
+						key={resetKey}
+						className={`grid gap-3 ${type === "p" ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3"}`}
+					>
 						{words.map((w) => (
 							<FlipCard key={w.id} es={w.es} en={w.en} />
 						))}
