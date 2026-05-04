@@ -2,8 +2,6 @@ import { useState } from "react";
 import {
 	MASCULINE_RULES,
 	FEMININE_RULES,
-	MASCULINE_VOCAB,
-	FEMININE_VOCAB,
 	GENDER_PAIRS,
 	CONSONANT_PAIRS,
 	EXCEPTIONS,
@@ -51,8 +49,6 @@ function MasculinePanel() {
 					)}
 				</div>
 			))}
-			<SectionLabel>Vocab</SectionLabel>
-			<WordGrid words={MASCULINE_VOCAB} />
 		</div>
 	);
 }
@@ -74,8 +70,6 @@ function FemininePanel() {
 					)}
 				</div>
 			))}
-			<SectionLabel>Vocab</SectionLabel>
-			<WordGrid words={FEMININE_VOCAB} />
 		</div>
 	);
 }

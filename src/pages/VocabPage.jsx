@@ -4,10 +4,9 @@ import { PageWrapper } from "../components/PageWrapper";
 import { supabase } from "../App.jsx";
 
 import PageHeader from "../components/PageHeader.jsx";
-import FlipCard from "../components/Vocabulary/FlipCard.jsx";
-import CategoryCard from "../components/Vocabulary/CategoryCard.jsx";
-import Modal from "../components/Vocabulary/Modal.jsx";
-import SkeletonCard from "../components/Vocabulary/SkeletonCard";
+import CategoryCard from "../components/Vocab & Phrases/CategoryCard.jsx";
+import Modal from "../components/Vocab & Phrases/Modal.jsx";
+import SkeletonCard from "../components/Vocab & Phrases/SkeletonCard.jsx";
 
 export default function VocabPage() {
 	const [grouped, setGrouped] = useState({});
@@ -56,6 +55,7 @@ export default function VocabPage() {
 			<div className="mb-10">
 				<PageHeader
 					title="Vocabulary"
+					es="Vocabulario"
 					description="Browse by category. Tap a category to open all words. Flip cards to test yourself →"
 				/>
 

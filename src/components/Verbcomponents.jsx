@@ -72,18 +72,6 @@ export function PageWrapper({ children }) {
 	);
 }
 
-// Back nav
-export function BackNav({ to = "/", label = "← back" }) {
-	return (
-		<a
-			href={to}
-			className="inline-block text-[11px] text-[var(--text-label)] tracking-[0.12em] uppercase hover:text-[var(--text-muted)] transition-colors mb-10 no-underline"
-		>
-			{label}
-		</a>
-	);
-}
-
 // Conjugation explainer mini-block
 export function ConjugationNote({ subject, verb, note }) {
 	return (

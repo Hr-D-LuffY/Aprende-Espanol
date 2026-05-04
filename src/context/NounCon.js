@@ -22,6 +22,7 @@ const MASCULINE_RULES = [
 			{ es: "árbol", pron: "ar-bol", en: "tree" },
 			{ es: "amor", pron: "a-mor", en: "love" },
 			{ es: "doctor", pron: "doc-tor", en: "doctor" },
+			{ es: "papel", pron: "pa-pel", en: "paper" },
 		],
 	},
 	{
@@ -49,6 +50,8 @@ const FEMININE_RULES = [
 			{ es: "chica", pron: "chee-ka", en: "girl" },
 			{ es: "gata", pron: "ga-ta", en: "cat (F)" },
 			{ es: "perra", pron: "pe-rra", en: "dog (F)" },
+			{ es: "mesa", pron: "meh-sa", en: "table" },
+			{ es: "puerta", pron: "pwer-ta", en: "door" },
 		],
 	},
 	{
@@ -59,6 +62,7 @@ const FEMININE_RULES = [
 			{ es: "canción", pron: "kan-see-on", en: "song" },
 			{ es: "situación", pron: "see-tua-see-on", en: "situation" },
 			{ es: "información", pron: "in-for-ma-see-on", en: "information" },
+			{ es: "decisión", pron: "deh-see-see-on", en: "decision" },
 		],
 	},
 	{
@@ -80,6 +84,7 @@ const FEMININE_RULES = [
 			{ es: "luz", pron: "looz", en: "light" },
 			{ es: "voz", pron: "bohs", en: "voice" },
 			{ es: "paz", pron: "pahs", en: "peace" },
+			{ es: "nariz", pron: "na-rees", en: "nose" },
 		],
 	},
 	{
@@ -90,27 +95,9 @@ const FEMININE_RULES = [
 			{ es: "crisis", pron: "kree-sis", en: "crisis" },
 			{ es: "tesis", pron: "teh-sis", en: "thesis" },
 			{ es: "síntesis", pron: "seen-teh-sis", en: "synthesis" },
+			{ es: "análisis", pron: "a-na-lee-sis", en: "analysis" },
 		],
 	},
-];
-
-const MASCULINE_VOCAB = [
-	{ es: "zapato", en: "shoe" },
-	{ es: "cine", en: "cinema" },
-	{ es: "zorro", en: "fox" },
-	{ es: "blanco", en: "white" },
-	{ es: "ángel", en: "angel" },
-	{ es: "sueño", en: "dream" },
-	{ es: "gusto", en: "taste" },
-	{ es: "premio", en: "prize" },
-	{ es: "amigo", en: "friend" },
-	{ es: "cenicero", en: "ashtray" },
-];
-
-const FEMININE_VOCAB = [
-	{ es: "panadería", en: "bakery" },
-	{ es: "prima", en: "cousin (F)" },
-	{ es: "vega", en: "lowland" },
 ];
 
 const GENDER_PAIRS = [
@@ -170,8 +157,6 @@ const EXCEPTIONS = [
 export {
 	MASCULINE_RULES,
 	FEMININE_RULES,
-	MASCULINE_VOCAB,
-	FEMININE_VOCAB,
 	GENDER_PAIRS,
 	CONSONANT_PAIRS,
 	EXCEPTIONS,

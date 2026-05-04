@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import {
-	Eyebrow,
-	Card,
-	UsePill,
-	PageWrapper,
-	BackNav,
-} from "../../../components/VerbComponents";
-import BackNext from "../../../components/BackNext";
+	AMPM_EXAMPLES,
+	MENOS_EXAMPLES,
+	MINUTES_EXAMPLES,
+	ASKING_EXAMPLES,
+	STRUCTURE_EXAMPLES,
+} from "../../../context/TimeCon";
+
+import { PageWrapper } from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
+import { Eyebrow, Card } from "../../../components/VerbComponents";
 
 // ── Local reusable components ──
 
@@ -36,14 +41,14 @@ function ExPair({ es, en }) {
 function RuleChip({ label, value, accent }) {
 	return (
 		<div
-			className={`border rounded-lg px-4 py-3 flex flex-col gap-1
+			className={`border rounded-lg px-3 py-2.5 flex flex-col gap-1
             ${accent ? "border-[#f59e0b]/30 bg-[var(--accent)]/5" : "border-[var(--border)] bg-[var(--bg)]"}`}
 		>
 			<span className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)]">
 				{label}
 			</span>
 			<span
-				className={`text-[15px] font-semibold tracking-[-0.01em] ${accent ? "text-[var(--accent)]" : "text-[var(--text-secondary)]"}`}
+				className={`text-[14px] sm:text-[15px] font-semibold tracking-[-0.01em] ${accent ? "text-[var(--accent)]" : "text-[var(--text-secondary)]"}`}
 			>
 				{value}
 			</span>
@@ -79,7 +84,10 @@ function ClockFace({ hour, minute }) {
 	});
 
 	return (
-		<svg viewBox="0 0 200 200" className="w-full max-w-[200px]">
+		<svg
+			viewBox="0 0 200 200"
+			className="w-full max-w-[160px] sm:max-w-[200px]"
+		>
 			<circle
 				cx={cx}
 				cy={cy}
@@ -203,22 +211,22 @@ function InteractiveClock() {
 	const displayMin = String(minute).padStart(2, "0");
 
 	return (
-		<Card className="p-6">
+		<Card className="p-4 sm:p-6">
 			<Eyebrow>Interactive — build any time</Eyebrow>
-			<div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-8 items-center">
+			<div className="flex flex-col sm:grid sm:grid-cols-[auto_1fr] gap-5 sm:gap-8 items-center">
 				<div className="flex justify-center">
 					<ClockFace hour={hour} minute={minute} />
 				</div>
-				<div>
+				<div className="w-full">
 					{/* Digital display */}
-					<div className="border border-[var(--border)] rounded-lg px-5 py-4 mb-5 bg-[var(--bg)]">
+					<div className="border border-[var(--border)] rounded-lg px-4 py-3 mb-4 bg-[var(--bg)]">
 						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-1">
 							{PERIODS[period].label}
 						</p>
-						<p className="text-3xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
+						<p className="text-2xl sm:text-3xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
 							{String(hour).padStart(2, "0")}:{displayMin}
 						</p>
-						<p className="text-[13px] text-[var(--accent)] mt-2 tracking-[-0.01em]">
+						<p className="text-[12px] sm:text-[13px] text-[var(--accent)] mt-2 tracking-[-0.01em]">
 							{spanish}
 						</p>
 					</div>
@@ -287,81 +295,25 @@ function InteractiveClock() {
 	);
 }
 
-// ── Data ──
-
-const STRUCTURE_EXAMPLES = [
-	{ es: "Es la una.", en: "It's 1:00." },
-	{ es: "Son las dos.", en: "It's 2:00." },
-	{ es: "Son las cinco.", en: "It's 5:00." },
-	{ es: "Son las doce.", en: "It's 12:00." },
-];
-
-const MINUTES_EXAMPLES = [
-	{ es: "Son las tres y diez.", en: "It's 3:10." },
-	{ es: "Son las cuatro y veinte.", en: "It's 4:20." },
-	{ es: "Es la una y cuarto.", en: "It's 1:15." },
-	{ es: "Son las dos y cuarto.", en: "It's 2:15." },
-	{ es: "Son las tres y media.", en: "It's 3:30." },
-];
-
-const MENOS_EXAMPLES = [
-	{ es: "Son las seis menos diez.", en: "It's 5:50." },
-	{ es: "Son las ocho menos veinte.", en: "It's 7:40." },
-	{ es: "Son las cuatro menos cuarto.", en: "It's 3:45." },
-];
-
-const AMPM_EXAMPLES = [
-	{ es: "Es la una de la mañana.", en: "It's 1:00 AM." },
-	{ es: "Son las ocho de la noche.", en: "It's 8:00 PM." },
-	{ es: "Son las nueve y veinte de la noche.", en: "It's 9:20 PM." },
-	{ es: "Son las once menos catorce de la noche.", en: "It's 10:46 PM." },
-];
-
-const ASKING_EXAMPLES = [
-	{ es: "¿Qué hora es?", en: "What time is it?" },
-	{ es: "Son las cuatro.", en: "It is 4:00." },
-	{ es: "¿A qué hora tú bailas?", en: "What time do you dance?" },
-	{ es: "Bailo a las diez de la noche.", en: "I dance at 10 PM." },
-];
-
-const VOCAB = [
-	{ word: "la hora", meaning: "the hour / time" },
-	{ word: "el minuto", meaning: "the minute" },
-	{ word: "media", meaning: "half (:30)" },
-	{ word: "cuarto", meaning: "quarter (:15 / :45)" },
-	{ word: "menos", meaning: "minus (for >:30)" },
-	{ word: "punto", meaning: "exact / on the dot" },
-	{ word: "mañana", meaning: "morning" },
-	{ word: "a", meaning: "at (a las 3 = at 3)" },
-];
-
 // ── Page ──
 
 export default function TimePage() {
 	return (
 		<PageWrapper>
-			<BackNav to="/" label="← grammar" />
-
 			{/* Header */}
-			<div className="mb-12">
-				<Eyebrow>Grammar · Time · La hora</Eyebrow>
-				<div className="flex items-baseline gap-4 mb-3">
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
-						la hora
-					</h1>
-					<span className="text-[16px] text-[var(--text-muted)] font-light">
-						telling time
-					</span>
-				</div>
-				<div className="flex flex-wrap gap-2 mt-4">
-					{["es la", "son las", "y", "menos", "media", "cuarto"].map((u) => (
-						<UsePill key={u}>{u}</UsePill>
-					))}
-				</div>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Usage" />
+				<PageHeader
+					title="Time "
+					es="La hora	"
+					description="Learn how to tell time in Spanish with clear examples →"
+				/>
 			</div>
 
+			<div className="border-t border-[var(--border)] mb-10" />
+
 			{/* Core rule */}
-			<Card className="mb-6 p-6">
+			<Card className="mb-6 p-4 sm:p-6">
 				<Eyebrow>The core rule</Eyebrow>
 				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed mb-5 tracking-wide max-w-lg">
 					Spanish uses two different starters for time — one for 1 o'clock,
@@ -372,7 +324,7 @@ export default function TimePage() {
 						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							Only for 1:00
 						</p>
-						<p className="text-[20px] font-light text-[var(--accent)] tracking-[-0.02em]">
+						<p className="text-[18px] sm:text-[20px] font-light text-[var(--accent)] tracking-[-0.02em]">
 							Es la una
 						</p>
 						<p className="text-[11px] text-[var(--text-muted)] mt-1">
@@ -383,7 +335,7 @@ export default function TimePage() {
 						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							For 2–12
 						</p>
-						<p className="text-[20px] font-light text-[var(--text-secondary)] tracking-[-0.02em]">
+						<p className="text-[18px] sm:text-[20px] font-light text-[var(--text-secondary)] tracking-[-0.02em]">
 							Son las <span className="text-[var(--text-primary)]">___</span>
 						</p>
 						<p className="text-[11px] text-[var(--text-muted)] mt-1">
@@ -391,6 +343,7 @@ export default function TimePage() {
 						</p>
 					</div>
 				</div>
+				{/* 2-col on mobile instead of 4 */}
 				<div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
 					{STRUCTURE_EXAMPLES.map((ex, i) => (
 						<ExPair key={i} {...ex} />
@@ -398,16 +351,11 @@ export default function TimePage() {
 				</div>
 			</Card>
 
-			{/* Interactive clock */}
-			<div className="mb-6">
-				<InteractiveClock />
-			</div>
-
 			{/* Minutes + Menos */}
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
 				{/* Y — adding minutes */}
 				<Card>
-					<div className="px-5 pt-5 pb-2">
+					<div className="px-4 sm:px-5 pt-4 sm:pt-5 pb-2">
 						<Eyebrow>Adding minutes — y</Eyebrow>
 						<div className="flex flex-wrap gap-2 mb-4">
 							<RuleChip label="formula" value="hour + y + minutes" />
@@ -417,7 +365,7 @@ export default function TimePage() {
 							<RuleChip label=":30" value="y media" accent />
 						</div>
 					</div>
-					<div className="px-5 pb-4">
+					<div className="px-4 sm:px-5 pb-4">
 						{MINUTES_EXAMPLES.map((ex, i) => (
 							<ExPair key={i} {...ex} />
 						))}
@@ -429,7 +377,7 @@ export default function TimePage() {
 
 				{/* Menos — after :30 */}
 				<Card>
-					<div className="px-5 pt-5 pb-2">
+					<div className="px-4 sm:px-5 pt-4 sm:pt-5 pb-2">
 						<Eyebrow>After :30 — menos</Eyebrow>
 						<p className="text-[11px] text-[var(--text-muted)] tracking-wide leading-relaxed mb-3">
 							For minutes past :30, count down from the next hour using menos
@@ -455,7 +403,7 @@ export default function TimePage() {
 							</p>
 						</div>
 					</div>
-					<div className="px-5 pb-4">
+					<div className="px-4 sm:px-5 pb-4">
 						{MENOS_EXAMPLES.map((ex, i) => (
 							<ExPair key={i} {...ex} />
 						))}
@@ -468,7 +416,7 @@ export default function TimePage() {
 
 			{/* AM / PM */}
 			<Card className="mb-6">
-				<div className="px-5 pt-5 pb-2">
+				<div className="px-4 sm:px-5 pt-4 sm:pt-5 pb-2">
 					<Eyebrow>AM / PM — time of day</Eyebrow>
 					<div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
 						{[
@@ -501,7 +449,7 @@ export default function TimePage() {
 						))}
 					</div>
 				</div>
-				<div className="px-5 pb-4">
+				<div className="px-4 sm:px-5 pb-4">
 					{AMPM_EXAMPLES.map((ex, i) => (
 						<ExPair key={i} {...ex} />
 					))}
@@ -511,9 +459,14 @@ export default function TimePage() {
 				</div>
 			</Card>
 
+			{/* Interactive clock */}
+			<div className="mb-6">
+				<InteractiveClock />
+			</div>
+
 			{/* Asking time */}
 			<Card className="mb-6">
-				<div className="px-5 pt-5 pb-3">
+				<div className="px-4 sm:px-5 pt-4 sm:pt-5 pb-3">
 					<Eyebrow>Asking the time</Eyebrow>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
 						<div className="border border-[var(--border)] rounded-lg p-3">
@@ -537,7 +490,8 @@ export default function TimePage() {
 						<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-2">
 							⚡ key distinction
 						</p>
-						<div className="flex gap-6">
+						{/* Stack vertically on mobile to prevent overflow */}
+						<div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
 							<div>
 								<p className="text-[12px] text-[var(--text-primary)]">
 									Son las diez.
@@ -557,7 +511,7 @@ export default function TimePage() {
 						</div>
 					</div>
 				</div>
-				<div className="px-5 pb-4">
+				<div className="px-4 sm:px-5 pb-4">
 					{ASKING_EXAMPLES.map((ex, i) => (
 						<ExPair key={i} {...ex} />
 					))}
@@ -567,29 +521,10 @@ export default function TimePage() {
 				</div>
 			</Card>
 
-			{/* Vocab */}
-			<Card className="mb-6 p-6">
-				<Eyebrow>Vocabulary</Eyebrow>
-				<div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-					{VOCAB.map((v) => (
-						<div
-							key={v.word}
-							className="border border-[var(--border)] rounded-lg p-3 hover:border-[#27272a] transition-colors"
-						>
-							<p className="text-[13px] text-[var(--accent)] font-semibold mb-1">
-								{v.word}
-							</p>
-							<p className="text-[10px] text-[var(--text-label)] tracking-wide">
-								{v.meaning}
-							</p>
-						</div>
-					))}
-				</div>
-			</Card>
-
 			{/* Remember strip */}
-			<Card className="p-5">
+			<Card className="p-4 sm:p-5">
 				<Eyebrow>Remember</Eyebrow>
+				{/* 1-col on mobile, 3-col on sm+ */}
 				<div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
 					{[
 						{ rule: "1 o'clock", value: "→ Es la", note: "singular" },

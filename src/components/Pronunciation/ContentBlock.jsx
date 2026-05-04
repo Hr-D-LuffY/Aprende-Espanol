@@ -1,21 +1,20 @@
-// ─── CONTENT BLOCK COMPONENTS ────────────────────────────────────────────────
-
-/** Shared row used inside Examples and NoteBlock */
-function WordRow({ word, pron, meaning, className = "" }) {
+function WordRow({ word, pron, meaning }) {
 	return (
-		<div
-			className={`grid grid-cols-[120px_140px_1fr] gap-4 items-center py-3 border-b border-[var(--border)] last:border-0 ${className}`}
-		>
-			<span className="text-[16px] font-light text-[var(--text-primary)]">
-				{word}
-			</span>
-			<span className="text-[12px] text-[var(--text-muted)]">({pron})</span>
-			<span className="text-[12px] text-[var(--text-label)]">= {meaning}</span>
+		<div className="py-3 border-b border-[var(--border)] last:border-0">
+			{/* Mobile: stacked, Desktop: 3-col grid */}
+			<div className="flex flex-col sm:grid sm:grid-cols-[120px_140px_1fr] sm:gap-4 sm:items-center gap-0.5">
+				<span className="text-[16px] font-light text-[var(--text-primary)]">
+					{word}
+				</span>
+				<span className="text-[12px] text-[var(--text-muted)]">({pron})</span>
+				<span className="text-[12px] text-[var(--text-label)]">
+					= {meaning}
+				</span>
+			</div>
 		</div>
 	);
 }
 
-/** Compact inline row used inside Split columns and NoteBlock inline list */
 function WordInline({ word, pron, meaning }) {
 	return (
 		<div>
@@ -29,23 +28,22 @@ function WordInline({ word, pron, meaning }) {
 	);
 }
 
-/** vowel-grid */
 function VowelGrid({ items }) {
 	return (
-		<div className="grid grid-cols-5 gap-3">
+		<div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
 			{items.map((v) => (
 				<div
 					key={v.letter}
-					className="border border-[var(--border)] rounded-xl bg-[var(--bg)] p-4 text-center"
+					className="border border-[var(--border)] rounded-xl bg-[var(--bg)] p-3 sm:p-4 text-center"
 				>
 					<p className="text-3xl font-extralight text-[var(--accent)] mb-1">
 						{v.letter}
 					</p>
-					<p className="text-[13px] text-[var(--text-secondary)] mb-3">
+					<p className="text-[12px] sm:text-[13px] text-[var(--text-secondary)] mb-3">
 						"{v.sound}"
 					</p>
 					<div className="border-t border-[var(--border)] pt-3">
-						<p className="text-[12px] text-[var(--text-primary)]">
+						<p className="text-[11px] sm:text-[12px] text-[var(--text-primary)]">
 							{v.example}
 						</p>
 						<p className="text-[10px] text-[var(--text-label)] mt-0.5">
@@ -61,7 +59,6 @@ function VowelGrid({ items }) {
 	);
 }
 
-/** examples */
 function Examples({ items }) {
 	return (
 		<div className="flex flex-col gap-2">
@@ -72,10 +69,9 @@ function Examples({ items }) {
 	);
 }
 
-/** split */
 function Split({ left, right }) {
 	return (
-		<div className="grid grid-cols-2 gap-4">
+		<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 			{[left, right].map((col, i) => (
 				<div
 					key={i}
@@ -95,7 +91,6 @@ function Split({ left, right }) {
 	);
 }
 
-/** note-block */
 function NoteBlock({ label, body, items }) {
 	return (
 		<div className="border border-[#f59e0b]/20 bg-[var(--accent)]/5 rounded-xl p-5">
@@ -107,7 +102,7 @@ function NoteBlock({ label, body, items }) {
 			</p>
 			<div className="flex flex-col gap-2">
 				{items.map((ex, i) => (
-					<div key={i} className="flex items-center gap-4">
+					<div key={i} className="flex flex-wrap items-center gap-2 sm:gap-4">
 						<span className="text-[15px] font-light text-[var(--text-primary)]">
 							{ex.word}
 						</span>
@@ -123,7 +118,7 @@ function NoteBlock({ label, body, items }) {
 		</div>
 	);
 }
-/** Dispatcher — picks the right component for each block type */
+
 const BLOCK_MAP = {
 	"vowel-grid": VowelGrid,
 	examples: Examples,

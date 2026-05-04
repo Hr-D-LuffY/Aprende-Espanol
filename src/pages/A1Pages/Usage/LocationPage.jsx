@@ -12,7 +12,7 @@ function SectionTitle({ children }) {
 
 function GrammarNote({ tag, children }) {
 	return (
-		<div className="border border-[#f59e0b]/30 bg-[var(--accent)]/5 rounded-xl p-5 flex gap-4 items-start">
+		<div className="border border-[#f59e0b]/30 bg-[var(--accent)]/5 rounded-xl p-4 sm:p-5 flex gap-3 sm:gap-4 items-start">
 			<span className="text-[9px] tracking-[0.14em] uppercase text-[var(--accent)] border border-[#f59e0b]/30 rounded px-2 py-1 whitespace-nowrap mt-0.5">
 				{tag}
 			</span>
@@ -25,11 +25,11 @@ function GrammarNote({ tag, children }) {
 
 function PhraseCard({ es, en }) {
 	return (
-		<div className="group bg-[var(--bg)] border border-[var(--border)] p-5 relative hover:bg-[var(--surface)] transition-colors duration-150 cursor-default">
-			<span className="absolute top-5 right-5 text-[#27272a] text-sm group-hover:text-[var(--accent)] transition-colors">
+		<div className="group bg-[var(--bg)] border border-[var(--border)] p-4 sm:p-5 relative hover:bg-[var(--surface)] transition-colors duration-150 cursor-default">
+			<span className="absolute top-4 right-4 sm:top-5 sm:right-5 text-[#27272a] text-sm group-hover:text-[var(--accent)] transition-colors">
 				→
 			</span>
-			<p className="text-[14px] text-[var(--text-primary)] tracking-[-0.01em] mb-1">
+			<p className="text-[13px] text-[var(--text-primary)] tracking-[-0.01em] mb-1 pr-5">
 				{es}
 			</p>
 			<p className="text-[11px] text-[var(--text-muted)] tracking-wide">{en}</p>
@@ -39,8 +39,8 @@ function PhraseCard({ es, en }) {
 
 function VocabPill({ word, trans }) {
 	return (
-		<div className="bg-[var(--bg)] border border-[var(--border)] p-3.5 hover:bg-[var(--surface)] transition-colors duration-150 cursor-default">
-			<div className="text-[12px] text-[var(--text-secondary)] tracking-[-0.01em] mb-1">
+		<div className="bg-[var(--bg)] border border-[var(--border)] p-3 sm:p-3.5 hover:bg-[var(--surface)] transition-colors duration-150 cursor-default">
+			<div className="text-[11px] sm:text-[12px] text-[var(--text-secondary)] tracking-[-0.01em] mb-1">
 				{word}
 			</div>
 			<div className="text-[10px] text-[var(--text-label)] tracking-[0.06em]">
@@ -52,11 +52,11 @@ function VocabPill({ word, trans }) {
 
 function PlaceCard({ es, en }) {
 	return (
-		<div className="group bg-[var(--bg)] border border-[var(--border)] p-4 relative hover:bg-[var(--surface)] transition-colors duration-150 cursor-default">
-			<span className="absolute top-4 right-4 text-[#27272a] text-xs group-hover:text-[var(--accent)] transition-colors">
+		<div className="group bg-[var(--bg)] border border-[var(--border)] p-3 sm:p-4 relative hover:bg-[var(--surface)] transition-colors duration-150 cursor-default">
+			<span className="absolute top-3 right-3 sm:top-4 sm:right-4 text-[#27272a] text-xs group-hover:text-[var(--accent)] transition-colors">
 				→
 			</span>
-			<div className="text-[13px] text-[var(--text-primary)] tracking-[-0.01em] mb-1">
+			<div className="text-[12px] sm:text-[13px] text-[var(--text-primary)] tracking-[-0.01em] mb-1 pr-4">
 				{es}
 			</div>
 			<div className="text-[10px] text-[var(--text-muted)] tracking-[0.06em]">
@@ -156,7 +156,6 @@ const PREPS = [
 	},
 ];
 
-// car left%, bird show/pos, ball show/pos
 const POSITIONS = {
 	right: { carLeft: "42%", showBird: false, showBall: false },
 	left: { carLeft: "8%", showBird: false, showBall: false },
@@ -177,9 +176,10 @@ const POSITIONS = {
 function PrepScene({ activePos }) {
 	const p = POSITIONS[activePos] || POSITIONS.right;
 	return (
+		// fluid width on mobile, fixed on larger screens
 		<div
-			className="relative border border-[var(--border)] rounded-lg bg-[var(--bg)] overflow-hidden flex-shrink-0"
-			style={{ width: 240, height: 180 }}
+			className="relative border border-[var(--border)] rounded-lg bg-[var(--bg)] overflow-hidden w-full"
+			style={{ height: 160 }}
 		>
 			{/* ground */}
 			<div className="absolute bottom-[30px] left-0 right-0 h-px bg-[#27272a]" />
@@ -333,11 +333,11 @@ function QuizSection() {
 
 	if (done) {
 		return (
-			<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-8 text-center">
+			<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-6 sm:p-8 text-center">
 				<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-4">
 					Quiz complete
 				</p>
-				<p className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-2">
+				<p className="text-4xl sm:text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-2">
 					{score}
 					<span className="text-[var(--text-label)]">
 						/{QUIZ_QUESTIONS.length}
@@ -361,8 +361,8 @@ function QuizSection() {
 	}
 
 	return (
-		<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-6">
-			<div className="flex items-center justify-between mb-6">
+		<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-4 sm:p-6">
+			<div className="flex items-center justify-between mb-5">
 				<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)]">
 					Fill the blank
 				</p>
@@ -371,17 +371,17 @@ function QuizSection() {
 				</p>
 			</div>
 
-			<p className="text-[16px] text-[var(--text-primary)] tracking-[-0.01em] leading-relaxed mb-1">
+			<p className="text-[15px] sm:text-[16px] text-[var(--text-primary)] tracking-[-0.01em] leading-relaxed mb-1">
 				{q.es}
 			</p>
-			<p className="text-[11px] text-[var(--text-muted)] tracking-wide mb-6">
+			<p className="text-[11px] text-[var(--text-muted)] tracking-wide mb-5">
 				{q.en}
 			</p>
 
-			<div className="grid grid-cols-2 gap-2 mb-6">
+			<div className="grid grid-cols-2 gap-2 mb-5">
 				{q.options.map((opt) => {
 					let cls =
-						"border border-[var(--border)] rounded-lg px-4 py-2.5 text-[12px] text-left cursor-pointer transition-all duration-150 ";
+						"border border-[var(--border)] rounded-lg px-3 py-2.5 text-[12px] text-left cursor-pointer transition-all duration-150 ";
 					if (!selected) {
 						cls +=
 							"bg-[var(--bg)] text-[var(--text-secondary)] hover:border-[#27272a] hover:bg-[var(--bg)]";
@@ -510,29 +510,29 @@ export default function LocationPage() {
 	return (
 		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
 			{/* ── HERO ── */}
-			<section className="max-w-5xl mx-auto px-8 pt-28 pb-12">
-				<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-5">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 pt-16 sm:pt-28 pb-10 sm:pb-12">
+				<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4 sm:mb-5">
 					Grammar · Location
 				</p>
-				<h1 className="text-6xl font-light leading-[1.04] tracking-[-0.04em] text-[var(--text-primary)] mb-4">
+				<h1 className="text-4xl sm:text-6xl font-light leading-[1.04] tracking-[-0.04em] text-[var(--text-primary)] mb-3 sm:mb-4">
 					Donde
 					<br />
 					<span className="text-[var(--text-label)] italic">
 						&amp; position.
 					</span>
 				</h1>
-				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-md tracking-wide">
+				<p className="text-[12px] sm:text-[13px] text-[var(--text-muted)] leading-relaxed max-w-md tracking-wide">
 					How to describe where things are — prepositions, places, and
 					directions in Spanish.
 				</p>
 			</section>
 
-			<div className="max-w-5xl mx-auto px-8">
+			<div className="max-w-5xl mx-auto px-4 sm:px-8">
 				<div className="border-t border-[var(--border)]" />
 			</div>
 
 			{/* ── GRAMMAR NOTES ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12">
 				<SectionTitle>Grammar notes</SectionTitle>
 				<div className="flex flex-col gap-3">
 					<GrammarNote tag="Rule">
@@ -574,12 +574,13 @@ export default function LocationPage() {
 			</section>
 
 			{/* ── INTERACTIVE PREPOSITIONS ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12">
-				<SectionTitle>Prepositions of place — click to visualize</SectionTitle>
-				<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-6 flex flex-col lg:flex-row gap-6">
-					<div className="flex flex-col gap-3 items-start">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12">
+				<SectionTitle>Prepositions of place — tap to visualize</SectionTitle>
+				<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-4 sm:p-6 flex flex-col gap-4 sm:gap-6">
+					{/* Scene + current phrase — always on top on mobile */}
+					<div className="flex flex-col gap-3">
 						<PrepScene activePos={PREPS[activePrep].pos} />
-						<div className="border border-[var(--border)] rounded-lg bg-[var(--bg)] px-4 py-3 w-full">
+						<div className="border border-[var(--border)] rounded-lg bg-[var(--bg)] px-4 py-3">
 							<p className="text-[13px] text-[var(--text-primary)] tracking-[-0.01em] mb-1">
 								{PREPS[activePrep].es}
 							</p>
@@ -589,7 +590,31 @@ export default function LocationPage() {
 						</div>
 					</div>
 
-					<div className="flex-1 flex flex-col gap-1">
+					{/* Preposition list — scrollable pill grid on mobile, list on lg */}
+					{/* Mobile: 2-col pill grid */}
+					<div className="grid grid-cols-2 gap-1.5 lg:hidden">
+						{PREPS.map((p, i) => (
+							<button
+								key={p.pos}
+								onClick={() => setActivePrep(i)}
+								className={`px-3 py-2 rounded-lg border text-left transition-all duration-150 cursor-pointer ${
+									activePrep === i ?
+										"bg-[var(--bg)] border-[var(--border)] text-[var(--accent)]"
+									:	"bg-transparent border-[#27272a] text-[var(--text-label)] hover:bg-[var(--bg)]"
+								}`}
+							>
+								<span className="text-[10px] tracking-[0.06em] block truncate">
+									{p.tag}
+								</span>
+								<span className="text-[9px] text-[var(--text-muted)] tracking-wide">
+									{p.en.replace("→ ", "")}
+								</span>
+							</button>
+						))}
+					</div>
+
+					{/* Desktop: original list layout */}
+					<div className="hidden lg:flex flex-col gap-1">
 						{PREPS.map((p, i) => (
 							<button
 								key={p.pos}
@@ -622,7 +647,7 @@ export default function LocationPage() {
 			</section>
 
 			{/* ── KEY PHRASES ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12">
 				<SectionTitle>Key phrases</SectionTitle>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border border-[var(--border)] rounded-xl overflow-hidden">
 					{PHRASES.map((p) => (
@@ -632,21 +657,19 @@ export default function LocationPage() {
 			</section>
 
 			{/* ── COMPASS / DIRECTIONS ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12">
 				<SectionTitle>Cardinal directions</SectionTitle>
-				<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-8 flex flex-col sm:flex-row gap-10 items-center">
+				<div className="border border-[var(--border)] rounded-xl bg-[var(--surface)] p-6 sm:p-8 flex flex-col sm:flex-row gap-6 sm:gap-10 items-center">
 					{/* compass */}
 					<div
 						className="relative shrink-0"
 						style={{ width: 140, height: 140 }}
 					>
 						<div className="w-full h-full border border-[#27272a] rounded-full relative">
-							{/* lines */}
 							<div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-px h-[45%] bg-[#27272a]" />
 							<div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-px h-[45%] bg-[#27272a]" />
 							<div className="absolute left-[5%] top-1/2 -translate-y-1/2 h-px w-[45%] bg-[#27272a]" />
 							<div className="absolute right-[5%] top-1/2 -translate-y-1/2 h-px w-[45%] bg-[#27272a]" />
-							{/* labels */}
 							<span className="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.1em] uppercase text-[var(--accent)]">
 								N
 							</span>
@@ -659,12 +682,11 @@ export default function LocationPage() {
 							<span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] tracking-[0.1em] uppercase text-[var(--text-muted)]">
 								W
 							</span>
-							{/* center dot */}
 							<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[var(--accent)] rounded-full" />
 						</div>
 					</div>
 
-					<div className="grid grid-cols-2 gap-2 flex-1 min-w-[200px]">
+					<div className="grid grid-cols-2 gap-2 flex-1 w-full sm:min-w-[200px]">
 						{DIRECTIONS.map((d) => (
 							<DirCard key={d.es} {...d} />
 						))}
@@ -673,13 +695,13 @@ export default function LocationPage() {
 			</section>
 
 			{/* ── QUIZ ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12">
 				<SectionTitle>Quick quiz — test yourself</SectionTitle>
 				<QuizSection />
 			</section>
 
 			{/* ── PLACES ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12">
 				<SectionTitle>Places in town — Lugares</SectionTitle>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 border border-[var(--border)] rounded-xl overflow-hidden">
 					{PLACES.map((p) => (
@@ -689,7 +711,7 @@ export default function LocationPage() {
 			</section>
 
 			{/* ── VOCABULARY ── */}
-			<section className="max-w-5xl mx-auto px-8 mt-12 pb-24">
+			<section className="max-w-5xl mx-auto px-4 sm:px-8 mt-10 sm:mt-12 pb-16 sm:pb-24">
 				<SectionTitle>Vocabulary — all location words</SectionTitle>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 border border-[var(--border)] rounded-xl overflow-hidden">
 					{VOCAB.map((v) => (

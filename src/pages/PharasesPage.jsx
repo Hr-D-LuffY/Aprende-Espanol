@@ -5,9 +5,9 @@ import { PageWrapper } from "../components/PageWrapper.jsx";
 import PageHeader from "../components/PageHeader.jsx";
 import { Card } from "../components/VerbComponents";
 
-import SkeletonCard from "../components/Vocabulary/SkeletonCard";
-import Modal from "../components/Vocabulary/Modal.jsx";
-import CategoryCard from "../components/Vocabulary/CategoryCard";
+import SkeletonCard from "../components/Vocab & Phrases/SkeletonCard.jsx";
+import Modal from "../components/Vocab & Phrases/Modal.jsx";
+import CategoryCard from "../components/Vocab & Phrases/CategoryCard.jsx";
 // ── Main Page ──────────────────────────────────────────────────────────────
 export default function DailyPhrasesPage() {
 	const [allPhrases, setAllPhrases] = useState([]);
@@ -47,7 +47,6 @@ export default function DailyPhrasesPage() {
 
 	const categories = Object.keys(grouped).sort();
 
-	// Phrases for the currently selected category (passed to modal)
 	const modalPhrases = selectedCategory ? grouped[selectedCategory] : [];
 
 	return (
@@ -56,6 +55,7 @@ export default function DailyPhrasesPage() {
 			<div className="mb-10">
 				<PageHeader
 					title="Daily Phrases"
+					es="Frases Diarias"
 					description="Practice common Spanish phrases for everyday situations. Pick a category to start practising →"
 				/>
 
@@ -128,7 +128,7 @@ export default function DailyPhrasesPage() {
 					category={selectedCategory.replace(/_/g, " ")}
 					words={modalPhrases}
 					onClose={() => setSelectedCategory(null)}
-					type="p" // 2-col for phrases
+					type="p"
 				/>
 			)}
 		</PageWrapper>

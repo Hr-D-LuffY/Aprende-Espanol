@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ALPHABET, SPECIAL } from "../../../context/alphabetCon";
 import { PageWrapper } from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "../../../components/BackNext.jsx";
 
 export default function AlphabetPage() {
 	const [active, setActive] = useState(null);
-
-	const filtered = ALPHABET.filter(
-		(a) =>
-			a.letter.toLowerCase() || a.word.toLowerCase() || a.meaning.toLowerCase(),
-	);
 
 	const selected =
 		active !== null ?
@@ -20,38 +18,35 @@ export default function AlphabetPage() {
 	return (
 		<PageWrapper>
 			{/* Header */}
-			<div className="mb-14">
-				<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
-					Reference — A1 · Foundation
-				</p>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
-					The Spanish Alphabet
-				</h1>
-				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-lg">
-					27 letters. Click any to see pronunciation, an example word, and a
-					study note.
-				</p>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Foundation" />
+				<PageHeader
+					title="The Spanish Alphabet"
+					es='Alfabeto'
+					description="27 letters. Click any to see pronunciation, an example word, and a study note →"
+				/>
 			</div>
+
+			<div className="border-t border-[var(--border)] mb-10" />
 
 			{/* Main grid + detail panel */}
 			<div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 items-start">
 				{/* Letter grid */}
 				<div>
-					<div className="grid grid-cols-5 sm:grid-cols-7 gap-2 mb-6">
-						{filtered.map((a) => (
+					<div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-2 mb-6">
+						{ALPHABET.map((a) => (
 							<button
 								key={a.letter}
 								onClick={() => setActive(active === a.letter ? null : a.letter)}
 								className={`
-                    group relative flex flex-col items-center justify-center
-                    aspect-square rounded-xl border transition-all duration-150 cursor-pointer
-                    ${
-											active === a.letter ?
-												"bg-[var(--accent)]/10 border-[#f59e0b]/40 text-[var(--accent)]"
-											:	"bg-[var(--surface)] border-[var(--border)] text-[var(--text-secondary)] hover:border-[#27272a] hover:bg-[#18181b] hover:text-[var(--text-primary)]"
-										}
-                    ${a.letter === "Ñ" ? "col-span-1" : ""}
-                  `}
+                                    group relative flex flex-col items-center justify-center
+                                    aspect-square rounded-xl border transition-all duration-150 cursor-pointer
+                                    ${
+																			active === a.letter ?
+																				"bg-[var(--accent)]/10 border-[#f59e0b]/40 text-[var(--accent)]"
+																			:	"bg-[var(--surface)] border-[var(--border)] text-[var(--text-secondary)] hover:border-[#27272a] hover:bg-[#18181b] hover:text-[#f79c1d]"
+																		}
+                                `}
 							>
 								<span className="text-xl font-light tracking-tight">
 									{a.letter}
@@ -78,13 +73,13 @@ export default function AlphabetPage() {
 										setActive(active === s.letters ? null : s.letters)
 									}
 									className={`
-                      flex items-center gap-3 px-4 py-2.5 rounded-xl border transition-all duration-150 cursor-pointer
-                      ${
-												active === s.letters ?
-													"bg-[var(--accent)]/10 border-[#f59e0b]/40 text-[var(--accent)]"
-												:	"bg-[var(--surface)] border-[var(--border)] text-[var(--text-secondary)] hover:border-[#27272a] hover:bg-[#18181b] hover:text-[var(--text-primary)]"
-											}
-                    `}
+                                        flex items-center gap-3 px-4 py-2.5 rounded-xl border transition-all duration-150 cursor-pointer
+                                        ${
+																					active === s.letters ?
+																						"bg-[var(--accent)]/10 border-[#f59e0b]/40 text-[var(--accent)]"
+																					:	"bg-[var(--surface)] border-[var(--border)] text-[var(--text-secondary)] hover:border-[#27272a] hover:bg-[#18181b] hover:text-[#f79c1d]"
+																				}
+                                    `}
 								>
 									<span className="text-lg font-light">{s.letters}</span>
 									<span
@@ -98,7 +93,7 @@ export default function AlphabetPage() {
 					</div>
 				</div>
 
-				{/* Detail panel */}
+				{/* Detail panel — sticky only on lg */}
 				<div className="lg:sticky lg:top-20">
 					{selected ?
 						<div className="border border-[var(--border)] rounded-2xl bg-[var(--surface)] overflow-hidden">
@@ -155,88 +150,87 @@ export default function AlphabetPage() {
 
 					{/* Quick stats */}
 					<div className="grid grid-cols-3 gap-2 mt-3">
-						<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-3 text-center">
-							<p className="text-lg font-light text-[var(--text-primary)]">
-								27
-							</p>
-							<p className="text-[9px] text-[var(--text-label)] tracking-wide uppercase mt-0.5">
-								letters
-							</p>
-						</div>
-						<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-3 text-center">
-							<p className="text-lg font-light text-[var(--text-primary)]">3</p>
-							<p className="text-[9px] text-[var(--text-label)] tracking-wide uppercase mt-0.5">
-								combos
-							</p>
-						</div>
-						<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-3 text-center">
-							<p className="text-lg font-light text-[var(--accent)]">1</p>
-							<p className="text-[9px] text-[var(--text-label)] tracking-wide uppercase mt-0.5">
-								unique (Ñ)
-							</p>
-						</div>
+						{[
+							{ val: "27", label: "letters" },
+							{ val: "3", label: "combos" },
+							{ val: "1", label: "unique (Ñ)", accent: true },
+						].map(({ val, label, accent }) => (
+							<div
+								key={label}
+								className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-3 text-center"
+							>
+								<p
+									className={`text-lg font-light ${accent ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
+								>
+									{val}
+								</p>
+								<p className="text-[9px] text-[var(--text-label)] tracking-wide uppercase mt-0.5">
+									{label}
+								</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
 
-			{/* All letters — compact list view */}
+			{/* Full reference — mobile-first layout */}
 			<div className="mt-16 border-t border-[var(--border)] pt-12">
 				<h2 className="text-xl font-light tracking-[-0.03em] text-[var(--text-primary)] mb-8">
 					Full reference
 				</h2>
 				<div className="flex flex-col gap-0">
-					{ALPHABET.map((a, i) => (
+					{ALPHABET.map((a) => (
 						<div
 							key={a.letter}
-							className="grid grid-cols-[40px_80px_1fr_1fr_1fr] gap-4 py-3 border-b border-[var(--border)] items-center group hover:bg-[var(--surface)] px-3 -mx-3 rounded-lg transition-colors cursor-pointer"
 							onClick={() => {
 								setActive(a.letter);
 								window.scrollTo({ top: 0, behavior: "smooth" });
 							}}
+							className="py-3 border-b border-[var(--border)] group hover:bg-[var(--surface)] px-3 -mx-3 rounded-lg transition-colors cursor-pointer"
 						>
-							<span className="text-[18px] font-light text-[var(--accent)] group-hover:scale-110 transition-transform inline-block">
-								{a.letter}
-							</span>
-							<span className="text-[11px] text-[var(--text-muted)]">
-								({a.sound})
-							</span>
-							<span className="text-[12px] text-[var(--text-secondary)]">
-								{a.word}
-							</span>
-							<span className="text-[11px] text-[var(--text-label)]">
-								/{a.pronunciation}/
-							</span>
-							<span className="text-[11px] text-[var(--text-muted)]">
-								= {a.meaning}
-							</span>
+							{/* Mobile: 2-col, Desktop: 5-col */}
+							<div className="grid grid-cols-[32px_1fr] lg:grid-cols-[40px_80px_1fr_1fr_1fr] gap-x-4 gap-y-1 items-start lg:items-center">
+								<span className="text-[18px] font-light text-[var(--accent)] row-span-2 lg:row-span-1 group-hover:scale-110 transition-transform inline-block">
+									{a.letter}
+								</span>
+
+								{/* Mobile: stacks sound+word on line 1, pronunciation+meaning on line 2 */}
+								<div className="flex items-center gap-3 flex-wrap lg:contents">
+									<span className="text-[11px] text-[var(--text-muted)] lg:col-start-2">
+										({a.sound})
+									</span>
+									<span className="text-[12px] text-[var(--text-secondary)] lg:col-start-3">
+										{a.word}
+									</span>
+									<span className="hidden lg:block text-[11px] text-[var(--text-label)]">
+										/{a.pronunciation}/
+									</span>
+									<span className="hidden lg:block text-[11px] text-[var(--text-muted)]">
+										= {a.meaning}
+									</span>
+								</div>
+
+								{/* Mobile only: second line */}
+								<div className="flex items-center gap-3 flex-wrap lg:hidden">
+									<span className="text-[11px] text-[var(--text-label)]">
+										/{a.pronunciation}/
+									</span>
+									<span className="text-[11px] text-[var(--text-muted)]">
+										= {a.meaning}
+									</span>
+								</div>
+							</div>
 						</div>
 					))}
 				</div>
 			</div>
 
-			{/* Pronunciation rules link */}
-			<div className="mt-16 border-t border-[var(--border)] pt-10">
-				<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-4">
-					Next step
-				</p>
-				<Link
-					to="/a1/pronunciation"
-					className="flex items-center justify-between border border-[var(--border)] bg-[var(--surface)] hover:border-[#f59e0b]/30 hover:bg-[var(--accent)]/5 rounded-2xl px-7 py-6 no-underline transition-all duration-150 group"
-				>
-					<div>
-						<p className="text-[18px] font-light text-[var(--text-primary)] tracking-[-0.02em] mb-1">
-							Pronunciation Rules
-						</p>
-						<p className="text-[12px] text-[var(--text-label)]">
-							9 rules — vowels, silent H, C & G sounds, the trill, accent marks
-							and more
-						</p>
-					</div>
-					<span className="text-[#27272a] text-xl group-hover:text-[var(--accent)] transition-colors ml-6">
-						→
-					</span>
-				</Link>
-			</div>
+			<BackNext
+				back="/a1"
+				next="/a1/pronunciation"
+				backLabel="A1 Home"
+				nextLabel="Pronunciation Rule"
+			/>
 		</PageWrapper>
 	);
 }
