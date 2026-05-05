@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { numbers, yearExamples, TABS } from "../../../context/NumberCon";
 
-import { PageWrapper } from "../../../components/PageWrapper";
+import PageWrapper from "../../../components/PageWrapper";
 import PageHeader from "../../../components/PageHeader";
 import PageReference from "../../../components/PageReference";
 import BackNext from "/src/components/BackNext.jsx";

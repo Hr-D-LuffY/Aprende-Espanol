@@ -32,7 +32,7 @@ export function ExampleRow({ es, en }) {
 	);
 }
 
-// Section label / eyebrow
+// Section label / eyebrow  **Double**
 export function Eyebrow({ children }) {
 	return (
 		<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">

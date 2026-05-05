@@ -3,7 +3,7 @@ export default function PageHeader({ title, es, description }) {
 		<div>
 			<h1 className="text-4xl sm:text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
 				{title} -
-				<span className="text-2xl sm:text-4xl font-light leading-[1.04] tracking-[-0.04em] text-[var(--text-label)] italic">
+				<span className="text-2xl sm:text-4xl font-light leading-[1.04] tracking-[-0.04em] text-[var(--text-label)] lowercase italic">
 					{es}
 				</span>
 			</h1>

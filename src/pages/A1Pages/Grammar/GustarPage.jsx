@@ -5,7 +5,6 @@ import {
 	Card,
 	UsePill,
 	PageWrapper,
-	BackNav,
 } from "../../../components/VerbComponents";
 import BackNext from "../../../components/BackNext";
 
@@ -66,7 +65,6 @@ export default function GustrarPage() {
 
 	return (
 		<PageWrapper>
-			<BackNav to="/" label="← verbs" />
 
 			{/* Header */}
 			<div className="mb-12">

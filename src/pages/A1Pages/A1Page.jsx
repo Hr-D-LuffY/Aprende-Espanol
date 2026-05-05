@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import SectionLabel from "../../components/SectionLabel";
 import TopicPill from "../../components/TopicPill";
 import { SectionGrid } from "../../components/SectionNavCard";
-import { PageWrapper } from "../../components/PageWrapper";
+import PageWrapper from "../../components/PageWrapper";
 
 const LEARN_ITEMS = [
 	"How Spanish words are structured — gender, articles, and noun agreement",

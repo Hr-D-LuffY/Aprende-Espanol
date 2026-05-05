@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../../App";
-import { PageWrapper } from "../../../components/PageWrapper";
+import PageWrapper from "../../../components/PageWrapper";
 import BackNext from "../../../components/BackNext";
 
 const TABS = [

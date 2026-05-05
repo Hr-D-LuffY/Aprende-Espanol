@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Card } from "../components/VerbComponents";
-import { PageWrapper } from "../components/PageWrapper";
+import PageWrapper from "../components/PageWrapper";
 import { supabase } from "../App.jsx";
 
 import PageHeader from "../components/PageHeader.jsx";

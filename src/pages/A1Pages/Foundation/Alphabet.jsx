@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ALPHABET, SPECIAL } from "../../../context/alphabetCon";
-import { PageWrapper } from "../../../components/PageWrapper";
+import PageWrapper from "../../../components/PageWrapper";
 import PageHeader from "../../../components/PageHeader";
 import PageReference from "../../../components/PageReference";
 import BackNext from "../../../components/BackNext.jsx";
@@ -22,7 +22,7 @@ export default function AlphabetPage() {
 				<PageReference reference="A1" topic="Foundation" />
 				<PageHeader
 					title="The Spanish Alphabet"
-					es='Alfabeto'
+					es="Alfabeto"
 					description="27 letters. Click any to see pronunciation, an example word, and a study note →"
 				/>
 			</div>

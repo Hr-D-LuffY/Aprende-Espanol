@@ -436,6 +436,16 @@ export default function Navbar() {
 						)}
 					</div>
 
+					<NavLink to="/grammar" active={pathname.startsWith("/grammar")}>
+						Grammar
+						{pathname.startsWith("/grammar") && (
+							<span
+								className="inline-block ml-1.5 w-1 h-1 rounded-full align-middle"
+								style={{ background: "var(--accent)" }}
+							/>
+						)}
+					</NavLink>
+
 					<NavLink to="/vocabulary" active={pathname.startsWith("/vocabulary")}>
 						Vocabulary
 						{pathname.startsWith("/vocabulary") && (
@@ -574,6 +584,14 @@ export default function Navbar() {
 						className="mx-2 my-1 border-t"
 						style={{ borderColor: "var(--border)" }}
 					/>
+
+					<MobileLink
+						to="/grammar"
+						pathname={pathname}
+						onClick={() => setMenuOpen(false)}
+					>
+						Grammar
+					</MobileLink>
 
 					<MobileLink
 						to="/vocabulary"

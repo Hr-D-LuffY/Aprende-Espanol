@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../../App";
-import { PageWrapper } from "../../../components/PageWrapper";
+import PageWrapper from "../../../components/PageWrapper";
 import BackNext from "../../../components/BackNext";
 
 const TABS = [
@@ -8,6 +8,7 @@ const TABS = [
 	{ key: "er", label: "-ER", patternVerb: "comer", stem: "com" },
 	{ key: "ir", label: "-IR", patternVerb: "vivir", stem: "viv" },
 ];
+
 const IRREGULAR_CATEGORIES = {
 	go_verb: {
 		label: "Go Verbs",
@@ -21,34 +22,34 @@ const IRREGULAR_CATEGORIES = {
 		example: "saber → sé",
 	},
 	spelling_change_GUIR: {
-		label: "Spelling Change: -GUIR",
+		label: "Spelling: -GUIR",
 		description: 'Drop the "u" in yo form to preserve the hard G sound.',
 		example: "distinguir → distingo",
 	},
 	spelling_change_GER_GIR: {
-		label: "Spelling Change: -GER/-GIR",
+		label: "Spelling: -GER/-GIR",
 		description: 'Yo form changes G → J to preserve the soft sound before "o".',
 		example: "coger → cojo",
 	},
 	spelling_change_CER_CIR: {
-		label: "Spelling Change: -CER/-CIR",
+		label: "Spelling: -CER/-CIR",
 		description: 'Yo form changes C → ZC before "o".',
 		example: "conocer → conozco",
 	},
 	stem_IE: {
-		label: "Stem Change: E → IE",
+		label: "Stem: E → IE",
 		description:
 			"Stem vowel E changes to IE in all forms except nosotros and vosotros.",
 		example: "querer → quiero",
 	},
 	stem_UE: {
-		label: "Stem Change: O → UE",
+		label: "Stem: O → UE",
 		description:
 			"Stem vowel O changes to UE in all forms except nosotros and vosotros.",
 		example: "poder → puedo",
 	},
 	stem_I: {
-		label: "Stem Change: E → I",
+		label: "Stem: E → I",
 		description:
 			"Stem vowel E changes to I in all forms except nosotros and vosotros. Only -IR verbs.",
 		example: "pedir → pido",
@@ -98,29 +99,33 @@ function splitEnding(word, type) {
 	return { stem: word, ending: "" };
 }
 
+// ── Category bar — horizontal scroll on mobile ──
+
 function CategoryBar({ activeCategory, onSwitch }) {
 	return (
-		<div className="flex flex-col mb-10">
-			{/* Tab row */}
-			<div className="flex flex-wrap gap-0 border-b border-[var(--border)]">
-				{Object.entries(IRREGULAR_CATEGORIES).map(([key, meta]) => (
-					<button
-						key={key}
-						onClick={() => onSwitch(key)}
-						className={[
-							"px-4 py-2.5 text-[11px] tracking-[0.14em] uppercase font-semibold border-b-2 -mb-px transition-colors duration-150 cursor-pointer bg-transparent font-mono whitespace-nowrap",
-							activeCategory === key ?
-								"text-[var(--accent)] border-[#f59e0b]"
-							:	"text-[var(--text-label)] border-transparent hover:text-[var(--text-muted)]",
-						].join(" ")}
-					>
-						{meta.label}
-					</button>
-				))}
+		<div className="flex flex-col mb-8 sm:mb-10">
+			{/* Scrollable tab row */}
+			<div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+				<div className="flex gap-0 border-b border-[var(--border)] min-w-max sm:min-w-0 sm:flex-wrap">
+					{Object.entries(IRREGULAR_CATEGORIES).map(([key, meta]) => (
+						<button
+							key={key}
+							onClick={() => onSwitch(key)}
+							className={[
+								"px-3 sm:px-4 py-2.5 text-[10px] sm:text-[11px] tracking-[0.12em] sm:tracking-[0.14em] uppercase font-semibold border-b-2 -mb-px transition-colors duration-150 cursor-pointer bg-transparent font-mono whitespace-nowrap",
+								activeCategory === key ?
+									"text-[var(--accent)] border-[#f59e0b]"
+								:	"text-[var(--text-label)] border-transparent hover:text-[var(--text-muted)]",
+							].join(" ")}
+						>
+							{meta.label}
+						</button>
+					))}
+				</div>
 			</div>
 
-			{/* Description strip — shown below tabs */}
-			<div className="mt-4 px-1 flex items-center gap-3">
+			{/* Description strip */}
+			<div className="mt-3 sm:mt-4 px-1 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
 				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed">
 					{IRREGULAR_CATEGORIES[activeCategory].description}
 				</p>
@@ -134,11 +139,11 @@ function CategoryBar({ activeCategory, onSwitch }) {
 
 function ConjCell({ pronoun, stem, ending }) {
 	return (
-		<div className="py-3 px-0">
+		<div className="py-2.5 sm:py-3 px-0">
 			<p className="text-[9px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-1.5">
 				{pronoun}
 			</p>
-			<p className="text-[14px] text-[var(--text-secondary)] tracking-[-0.01em]">
+			<p className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] tracking-[-0.01em]">
 				{stem}
 				<span className="text-[var(--accent)]">{ending}</span>
 			</p>
@@ -153,40 +158,25 @@ function ConjugationBar({ type }) {
 	const plural = rows.slice(3);
 
 	return (
-		<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 mb-10">
+		<div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-4 sm:p-6 mb-8 sm:mb-10">
 			<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-4">
 				Pattern —{" "}
 				<span className="text-[var(--text-muted)]">{tab.patternVerb}</span>
 			</p>
-			<div className="grid grid-cols-3 divide-x divide-[#1c1c1f] border-b border-[var(--border)] mb-0">
+			<div className="grid grid-cols-3 divide-x divide-[#1c1c1f] border-b border-[var(--border)]">
 				{singular.map((r) => (
-					<div key={r.pronoun} className="px-4 first:pl-0">
+					<div key={r.pronoun} className="px-2 sm:px-4 first:pl-0">
 						<ConjCell pronoun={r.pronoun} stem={tab.stem} ending={r.ending} />
 					</div>
 				))}
 			</div>
-			<div className="grid grid-cols-3 divide-x divide-[#1c1c1f] pt-0">
+			<div className="grid grid-cols-3 divide-x divide-[#1c1c1f]">
 				{plural.map((r) => (
-					<div key={r.pronoun} className="px-4 first:pl-0">
+					<div key={r.pronoun} className="px-2 sm:px-4 first:pl-0">
 						<ConjCell pronoun={r.pronoun} stem={tab.stem} ending={r.ending} />
 					</div>
 				))}
 			</div>
-		</div>
-	);
-}
-
-function MiniForm({ label, word, type }) {
-	const { stem, ending } = splitEnding(word, type);
-	return (
-		<div>
-			<p className="text-[9px] tracking-[0.1em] uppercase text-[#27272a] mb-0.5">
-				{label}
-			</p>
-			<p className="text-[12px] text-[var(--text-muted)]">
-				{stem}
-				<span className="text-[var(--accent)] opacity-70">{ending}</span>
-			</p>
 		</div>
 	);
 }
@@ -196,15 +186,15 @@ function VerbCard({ verb, type, expanded, onToggle }) {
 		<div
 			onClick={onToggle}
 			className={[
-				"p-5 cursor-pointer transition-all duration-200 rounded-xl border group",
+				"p-4 sm:p-5 cursor-pointer transition-all duration-200 rounded-xl border group",
 				expanded ?
 					"bg-[var(--surface)] border-[#f59e0b]/30"
 				:	"bg-[var(--surface)] border-[var(--border)] hover:border-[#2c2c30]",
 			].join(" ")}
 		>
 			{/* Verb name + meaning */}
-			<div className="flex items-baseline justify-between gap-2 mb-4">
-				<p className="text-[20px] font-light tracking-[-0.03em] text-[var(--text-primary)]">
+			<div className="flex items-baseline justify-between gap-2 mb-3 sm:mb-4">
+				<p className="text-[18px] sm:text-[20px] font-light tracking-[-0.03em] text-[var(--text-primary)]">
 					{verb.name}
 				</p>
 				<p className="text-[10px] tracking-[0.08em] uppercase text-[var(--text-label)] shrink-0">
@@ -212,7 +202,7 @@ function VerbCard({ verb, type, expanded, onToggle }) {
 				</p>
 			</div>
 
-			{/* Conjugation: row 1 — yo tú él */}
+			{/* Row 1 — yo tú él */}
 			<div className="grid grid-cols-3 mb-2">
 				{[
 					{ label: "yo", word: verb.yo },
@@ -225,7 +215,7 @@ function VerbCard({ verb, type, expanded, onToggle }) {
 							<p className="text-[8px] tracking-[0.12em] uppercase text-[#27272a] mb-0.5">
 								{label}
 							</p>
-							<p className="text-[12px] text-[var(--text-muted)]">
+							<p className="text-[11px] sm:text-[12px] text-[var(--text-muted)]">
 								{stem}
 								<span className="text-[var(--accent)]">{ending}</span>
 							</p>
@@ -234,8 +224,8 @@ function VerbCard({ verb, type, expanded, onToggle }) {
 				})}
 			</div>
 
-			{/* Conjugation: row 2 — nosotros vosotros ellos */}
-			<div className="grid grid-cols-3 mb-4">
+			{/* Row 2 — nosotros vosotros ellos */}
+			<div className="grid grid-cols-3 mb-3 sm:mb-4">
 				{[
 					{ label: "nos.", word: verb.nosotros },
 					{ label: "vos.", word: verb.vosotros },
@@ -247,7 +237,7 @@ function VerbCard({ verb, type, expanded, onToggle }) {
 							<p className="text-[8px] tracking-[0.12em] uppercase text-[#27272a] mb-0.5">
 								{label}
 							</p>
-							<p className="text-[12px] text-[var(--text-muted)]">
+							<p className="text-[11px] sm:text-[12px] text-[var(--text-muted)]">
 								{stem}
 								<span className="text-[var(--accent)]">{ending}</span>
 							</p>
@@ -307,6 +297,8 @@ function VerbsGrid({ verbs, type, expandedId, onToggle }) {
 	);
 }
 
+// ── Page ──
+
 export default function IrregularVerbsPage() {
 	const [activeCategory, setActiveCategory] = useState("go_verb");
 	const [verbsByCategory, setVerbsByCategory] = useState(
@@ -316,14 +308,12 @@ export default function IrregularVerbsPage() {
 
 	useEffect(() => {
 		if (verbsByCategory[activeCategory] !== null) return;
-
 		(async () => {
 			const { data, error } = await supabase
 				.from("VERBs")
 				.select("*")
 				.eq("category", activeCategory)
 				.order("name");
-
 			if (error) {
 				console.error(error);
 				setVerbsByCategory((prev) => ({ ...prev, [activeCategory]: [] }));
@@ -342,7 +332,6 @@ export default function IrregularVerbsPage() {
 		setExpandedId((prev) => (prev === id ? null : id));
 	}
 
-	// derive type from first verb's type field for splitEnding
 	const currentVerbs = verbsByCategory[activeCategory];
 	const activeType =
 		currentVerbs?.[0]?.type?.replace("-", "").toLowerCase() ?? "ar";
@@ -356,7 +345,7 @@ export default function IrregularVerbsPage() {
 			<h1 className="text-3xl sm:text-4xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-2">
 				Irregular Verbs
 			</h1>
-			<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-10 sm:mb-12 tracking-wide">
+			<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-8 sm:mb-12 tracking-wide">
 				Present tense — verbs that break the regular conjugation rules.
 			</p>
 
@@ -371,13 +360,13 @@ export default function IrregularVerbsPage() {
 				Verbs in this category
 			</p>
 
-			{/* Reuse the same VerbsGrid + VerbCard */}
 			<VerbsGrid
 				verbs={currentVerbs}
 				type={activeType}
 				expandedId={expandedId}
 				onToggle={handleToggle}
 			/>
+
 			<BackNext
 				back="/a1/grammar/regular-verbs"
 				next="/a1/usage/numbers"

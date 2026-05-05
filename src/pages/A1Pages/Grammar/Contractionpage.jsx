@@ -4,7 +4,6 @@ import {
 	Card,
 	UsePill,
 	PageWrapper,
-	BackNav,
 } from "../../../components/VerbComponents";
 import BackNext from "../../../components/BackNext";
 // ── Local reusable components ──
@@ -102,8 +101,6 @@ const NO_CONTRACTION = [
 export default function ContractionPage() {
 	return (
 		<PageWrapper>
-			<BackNav to="/" label="← grammar" />
-
 			{/* Header */}
 			<div className="mb-12">
 				<Eyebrow>Grammar · Contractions · Mandatory rules</Eyebrow>

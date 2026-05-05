@@ -4,7 +4,6 @@ import {
 	Card,
 	UsePill,
 	PageWrapper,
-	BackNav,
 } from "../../../components/VerbComponents";
 import BackNext from "../../../components/BackNext";
 
@@ -131,7 +130,6 @@ export default function NegationPage() {
 
 	return (
 		<PageWrapper>
-			<BackNav to="/" label="← grammar" />
 
 			{/* Header */}
 			<div className="mb-12">

@@ -53,7 +53,7 @@ const App = () => (
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/vocabulary" element={<VocabPage />} />
-				<Route path="/grammar" element={<Navigate to="/a1/grammar" />} />
+				<Route path="/grammar" element={<GrammarPage />} />
 				<Route path="/phrases" element={<DailyPhrasesPage />} />
 				<Route path="a1">
 					<Route index element={<A1Page />} />

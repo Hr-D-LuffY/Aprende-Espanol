@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LevelRoadMap from "../components/LevelRoadMap";
 import { LEVELS } from "../components/LevelRoadMap";
-import { PageWrapper } from "../components/PageWrapper";
+import PageWrapper from "../components/PageWrapper";
 
 export default function LandingPage() {
 	const [activeLevel, setActiveLevel] = useState(0);
