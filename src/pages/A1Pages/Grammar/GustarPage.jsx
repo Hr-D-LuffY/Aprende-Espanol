@@ -1,88 +1,34 @@
 import { useState } from "react";
 import {
-	ConjRow,
-	Eyebrow,
-	Card,
-	UsePill,
-	PageWrapper,
-} from "../../../components/VerbComponents";
-import BackNext from "../../../components/BackNext";
+	GUSTA_CONJUGATIONS,
+	GUSTA_EXAMPLES,
+	GUSTA_GUSTAN,
+} from "../../../context/Tengo&GustaCon";
 
-const CONJUGATIONS = [
-	{ pronoun: "me (yo)", form: "me gusta", highlight: false },
-	{ pronoun: "nos (nosotros)", form: "nos gusta", highlight: false },
-	{ pronoun: "te (tú)", form: "te gusta", highlight: false },
-	{ pronoun: "os (vosotros)", form: "os gusta", highlight: false },
-	{ pronoun: "le (él/ella)", form: "le gusta", highlight: true },
-	{ pronoun: "les (ellos)", form: "les gusta", highlight: false },
-];
+import PageWrapper from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
+import Eyebrow from "../../../components/Eyebrow";
 
-const EXAMPLES = [
-	{ es: "Me gusta la manzana.", en: "I like the apple." },
-	{ es: "¿Qué te gusta?", en: "What do you like?" },
-	{
-		es: "Me gusta el té con azúcar y leche.",
-		en: "I like tea with sugar and milk.",
-	},
-	{ es: "¿Qué te gusta mucho?", en: "What do you like most?" },
-	{ es: "¿Cómo te gusta?", en: "How do you like it?" },
-	{ es: "Le gusta el coche.", en: "He/She likes the car." },
-	{ es: "¿A quién le gusta el té?", en: "Who likes tea?" },
-	{ es: "A Priota le gusta el té.", en: "Priota likes tea." },
-	{ es: "Nos gusta la música.", en: "We like music." },
-	{ es: "Les gusta la casa.", en: "They like the house." },
-];
-
-const GUSTA_GUSTAN = [
-	{
-		es: "Me gusta el libro.",
-		en: "I like the book.",
-		form: "gusta",
-		tag: "singular",
-	},
-	{
-		es: "Me gustan los libros.",
-		en: "I like books.",
-		form: "gustan",
-		tag: "plural",
-	},
-	{
-		es: "Me gustan las manzanas.",
-		en: "I like apples.",
-		form: "gustan",
-		tag: "plural",
-	},
-	{
-		es: "Les gustan las manzanas.",
-		en: "They like apples.",
-		form: "gustan",
-		tag: "plural",
-	},
-];
+import ConjRow from "../../../components/Verb/ConjRow";
+import { Card } from "../../../components/VerbComponents";
 
 export default function GustrarPage() {
 	const [activeEx, setActiveEx] = useState(null);
 
 	return (
 		<PageWrapper>
-
-			{/* Header */}
-			<div className="mb-12">
-				<Eyebrow>Verb · Indirect object · Reverse structure</Eyebrow>
-				<div className="flex items-baseline gap-4 mb-3">
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
-						gustar
-					</h1>
-					<span className="text-[16px] text-[var(--text-muted)] font-light">
-						to like
-					</span>
-				</div>
-				<div className="flex flex-wrap gap-2 mt-4">
-					{["Preferences", "Likes", "Activities", "Things"].map((u) => (
-						<UsePill key={u}>{u}</UsePill>
-					))}
-				</div>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Grammar" />
+				<PageHeader
+					title="Gustar"
+					es=" To like"
+					description="Use GUSTAR for preferences, likes, and activities →"
+				/>
 			</div>
+
+			<div className="border-t border-[var(--border)] mb-10" />
 
 			{/* How gustar works — key concept */}
 			<Card className="mb-6 p-6">
@@ -133,105 +79,115 @@ export default function GustrarPage() {
 				</div>
 			</Card>
 
-			{/* Main grid */}
-			<div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6">
-				{/* Conjugation */}
-				<div>
-					<Card>
-						<div className="px-4 pt-5 pb-2">
-							<Eyebrow>Conjugation table</Eyebrow>
-						</div>
-						{CONJUGATIONS.map((c) => (
-							<ConjRow key={c.pronoun} {...c} />
-						))}
-						<div className="px-4 py-3">
-							<p className="text-[10px] text-[#27272a] tracking-wide">
-								gusta → singular · gustan → plural
-							</p>
-						</div>
-					</Card>
-				</div>
-
-				{/* Examples */}
-				<div>
-					<Card>
-						<div className="px-5 pt-5 pb-2">
-							<Eyebrow>Examples</Eyebrow>
-						</div>
-						<div className="px-5 pb-4">
-							{EXAMPLES.map((ex, i) => (
-								<div
-									key={i}
-									onClick={() => setActiveEx(activeEx === i ? null : i)}
-									className={`py-3 border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
-                                        ${activeEx === i ? "bg-[var(--accent)]/5 px-2 -mx-2" : "hover:bg-[var(--surface)]"}`}
-								>
-									<p
-										className={`text-[13px] tracking-[-0.01em] mb-0.5 transition-colors
-                                        ${activeEx === i ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
-									>
-										{ex.es}
-									</p>
-									<p
-										className={`text-[11px] tracking-wide transition-all duration-150
-                                        ${activeEx === i ? "text-[var(--text-muted)] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
-									>
-										{ex.en}
-									</p>
-								</div>
-							))}
-							<p className="text-[10px] text-[#27272a] mt-3 tracking-wide">
-								tap a sentence to reveal translation
-							</p>
-						</div>
-					</Card>
+			{/* Conjugation */}
+			<div className="mb-10">
+				<Eyebrow>Conjugation</Eyebrow>
+				<div className="border border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)] px-6">
+					{GUSTA_CONJUGATIONS.map((c) => (
+						<ConjRow key={c.pronoun} {...c} />
+					))}
 				</div>
 			</div>
 
-			{/* Gusta vs Gustan */}
-			<Card className="mt-6 p-6">
-				<Eyebrow>Gusta vs Gustan</Eyebrow>
-				<p className="text-[12px] text-[var(--text-muted)] leading-relaxed mb-5 tracking-wide max-w-lg">
-					The form depends on the{" "}
-					<span className="text-[var(--text-primary)]">thing you like</span> —
-					not the person. Singular thing →{" "}
-					<span className="text-[var(--accent)]">gusta</span>. Plural things →{" "}
-					<span className="text-[var(--accent)]">gustan</span>.
+			<Eyebrow>Examples</Eyebrow>
+			<Card className="px-5 pb-4 mb-10">
+				{GUSTA_EXAMPLES.map((ex, i) => (
+					<div
+						key={i}
+						onClick={() => setActiveEx(activeEx === i ? null : i)}
+						className={`py-3 border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
+                                        ${activeEx === i ? "bg-[var(--accent)]/5 px-2 -mx-2" : "hover:bg-[var(--surface)]"}`}
+					>
+						<p
+							className={`text-[13px] tracking-[-0.01em] mb-0.5 transition-colors
+                                        ${activeEx === i ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
+						>
+							{ex.es}
+						</p>
+						<p
+							className={`text-[11px] tracking-wide transition-all duration-150
+                                        ${activeEx === i ? "text-[var(--text-muted)] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
+						>
+							{ex.en}
+						</p>
+					</div>
+				))}
+				<p className="text-[10px] text-[#27272a] mt-3 tracking-wide">
+					tap a sentence to reveal translation
 				</p>
-				<div className="space-y-0">
+			</Card>
+
+			<Eyebrow>Gusta vs Gustan</Eyebrow>
+			<Card className="mt-6 p-6">
+				{/* Rule summary */}
+				<div className="grid grid-cols-2 gap-3 mb-6">
+					<div className="border border-[var(--border)] rounded-lg p-3">
+						<p className="text-[9px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-1.5">
+							gusta
+						</p>
+						<p className="text-[13px] text-[var(--text-primary)] mb-1">
+							singular thing
+						</p>
+						<p className="text-[11px] text-[var(--text-muted)] tracking-wide">
+							el libro, la música, el café
+						</p>
+					</div>
+					<div className="border border-[#f59e0b]/30 bg-[var(--accent)]/5 rounded-lg p-3">
+						<p className="text-[9px] tracking-[0.14em] uppercase text-[var(--accent)] mb-1.5">
+							gustan
+						</p>
+						<p className="text-[13px] text-[var(--text-primary)] mb-1">
+							plural things
+						</p>
+						<p className="text-[11px] text-[var(--text-muted)] tracking-wide">
+							los libros, las películas
+						</p>
+					</div>
+				</div>
+
+				<p className="text-[11px] text-[var(--text-label)] tracking-wide mb-4">
+					The form agrees with the{" "}
+					<span className="text-[var(--text-primary)]">thing liked</span> — not
+					the person liking it.
+				</p>
+
+				{/* Examples */}
+				<div className="border border-[var(--border)] rounded-xl overflow-hidden">
 					{GUSTA_GUSTAN.map((row, i) => (
 						<div
 							key={i}
-							className="flex items-center justify-between py-3 border-b border-[var(--border)] last:border-0"
+							className="grid grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 border-b border-[var(--border)] last:border-0"
 						>
 							<div>
 								<p className="text-[13px] text-[var(--text-primary)] tracking-[-0.01em]">
-									{row.es}
+									{row.es.split(row.form).map((part, j, arr) =>
+										j < arr.length - 1 ?
+											<span key={j}>
+												{part}
+												<span className="text-[var(--accent)]">{row.form}</span>
+											</span>
+										:	part,
+									)}
 								</p>
 								<p className="text-[11px] text-[var(--text-label)] tracking-wide mt-0.5">
 									{row.en}
 								</p>
 							</div>
-							<div className="flex items-center gap-2">
-								<span
-									className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border tracking-wide
-                                        ${
-																					row.tag === "singular" ?
-																						"border-[#f59e0b]/30 text-[var(--accent)] bg-[var(--accent)]/5"
-																					:	"border-[#27272a] text-[var(--text-muted)]"
-																				}`}
-								>
-									{row.form}
-								</span>
-								<span className="text-[10px] text-[#27272a] tracking-wide hidden sm:inline">
-									{row.tag}
-								</span>
-							</div>
+							<span
+								className={`text-[10px] font-semibold px-2 py-0.5 rounded border tracking-wide shrink-0
+					${
+						row.tag === "singular" ?
+							"border-[var(--border)] text-[var(--text-muted)]"
+						:	"border-[#f59e0b]/30 text-[var(--accent)] bg-[var(--accent)]/5"
+					}`}
+							>
+								{row.tag}
+							</span>
 						</div>
 					))}
 				</div>
 			</Card>
-			{/* Back & Next link */}
+
 			<BackNext
 				back="/a1/grammar/tener"
 				next="/a1/grammar/question-words"

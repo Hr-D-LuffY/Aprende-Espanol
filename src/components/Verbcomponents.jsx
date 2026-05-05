@@ -21,13 +21,25 @@ export function ConjRow({ pronoun, form, highlight }) {
 }
 
 // Example sentence block
-export function ExampleRow({ es, en }) {
+export function ExampleRow({ es, en, active, onToggle }) {
 	return (
-		<div className="py-3 border-b border-[var(--border)] last:border-0">
-			<p className="text-[13px] text-[var(--text-primary)] tracking-[-0.01em] mb-0.5">
+		<div
+			onClick={onToggle}
+			className={`py-3 border-b border-[var(--border)] last:border-0 cursor-pointer rounded-sm transition-colors duration-150
+				${active ? "bg-[var(--accent)]/5 px-2 -mx-2" : "hover:bg-[var(--surface)]"}`}
+		>
+			<p
+				className={`text-[13px] tracking-[-0.01em] mb-0.5 transition-colors
+				${active ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
+			>
 				{es}
 			</p>
-			<p className="text-[11px] text-[var(--text-label)] tracking-wide">{en}</p>
+			<p
+				className={`text-[11px] tracking-wide transition-all duration-200 overflow-hidden
+				${active ? "text-[var(--text-muted)] max-h-10 opacity-100" : "max-h-0 opacity-0"}`}
+			>
+				{en}
+			</p>
 		</div>
 	);
 }
@@ -68,24 +80,6 @@ export function PageWrapper({ children }) {
 			<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24">
 				{children}
 			</div>
-		</div>
-	);
-}
-
-// Conjugation explainer mini-block
-export function ConjugationNote({ subject, verb, note }) {
-	return (
-		<div className="flex items-center gap-3 py-2">
-			<span className="text-[12px] text-[var(--text-muted)] w-16">
-				{subject}
-			</span>
-			<span className="text-[#27272a]">→</span>
-			<span className="text-[13px] text-[var(--accent)] font-semibold">
-				{verb}
-			</span>
-			{note && (
-				<span className="text-[11px] text-[var(--text-label)]">{note}</span>
-			)}
 		</div>
 	);
 }

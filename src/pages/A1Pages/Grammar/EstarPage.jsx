@@ -1,140 +1,64 @@
 import {
-	ConjRow,
-	CriteriaBlock,
-	VocabGrid,
-	SectionHeading,
-	RuleBanner,
-} from "../../../components/VerbShared";
-import BackNext from "../../../components/BackNext";
+	ESTAR_CONJUGATIONS,
+	ESTAR_CRITERIA,
+} from "../../../context/Ser&EstarCon";
 
-const CONJUGATIONS = [
-	{ pronoun: "Yo", form: "Estoy", meaning: "I am" },
-	{ pronoun: "Tú", form: "Estás", meaning: "You are" },
-	{ pronoun: "Él / Ella", form: "Está", meaning: "He / She is" },
-	{ pronoun: "Nosotros", form: "Estamos", meaning: "We are" },
-	{ pronoun: "Vosotros", form: "Estáis", meaning: "You all are" },
-	{ pronoun: "Ellos", form: "Están", meaning: "They are" },
-];
+import PageWrapper from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
+import Eyebrow from "../../../components/Eyebrow";
 
-const CRITERIA = [
-	{
-		title: "Mental / Physical State",
-		examples: [
-			{ en: "How are you?", es: "¿Cómo estás?" },
-			{ en: "I am fine", es: "Estoy bien" },
-			{ en: "I am tired", es: "Estoy cansado" },
-			{ en: "I am happy", es: "Estoy contenta" },
-			{ en: "My sister is fine", es: "Mi hermana está bien" },
-		],
-	},
-	{
-		title: "Condition / Location",
-		examples: [
-			{ en: "The gate is open", es: "La puerta está abierta" },
-			{ en: "The gate is closed", es: "La puerta está cerrada" },
-			{ en: "He is mad", es: "Él está loco" },
-			{ en: "My key is on the table", es: "Mi llave está en la mesa" },
-		],
-	},
-	{
-		title: "Mixed Example",
-		examples: [
-			{
-				en: "I am bachelor but my brother is married",
-				es: "Estoy soltero pero mi hermano es casado",
-			},
-		],
-	},
-];
-
-const VOCAB = [
-	{ es: "Puerta", en: "Gate / Door" },
-	{ es: "Ventana", en: "Window" },
-	{ es: "Llave", en: "Key" },
-	{ es: "Mesa", en: "Table" },
-	{ es: "Abierto/a", en: "Open" },
-	{ es: "Cerrado/a", en: "Closed" },
-	{ es: "Casado/a", en: "Married" },
-	{ es: "Soltero/a", en: "Bachelor" },
-	{ es: "Divorciado/a", en: "Divorced" },
-	{ es: "Marido", en: "Husband" },
-	{ es: "Esposa", en: "Wife" },
-	{ es: "Loco/a", en: "Mad / Crazy" },
-	{ es: "Pero", en: "But" },
-	{ es: "Contenta", en: "Happy" },
-	{ es: "Triste", en: "Sad" },
-	{ es: "Cansado", en: "Tired" },
-	{ es: "Enfermo", en: "Sick" },
-	{ es: "Calmado", en: "Relaxed" },
-	{ es: "Enojado", en: "Angry" },
-	{ es: "Emocionado", en: "Excited" },
-];
+import RuleBanner from "../../../components/Verb/RuleBanner";
+import ConjRow from "../../../components/Verb/ConjRow";
+import CriteriaBlock from "../../../components/Verb/CriteriaBlock";
 
 export default function EstarPage() {
 	return (
-		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
-			<div className="max-w-5xl mx-auto px-6 pt-20 pb-24">
-				{/* Header */}
-				<div className="mb-14">
-					<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-3">
-						Grammar · To Be
-					</p>
-					<div className="flex items-baseline gap-4 mb-3">
-						<h1 className="text-7xl font-light tracking-[-0.05em] text-[var(--text-primary)]">
-							ESTAR
-						</h1>
-						<span className="text-[13px] text-[var(--text-muted)]">
-							temporary / state
-						</span>
-					</div>
-					<p className="text-[11px] text-[var(--text-label)] tracking-[0.1em] uppercase">
-						Negation →{" "}
-						<span className="text-[var(--text-muted)]">NO + verb</span>{" "}
-						&nbsp;·&nbsp; Verb+ing also uses ESTAR
-					</p>
-				</div>
-
-				{/* Rule */}
-				<div className="mb-12">
-					<RuleBanner
-						rule="ESTAR = HOW something IS / WHERE it is"
-						note="Use ESTAR for temporary states, conditions, emotions, and locations. Also for progressive (-ing) forms."
-					/>
-				</div>
-
-				{/* Conjugation */}
-				<div className="mb-14">
-					<SectionHeading>Conjugation</SectionHeading>
-					<div className="border border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)] px-6">
-						{CONJUGATIONS.map((c) => (
-							<ConjRow key={c.pronoun} {...c} />
-						))}
-					</div>
-				</div>
-
-				{/* Criteria */}
-				<div className="mb-14">
-					<SectionHeading>Criteria</SectionHeading>
-					<div className="flex flex-col gap-3">
-						{CRITERIA.map((c) => (
-							<CriteriaBlock key={c.title} {...c} />
-						))}
-					</div>
-				</div>
-
-				{/* Vocabulary */}
-				<div>
-					<SectionHeading>Vocabulary</SectionHeading>
-					<VocabGrid items={VOCAB} />
-				</div>
-				{/* Back & Next link */}
-				<BackNext
-					back="/a1/grammar/ser"
-					next="/a1/grammar/tener"
-					backLabel="Ser Verb"
-					nextLabel="Tener Verb"
+		<PageWrapper>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Grammar" />
+				<PageHeader
+					title="ESTAR"
+					es=" To be (temporary)"
+					description="Use ESTAR for temporary states, conditions, emotions, and locations →"
 				/>
 			</div>
-		</div>
+
+			<div className="border-t border-[var(--border)] mb-10" />
+
+			<RuleBanner
+				rule="ESTAR = HOW something IS / WHERE it is"
+				note="Use ESTAR for temporary states, conditions, emotions, and locations. Also for progressive (-ing) forms →"
+				flag="E"
+			/>
+
+			{/* Conjugation */}
+			<div className="mb-8">
+				<Eyebrow>Conjugation</Eyebrow>
+				<div className="border border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)] px-6">
+					{ESTAR_CONJUGATIONS.map((c) => (
+						<ConjRow key={c.pronoun} {...c} />
+					))}
+				</div>
+			</div>
+
+			{/* Criteria */}
+			<div className="mb-8">
+				<Eyebrow>Criteria</Eyebrow>
+				<div className="flex flex-col gap-3">
+					{ESTAR_CRITERIA.map((c) => (
+						<CriteriaBlock key={c.title} {...c} />
+					))}
+				</div>
+			</div>
+
+			<BackNext
+				back="/a1/grammar/ser"
+				next="/a1/grammar/tener"
+				backLabel="Ser Verb"
+				nextLabel="Tener Verb"
+			/>
+		</PageWrapper>
 	);
 }
