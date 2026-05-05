@@ -6,6 +6,7 @@ import PageHeader from "../../../components/PageHeader";
 import PageReference from "../../../components/PageReference";
 import BackNext from "/src/components/BackNext.jsx";
 
+import TabBar from "../../../components/TabBar";
 import NoteBlock from "/src/components/Usage/NoteBlock.jsx";
 import NumberRow from "/src/components/Usage/NumberRow";
 import YearRow from "/src/components/Usage/YearRow";
@@ -30,23 +31,8 @@ export default function NumbersPage() {
 
 			<div className="border-t border-[var(--border)] mb-10" />
 
-			{/* Tab pills — scrollable on mobile */}
-			<div className="px-4 sm:px-5 mb-6 flex gap-2 overflow-x-auto pb-1 no-scrollbar">
-				{TABS.map((t) => (
-					<button
-						key={t.id}
-						onClick={() => setActiveTab(t.id)}
-						className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-widest border transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 ${
-							activeTab === t.id ? t.active : t.inactive
-						}`}
-					>
-						<span
-							className={`w-1.5 h-1.5 rounded-full ${activeTab === t.id ? "bg-[#09090b]" : t.dot}`}
-						/>
-						{t.label}
-					</button>
-				))}
-			</div>
+			{/* Tab bar */}
+			<TabBar tabs={TABS} activeTab={activeTab} onSwitch={setActiveTab} />
 
 			{/* Note block */}
 			{tab.note && (
@@ -57,17 +43,17 @@ export default function NumbersPage() {
 
 			{/* Table header */}
 			{activeTab !== "1000+" && (
-				<div className="flex items-center border-y border-[var(--border)] bg-[#0d0d0f]">
-					<span className="w-14 sm:w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#ffffff] uppercase py-2.5 pl-3 sm:pl-5">
+				<div className="flex items-center border-y border-[var(--border)] bg-[var(--surface-deep)]">
+					<span className="w-14 sm:w-20 shrink-0 text-[9px] tracking-[0.2em] text-[var(--text-primary)] uppercase py-2.5 pl-3 sm:pl-5">
 						NUM
 					</span>
-					<span className="flex-1 text-[9px] tracking-[0.2em] text-[#ffffff] uppercase py-2.5">
+					<span className="flex-1 text-[9px] tracking-[0.2em] text-[var(--text-primary)] uppercase py-2.5">
 						ESPAÑOL
 					</span>
-					<span className="hidden sm:block w-52 shrink-0 text-[9px] tracking-[0.2em] text-[#ffffff] uppercase py-2.5 pr-5 text-right">
+					<span className="hidden sm:block w-52 shrink-0 text-[9px] tracking-[0.2em] text-[var(--text-primary)] uppercase py-2.5 pr-5 text-right">
 						PRONUNCIATION
 					</span>
-					<span className="sm:hidden text-[9px] tracking-[0.2em] text-[#ffffff] uppercase py-2.5 pr-3">
+					<span className="sm:hidden text-[9px] tracking-[0.2em] text-[var(--text-primary)] uppercase py-2.5 pr-3">
 						PRON.
 					</span>
 				</div>
@@ -84,7 +70,7 @@ export default function NumbersPage() {
 
 			{/* 1000+ — year examples */}
 			{activeTab === "1000+" && (
-				<div className="">
+				<div>
 					<div className="border border-[#e879f9]/20 bg-[#e879f9]/5 px-4 sm:px-5 py-4 mb-5">
 						<div className="flex items-center gap-2 mb-2">
 							<span className="w-1.5 h-1.5 rounded-full bg-[#e879f9]" />
@@ -107,11 +93,11 @@ export default function NumbersPage() {
 						Years 1000 – 3000
 					</p>
 
-					<div className="flex items-center border-y border-[var(--border)] bg-[#0d0d0f]">
-						<span className="w-14 sm:w-20 shrink-0 text-[9px] tracking-[0.2em] text-[#ffffff] uppercase py-2.5 pl-3 sm:pl-5">
+					<div className="flex items-center border-y border-[var(--border)] bg-[var(--surface-deep)]">
+						<span className="w-14 sm:w-20 shrink-0 text-[9px] tracking-[0.2em] text-[var(--text-primary)] uppercase py-2.5 pl-3 sm:pl-5">
 							YEAR
 						</span>
-						<span className="flex-1 text-[9px] tracking-[0.2em] text-[#ffffff] uppercase py-2.5">
+						<span className="flex-1 text-[9px] tracking-[0.2em] text-[var(--text-primary)] uppercase py-2.5">
 							EN ESPAÑOL
 						</span>
 					</div>
