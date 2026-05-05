@@ -1,264 +1,57 @@
 import { useState } from "react";
-import BackNext from "../../../components/BackNext";
+import {
+	KEY_NOTES,
+	CATEGORY_COLORS,
+	QUESTION_WORDS,
+} from "../../../context/QuesCon";
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
+import PageWrapper from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
 
-const QUESTION_WORDS = [
-	{
-		en: "Who",
-		es: "¿Quién?",
-		note: "People only",
-		example: "¿Quién es ella?",
-		ex_en: "Who is she?",
-		category: "person",
-	},
-	{
-		en: "Where",
-		es: "¿Dónde?",
-		note: "Location",
-		example: "¿Dónde vives?",
-		ex_en: "Where do you live?",
-		category: "place",
-	},
-	{
-		en: "When",
-		es: "¿Cuándo?",
-		note: "Time",
-		example: "¿Cuándo llega?",
-		ex_en: "When does it arrive?",
-		category: "time",
-	},
-	{
-		en: "Why",
-		es: "¿Por qué?",
-		note: "Two words — reason",
-		example: "¿Por qué estudias?",
-		ex_en: "Why do you study?",
-		category: "reason",
-	},
-	{
-		en: "What",
-		es: "¿Qué?",
-		note: "Things / general",
-		example: "¿Qué quieres?",
-		ex_en: "What do you want?",
-		category: "thing",
-	},
-	{
-		en: "What else",
-		es: "¿Qué más?",
-		note: "Additional info",
-		example: "¿Qué más necesitas?",
-		ex_en: "What else do you need?",
-		category: "thing",
-	},
-	{
-		en: "How",
-		es: "¿Cómo?",
-		note: "Manner / description",
-		example: "¿Cómo estás?",
-		ex_en: "How are you?",
-		category: "manner",
-	},
-	{
-		en: "How much",
-		es: "¿Cuánto?",
-		note: "Amount / quantity",
-		example: "¿Cuánto cuesta?",
-		ex_en: "How much does it cost?",
-		category: "amount",
-	},
-	{
-		en: "How many",
-		es: "¿Cuántos?",
-		note: "Countable plural",
-		example: "¿Cuántos años tienes?",
-		ex_en: "How many years old are you?",
-		category: "amount",
-	},
-	{
-		en: "Which",
-		es: "¿Cuál?",
-		note: "Singular selection",
-		example: "¿Cuál prefieres?",
-		ex_en: "Which do you prefer?",
-		category: "select",
-	},
-	{
-		en: "Which (pl.)",
-		es: "¿Cuáles?",
-		note: "Plural selection",
-		example: "¿Cuáles son tus favoritos?",
-		ex_en: "Which are your favorites?",
-		category: "select",
-	},
-	{
-		en: "How + adj",
-		es: "¿Qué tan?",
-		note: "Degree — how + adjective",
-		example: "¿Qué tan lejos está?",
-		ex_en: "How far is it?",
-		category: "degree",
-	},
-];
+import QuestionRow from "../../../components/Question/QuestionRow";
+import ExamplePanel from "../../../components/Question/ExamplePanel";
+import KeyNoteRow from "../../../components/Question/KeyNoteRow";
 
-const CATEGORY_COLORS = {
-	person: "#FCA5A5",
-	place: "#6EE7B7",
-	time: "#93C5FD",
-	reason: "#FCD34D",
-	thing: "#f59e0b",
-	manner: "#C4B5FD",
-	amount: "#6EE7B7",
-	select: "#93C5FD",
-	degree: "#FCA5A5",
-};
-
-const KEY_NOTES = [
-	{
-		note: "¿Por qué?",
-		detail:
-			"is why (question). Porque is because (answer). Two different spellings.",
-	},
-	{
-		note: "¿Cuál?",
-		detail:
-			"vs ¿Qué? — use Cuál when choosing from a set; Qué when asking for a definition.",
-	},
-	{
-		note: "¿Cuánto?",
-		detail: "changes gender: cuánto/cuánta/cuántos/cuántas to match the noun.",
-	},
-	{
-		note: "Accent mark",
-		detail:
-			"All question words carry an accent mark. Without it, they become conjunctions: que, como, cuando…",
-	},
-];
-
-// ─── COMPONENTS ───────────────────────────────────────────────────────────────
-
-function QuestionRow({ word, isActive, onClick }) {
-	const color = CATEGORY_COLORS[word.category] ?? "#f59e0b";
+function TableHeader() {
 	return (
-		<div
-			onClick={onClick}
-			className={`grid grid-cols-[1fr_2fr] lg:grid-cols-[140px_200px_1fr] gap-0 border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors duration-100 ${
-				isActive ? "bg-[var(--accent)]/5" : "hover:bg-[var(--surface)]"
-			}`}
-		>
-			{/* EN word */}
-			<div className="px-6 py-4 flex items-center gap-3 border-r border-[var(--border)]">
-				<span
-					className="w-1 h-full min-h-[20px] rounded-full flex-shrink-0"
-					style={{ background: color + "60" }}
-				/>
-				<span className="text-[13px] text-[var(--text-muted)]">{word.en}</span>
-			</div>
-
-			{/* ES word */}
-			<div
-				className={`px-6 py-4 flex items-center border-r border-[var(--border)] ${isActive ? "border-[#f59e0b]/20" : ""}`}
-			>
-				<span
-					className="text-[20px] font-light tracking-[-0.02em]"
-					style={{ color: isActive ? "#fafafa" : "#a1a1aa" }}
+		<div className="hidden lg:grid grid-cols-[140px_200px_1fr] border border-b-0 border-[var(--border)] rounded-t-2xl overflow-hidden bg-[var(--surface)]">
+			{["English", "Español", "Note — tap any row"].map((h) => (
+				<div
+					key={h}
+					className="px-6 py-3 border-r border-[var(--border)] last:border-0"
 				>
-					{word.es}
-				</span>
-			</div>
-
-			{/* Note + example (hidden on mobile unless active) */}
-			<div className="hidden lg:flex px-6 py-4 flex-col justify-center gap-1">
-				<span className="text-[11px] text-[var(--text-label)]">
-					{word.note}
-				</span>
-				{isActive && (
-					<div className="mt-1">
-						<span className="text-[13px] text-[var(--text-secondary)] italic">
-							{word.example}
-						</span>
-						<span className="text-[11px] text-[var(--text-muted)] ml-3">
-							— {word.ex_en}
-						</span>
-					</div>
-				)}
-			</div>
+					<span className="text-[9px] tracking-[0.16em] uppercase text-[var(--text-ghost)]">
+						{h}
+					</span>
+				</div>
+			))}
 		</div>
 	);
 }
-
-/* Mobile example panel shown below selected row */
-function ExamplePanel({ word }) {
-	if (!word) return null;
-	return (
-		<div className="lg:hidden border border-[#f59e0b]/20 bg-[var(--accent)]/5 rounded-xl px-5 py-4 mx-4 mb-2">
-			<p className="text-[11px] tracking-[0.1em] uppercase text-[var(--accent)]/60 mb-1">
-				{word.note}
-			</p>
-			<p className="text-[15px] font-light text-[var(--text-secondary)] italic">
-				{word.example}
-			</p>
-			<p className="text-[12px] text-[var(--text-muted)] mt-1">
-				— {word.ex_en}
-			</p>
-		</div>
-	);
-}
-
-function KeyNoteRow({ item }) {
-	return (
-		<div className="flex gap-4 py-3 border-b border-[var(--border)] last:border-0">
-			<span className="text-[13px] font-light text-[var(--accent)] w-28 flex-shrink-0">
-				{item.note}
-			</span>
-			<span className="text-[12px] text-[var(--text-muted)] leading-relaxed">
-				{item.detail}
-			</span>
-		</div>
-	);
-}
-
-// ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function QuestionWordsPage() {
 	const [activeIdx, setActiveIdx] = useState(0);
-
 	const toggle = (i) => setActiveIdx(activeIdx === i ? null : i);
 
 	return (
-		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
-			<div className="max-w-5xl mx-auto px-8 pt-16 pb-24">
-				{/* Header */}
-				<div className="mb-14">
-					<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
-						Grammar — A1 · Foundation
-					</p>
-					<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
-						Question Words
-					</h1>
-					<p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-lg">
-						12 WH-words. Every Spanish question starts with one of these —
-						always with an accent mark and opening ¿.
-					</p>
-				</div>
+		<PageWrapper>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Grammar" />
+				<PageHeader
+					title="Question Words"
+					es="Palabras interrogativas"
+					description="12 WH-words. Every Spanish question starts with one of these — always with an accent mark and opening ¿ →"
+				/>
+			</div>
 
-				{/* Column labels */}
-				<div className="hidden lg:grid grid-cols-[140px_200px_1fr] gap-0 mb-0 border border-b-0 border-[var(--border)] rounded-t-2xl overflow-hidden bg-[var(--surface)]">
-					{["English", "Español", "Note — tap any row"].map((h) => (
-						<div
-							key={h}
-							className="px-6 py-3 border-r border-[var(--border)] last:border-0"
-						>
-							<span className="text-[9px] tracking-[0.16em] uppercase text-[#27272a]">
-								{h}
-							</span>
-						</div>
-					))}
-				</div>
+			<div className="border-t border-[var(--border)] mb-10" />
 
-				{/* Question words table */}
-				<div className="border border-[var(--border)] rounded-b-2xl lg:rounded-t-none rounded-t-2xl bg-[var(--surface)] overflow-hidden mb-14">
+			{/* Question words table */}
+			<div className="mb-14">
+				<TableHeader />
+				<div className="border border-[var(--border)] rounded-2xl lg:rounded-t-none bg-[var(--surface)] overflow-hidden">
 					{QUESTION_WORDS.map((word, i) => (
 						<div key={word.es}>
 							<QuestionRow
@@ -270,31 +63,31 @@ export default function QuestionWordsPage() {
 						</div>
 					))}
 				</div>
-
-				{/* Key notes */}
-				<div className="border border-[var(--border)] rounded-2xl bg-[var(--surface)] overflow-hidden">
-					<div className="border-b border-[var(--border)] px-8 py-5">
-						<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-1">
-							Watch out for
-						</p>
-						<h2 className="text-xl font-light tracking-[-0.03em] text-[var(--text-primary)]">
-							Common confusions
-						</h2>
-					</div>
-					<div className="px-8 py-2">
-						{KEY_NOTES.map((n) => (
-							<KeyNoteRow key={n.note} item={n} />
-						))}
-					</div>
-				</div>
-
-				<BackNext
-					back="/a1/grammar/gustar"
-					next="/a1/grammar/negation"
-					backLabel="Gustar Verb"
-					nextLabel="Negation"
-				/>
 			</div>
-		</div>
+
+			{/* Key notes */}
+			<div className="border border-[var(--border)] rounded-2xl bg-[var(--surface)] overflow-hidden">
+				<div className="border-b border-[var(--border)] px-5 lg:px-8 py-5">
+					<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--text-label)] mb-1">
+						Watch out for
+					</p>
+					<h2 className="text-xl font-light tracking-[-0.03em] text-[var(--text-primary)]">
+						Common confusions
+					</h2>
+				</div>
+				<div className="px-5 lg:px-8 py-2">
+					{KEY_NOTES.map((n) => (
+						<KeyNoteRow key={n.note} item={n} />
+					))}
+				</div>
+			</div>
+
+			<BackNext
+				back="/a1/grammar/gustar"
+				next="/a1/grammar/negation"
+				backLabel="Gustar Verb"
+				nextLabel="Negation"
+			/>
+		</PageWrapper>
 	);
 }

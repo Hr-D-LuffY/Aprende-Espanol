@@ -97,7 +97,6 @@ const GRAMMAR_TOPICS = [
 	{ label: "Tener", to: "/a1/grammar/tener" },
 	{ label: "Gustar", to: "/a1/grammar/gustar" },
 	{ label: "Negation", to: "/a1/grammar/negation" },
-	{ label: "Contraction", to: "/a1/grammar/contraction" },
 	{ label: "Prepositions", to: "/a1/grammar/prepositions" },
 	{ label: "Regular Verbs", to: "/a1/grammar/regular-verbs" },
 	{ label: "Irregular Verbs", to: "/a1/grammar/irregular-verbs" },

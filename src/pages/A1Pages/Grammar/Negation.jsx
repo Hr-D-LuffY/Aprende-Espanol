@@ -1,153 +1,31 @@
 import { useState } from "react";
-import {
-	Eyebrow,
-	Card,
-	UsePill,
-	PageWrapper,
-} from "../../../components/VerbComponents";
-import BackNext from "../../../components/BackNext";
+import { BASIC_PAIRS, DOUBLE_NEG, QUESTION_NEG } from "../../../context/NegCon";
 
-// ── Reusable within this page ──
+import PageWrapper from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
+import Eyebrow from "../../../components/Eyebrow";
 
-function CompareRow({ positive, negative, en }) {
-	const [revealed, setRevealed] = useState(false);
-	return (
-		<div
-			onClick={() => setRevealed((r) => !r)}
-			className={`py-3 border-b border-[var(--border)] last:border-0 cursor-pointer transition-colors duration-150 rounded-sm
-                ${revealed ? "bg-[var(--accent)]/5 px-2 -mx-2" : "hover:bg-[var(--surface)]"}`}
-		>
-			<div className="flex items-start gap-3">
-				<span className="text-[10px] text-[#27272a] mt-1 w-3 shrink-0">+</span>
-				<p className="text-[12px] text-[var(--text-muted)] tracking-[-0.01em]">
-					{positive}
-				</p>
-			</div>
-			<div className="flex items-start gap-3 mt-1">
-				<span
-					className={`text-[10px] mt-1 w-3 shrink-0 transition-colors ${revealed ? "text-[var(--accent)]" : "text-[#27272a]"}`}
-				>
-					−
-				</span>
-				<p
-					className={`text-[13px] tracking-[-0.01em] transition-colors ${revealed ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
-				>
-					{negative}
-				</p>
-			</div>
-			<p
-				className={`text-[11px] tracking-wide mt-1 pl-6 transition-all duration-150
-                ${revealed ? "text-[var(--text-muted)] max-h-10" : "text-[#1c1c1f] max-h-0 overflow-hidden"}`}
-			>
-				{en}
-			</p>
-		</div>
-	);
-}
-
-function RuleBlock({ rule, example, note }) {
-	return (
-		<div className="py-4 border-b border-[var(--border)] last:border-0">
-			<p className="text-[12px] text-[var(--text-primary)] tracking-[-0.01em] mb-1">
-				{rule}
-			</p>
-			<p className="text-[11px] text-[var(--accent)] mb-1">{example}</p>
-			{note && (
-				<p className="text-[10px] text-[var(--text-label)] tracking-wide">
-					{note}
-				</p>
-			)}
-		</div>
-	);
-}
-
-// ── Data ──
-
-const BASIC_PAIRS = [
-	{
-		positive: "Yo hablo español.",
-		negative: "Yo no hablo español.",
-		en: "I don't speak Spanish.",
-	},
-	{
-		positive: "Tengo dinero.",
-		negative: "No tengo dinero.",
-		en: "I don't have money.",
-	},
-	{
-		positive: "Él tiene coche.",
-		negative: "Él no tiene coche.",
-		en: "He doesn't have a car.",
-	},
-	{
-		positive: "Me gusta el café.",
-		negative: "No me gusta el café.",
-		en: "I don't like coffee.",
-	},
-	{
-		positive: "Tienes novia.",
-		negative: "No tienes novia.",
-		en: "You don't have a girlfriend.",
-	},
-	{
-		positive: "Nos gusta la música.",
-		negative: "No nos gusta la música.",
-		en: "We don't like music.",
-	},
-];
-
-const DOUBLE_NEG = [
-	{
-		rule: "no + verb + nada",
-		example: "No tengo nada.",
-		note: "I have nothing. / I don't have anything.",
-	},
-	{
-		rule: "no + verb + nadie",
-		example: "No hay nadie aquí.",
-		note: "There is nobody here.",
-	},
-	{
-		rule: "no + verb + nunca",
-		example: "No hablo nunca.",
-		note: "I never speak.",
-	},
-	{
-		rule: "no + verb + ningún/ninguna",
-		example: "No tengo ningún problema.",
-		note: "I have no problem.",
-	},
-];
-
-const QUESTION_NEG = [
-	{ es: "¿No tienes dinero?", en: "Don't you have money?" },
-	{ es: "¿No te gusta?", en: "Don't you like it?" },
-	{ es: "¿No hablas español?", en: "Don't you speak Spanish?" },
-];
+import CompareRow from "../../../components/Negation/CompareRow";
+import RuleBlock from "../../../components/Negation/RuleBlock";
+import { Card } from "../../../components/VerbComponents";
 
 export default function NegationPage() {
 	const [activeQ, setActiveQ] = useState(null);
 
 	return (
 		<PageWrapper>
-
-			{/* Header */}
-			<div className="mb-12">
-				<Eyebrow>Grammar · Negation · Sentence structure</Eyebrow>
-				<div className="flex items-baseline gap-4 mb-3">
-					<h1 className="text-6xl font-light tracking-[-0.04em] text-[var(--text-primary)]">
-						negation
-					</h1>
-					<span className="text-[16px] text-[var(--text-muted)] font-light">
-						saying no
-					</span>
-				</div>
-				<div className="flex flex-wrap gap-2 mt-4">
-					{["no", "nada", "nadie", "nunca", "ningún"].map((u) => (
-						<UsePill key={u}>{u}</UsePill>
-					))}
-				</div>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Grammar" />
+				<PageHeader
+					title="Negation"
+					es="Negación"
+					description="Learn to say ‘no’ and create negative sentences →"
+				/>
 			</div>
+
+			<div className="border-t border-[var(--border)] mb-10" />
 
 			{/* Core rule */}
 			<Card className="mb-6 p-6">

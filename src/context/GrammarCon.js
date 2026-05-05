@@ -139,7 +139,7 @@ export const a1Topics = [
 	},
 	{
 		num: "15",
-		title: "Basic Prepositions",
+		title: "Prepositions",
 		tag: "daily life",
 		important: false,
 		preview: "Connect words and show relationships.",
@@ -148,20 +148,6 @@ export const a1Topics = [
 	},
 	{
 		num: "16",
-		title: "Contractions (al, del)",
-		tag: "syntax",
-		important: false,
-		preview: "Combine prepositions with articles.",
-		details: [
-			"a + el = al",
-			"de + el = del",
-			"Voy al mercado",
-			"Vengo del trabajo",
-		],
-		path: "/a1/grammar/contraction",
-	},
-	{
-		num: "17",
 		title: "Present Tense (Regular Verbs)",
 		tag: "verbs",
 		important: true,
@@ -170,7 +156,7 @@ export const a1Topics = [
 		path: "/a1/grammar/regular-verbs",
 	},
 	{
-		num: "18",
+		num: "17",
 		title: "Irregular Verbs (Core)",
 		tag: "verbs",
 		important: true,

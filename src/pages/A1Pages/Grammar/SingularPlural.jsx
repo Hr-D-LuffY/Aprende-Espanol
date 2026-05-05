@@ -1,41 +1,18 @@
 import { useState } from "react";
-import BackNext from "../../../components/BackNext";
+import RULES from "../../../context/SinPluCon";
 
-// ── Shared primitives ──────────────────────────────────────────────────────
+import PageWrapper from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
+import TabBar from "/src/components/TabBar";
 
-function Eyebrow({ children }) {
-	return (
-		<p className="text-[10px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-5">
-			{children}
-		</p>
-	);
-}
-
-function TabBar({ tabs, active, onChange }) {
-	return (
-		<div className="flex gap-1 border border-[var(--border)] rounded-lg p-1 w-fit mb-8 flex-wrap">
-			{tabs.map((t) => (
-				<button
-					key={t.id}
-					onClick={() => onChange(t.id)}
-					className="px-4 py-1.5 rounded-md text-[11px] font-semibold tracking-widest transition-all duration-200 cursor-pointer"
-					style={
-						active === t.id ?
-							{ background: "#f59e0b", color: "#09090b" }
-						:	{ background: "transparent", color: "#52525b" }
-					}
-				>
-					{t.label}
-				</button>
-			))}
-		</div>
-	);
-}
+// ── WordPair ──────────────────────────────────────────────────────────────────
 
 function WordPair({ from, to }) {
 	return (
-		<div className="flex items-center gap-3 py-3 border-b border-[var(--border)] last:border-b-0 group">
-			<span className="text-[13px] text-[var(--text-secondary)] w-32">
+		<div className="flex items-center gap-3 py-3 border-b border-[var(--border)] last:border-b-0">
+			<span className="text-[13px] text-[var(--text-secondary)] w-28 sm:w-32 shrink-0">
 				{from}
 			</span>
 			<span className="text-[var(--text-label)] text-[11px]">→</span>
@@ -44,34 +21,36 @@ function WordPair({ from, to }) {
 	);
 }
 
+// ── RuleCard ──────────────────────────────────────────────────────────────────
+
 function RuleCard({ rule }) {
 	return (
 		<div>
 			{/* Rule header */}
-			<div className="flex items-start gap-4 mb-6">
-				<div className="border border-[#f59e0b]/30 bg-[var(--accent)]/5 rounded-lg px-3 py-1.5 shrink-0">
-					<span className="text-[13px] font-semibold text-[var(--accent)] tracking-wide">
+			<div className="flex items-start gap-3 sm:gap-4 mb-6">
+				<div className="border border-[#f59e0b]/30 bg-[var(--accent)]/5 rounded-lg px-2.5 sm:px-3 py-1.5 shrink-0">
+					<span className="text-[12px] sm:text-[13px] font-semibold text-[var(--accent)] tracking-wide">
 						{rule.pattern}
 					</span>
 				</div>
 				<div>
-					<p className="text-[14px] text-[var(--text-secondary)] leading-snug mb-1">
+					<p className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] leading-snug mb-1">
 						{rule.title}
 					</p>
-					<p className="text-[12px] text-[var(--text-muted)] leading-relaxed">
+					<p className="text-[11px] sm:text-[12px] text-[var(--text-muted)] leading-relaxed">
 						{rule.desc}
 					</p>
 				</div>
 			</div>
 
 			{/* Word pairs */}
-			<div className="border border-[var(--border)] rounded-xl px-5 bg-[var(--surface)]">
+			<div className="border border-[var(--border)] rounded-xl px-4 sm:px-5 bg-[var(--surface)]">
 				{rule.pairs.map((p, i) => (
 					<WordPair key={i} {...p} />
 				))}
 			</div>
 
-			{/* Exception note if any */}
+			{/* Exception note */}
 			{rule.note && (
 				<div className="mt-4 border border-[var(--border)] rounded-xl p-4 bg-[var(--surface)]">
 					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-1">
@@ -86,60 +65,9 @@ function RuleCard({ rule }) {
 	);
 }
 
-// ── Content ────────────────────────────────────────────────────────────────
 
-const RULES = [
-	{
-		id: "rule1",
-		label: "Rule 1",
-		pattern: "vowel + S",
-		title: "Nouns ending in a vowel → add -S",
-		desc: "Most Spanish nouns end in a vowel. Simply append -s to form the plural.",
-		pairs: [
-			{ from: "libro", to: "libros" },
-			{ from: "casa", to: "casas" },
-			{ from: "pollo", to: "pollos" },
-			{ from: "chica", to: "chicas" },
-			{ from: "mesa", to: "mesas" },
-			{ from: "amigo", to: "amigos" },
-		],
-		note: null,
-	},
-	{
-		id: "rule2",
-		label: "Rule 2",
-		pattern: "consonant + ES",
-		title: "Nouns ending in a consonant → add -ES",
-		desc: "When a noun ends in any consonant (other than Z), add -es to form the plural.",
-		pairs: [
-			{ from: "árbol", to: "árboles" },
-			{ from: "doctor", to: "doctores" },
-			{ from: "animal", to: "animales" },
-			{ from: "hotel", to: "hoteles" },
-			{ from: "ciudad", to: "ciudades" },
-			{ from: "papel", to: "papeles" },
-		],
-		note: "Nouns ending in -s or -x with an unstressed final syllable don't change: el lunes → los lunes.",
-	},
-	{
-		id: "rule3",
-		label: "Rule 3",
-		pattern: "Z → CES",
-		title: "Nouns ending in -Z → change to -CES",
-		desc: "The Z softens to C before the plural ending -es. The spelling changes but the sound is consistent.",
-		pairs: [
-			{ from: "luz", to: "luces" },
-			{ from: "pez", to: "peces" },
-			{ from: "voz", to: "voces" },
-			{ from: "nariz", to: "narices" },
-			{ from: "vez", to: "veces" },
-			{ from: "cruz", to: "cruces" },
-		],
-		note: "The accent mark is sometimes added or dropped when the stress pattern shifts: lápiz → lápices.",
-	},
-];
 
-// ── Page ──────────────────────────────────────────────────────────────────
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SingularPluralPage() {
 	const [activeTab, setActiveTab] = useState("rule1");
@@ -147,85 +75,57 @@ export default function SingularPluralPage() {
 	const activeRule = RULES.find((r) => r.id === activeTab);
 
 	return (
-		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
-			<div className="max-w-5xl mx-auto px-8 pt-24 pb-20">
-				{/* Header */}
-				<Eyebrow>Grammar · A1</Eyebrow>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
-					Singular → Plural
-				</h1>
-				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-12 max-w-lg">
-					Spanish plurals follow three consistent rules based on the final
-					letter of the word. Learn the pattern, not the exceptions.
-				</p>
-
-				{/* Quick reference strip */}
-				<div className="grid grid-cols-3 border border-[var(--border)] rounded-xl overflow-hidden mb-12">
-					{RULES.map((r) => (
-						<button
-							key={r.id}
-							onClick={() => setActiveTab(r.id)}
-							className="p-4 flex flex-col gap-1 border-r border-[var(--border)] last:border-r-0 text-left cursor-pointer transition-colors duration-150"
-							style={
-								activeTab === r.id ?
-									{ background: "#111113" }
-								:	{ background: "transparent" }
-							}
-						>
-							<span
-								className="text-[11px] font-semibold tracking-widest"
-								style={
-									activeTab === r.id ?
-										{ color: "#f59e0b" }
-									:	{ color: "#3f3f46" }
-								}
-							>
-								{r.label}
-							</span>
-							<span className="text-[12px] text-[var(--text-muted)]">
-								{r.pattern}
-							</span>
-						</button>
-					))}
-				</div>
-
-				{/* Tab bar */}
-				<TabBar
-					tabs={RULES.map((r) => ({ id: r.id, label: r.label }))}
-					active={activeTab}
-					onChange={setActiveTab}
-				/>
-
-				{/* Active rule */}
-				<RuleCard rule={activeRule} />
-
-				{/* Bottom note */}
-				<div className="mt-14 border-t border-[var(--border)] pt-8">
-					<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-3">
-						Summary
-					</p>
-					<div className="flex flex-col gap-2">
-						{RULES.map((r) => (
-							<div key={r.id} className="flex items-center gap-4">
-								<span className="text-[11px] text-[var(--accent)] w-28 shrink-0">
-									{r.pattern}
-								</span>
-								<span className="text-[12px] text-[var(--text-muted)]">
-									{r.title}
-								</span>
-							</div>
-						))}
-					</div>
-				</div>
-
-				{/* Back & Next link */}
-				<BackNext
-					back="/a1/grammar/noun-gender"
-					next="/a1/grammar/article"
-					backLabel="Noun-Gender"
-					nextLabel="Article"
+		<PageWrapper>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Grammar" />
+				<PageHeader
+					title="Singular & Plural"
+					es="Singular y Plural"
+					description="Spanish plurals follow three consistent rules based on the final
+					letter of the word. Learn the pattern, not the exceptions →"
 				/>
 			</div>
-		</div>
+
+			<div className="border-t border-[var(--border)] mb-10" />
+
+			{/* Tab bar */}
+			<TabBar
+				tabs={RULES.map((r) => ({ id: r.id, label: r.label }))}
+				activeTab={activeTab}
+				onSwitch={setActiveTab}
+			/>
+
+			{/* Active rule */}
+			<RuleCard rule={activeRule} />
+
+			{/* Summary */}
+			<div className="mt-14 border-t border-[var(--border)] pt-8">
+				<p className="text-[10px] tracking-[0.14em] uppercase text-[var(--text-label)] mb-3">
+					Summary
+				</p>
+				<div className="flex flex-col gap-2">
+					{RULES.map((r) => (
+						<div
+							key={r.id}
+							className="flex items-start sm:items-center gap-3 sm:gap-4"
+						>
+							<span className="text-[11px] text-[var(--accent)] w-28 shrink-0">
+								{r.pattern}
+							</span>
+							<span className="text-[12px] text-[var(--text-muted)]">
+								{r.title}
+							</span>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<BackNext
+				back="/a1/grammar/noun-gender"
+				next="/a1/grammar/article"
+				backLabel="Noun-Gender"
+				nextLabel="Article"
+			/>
+		</PageWrapper>
 	);
 }

@@ -31,7 +31,6 @@ import EstarPage from "./pages/A1Pages/Grammar/EstarPage.jsx";
 import TenerPage from "./pages/A1Pages/Grammar/TenerPage.jsx";
 import GustarPage from "./pages/A1Pages/Grammar/GustarPage.jsx";
 import NegationPage from "./pages/A1Pages/Grammar/Negation.jsx";
-import ContractionPage from "./pages/A1Pages/Grammar/Contractionpage.jsx";
 import PrepositionPage from "./pages/A1Pages/Grammar/Prepositionpage.jsx";
 import TimePage from "./pages/A1Pages/Usage/TimePage.jsx";
 import DaysMonthsPage from "./pages/A1Pages/Usage/DaysMonthPage.jsx";
@@ -81,7 +80,6 @@ const App = () => (
 						<Route path="tener" element={<TenerPage />} />
 						<Route path="gustar" element={<GustarPage />} />
 						<Route path="negation" element={<NegationPage />} />
-						<Route path="contraction" element={<ContractionPage />} />
 						<Route path="prepositions" element={<PrepositionPage />} />
 						<Route path="regular-verbs" element={<RegularVerbsPage />} />
 						<Route path="irregular-verbs" element={<IrregularVerbsPage />} />

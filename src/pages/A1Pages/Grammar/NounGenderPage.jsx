@@ -7,6 +7,12 @@ import {
 	EXCEPTIONS,
 } from "../../../context/NounCon.js";
 
+import PageWrapper from "../../../components/PageWrapper";
+import PageHeader from "../../../components/PageHeader";
+import PageReference from "../../../components/PageReference";
+import BackNext from "/src/components/BackNext.jsx";
+import Eyebrow from "../../../components/Eyebrow";
+
 import RuleTag from "../../../components/NounGender/RuleTag.jsx";
 import WordCard from "../../../components/NounGender/WordCard.jsx";
 import WordGrid from "../../../components/NounGender/WordGrid.jsx";
@@ -14,7 +20,6 @@ import RuleBlock from "../../../components/NounGender/RuleBlock.jsx";
 import InfoNote from "../../../components/NounGender/InfoNote.jsx";
 import PairTable from "../../../components/NounGender/PairTable.jsx";
 import GenderDot from "../../../components/NounGender/GenderDot.jsx";
-import BackNext from "../../../components/BackNext.jsx";
 
 const TABS = [
 	{ id: "masculine", label: "Masculine" },
@@ -27,6 +32,32 @@ function SectionLabel({ children }) {
 		<p className="text-[10px] tracking-[0.16em] uppercase text-[var(--accent)]/80 mb-3 mt-8">
 			{children}
 		</p>
+	);
+}
+
+// ── GENDER BADGE (inline helper, used in ChangingPanel) ──────────────────────
+
+function GenderBadge({ gender }) {
+	const isM = gender === "M";
+	return (
+		<span
+			className="text-[10px] px-1.5 py-0.5 rounded-full border"
+			style={
+				isM ?
+					{
+						color: "#60a5fa",
+						borderColor: "rgba(96,165,250,0.3)",
+						background: "rgba(96,165,250,0.08)",
+					}
+				:	{
+						color: "#f472b6",
+						borderColor: "rgba(244,114,182,0.3)",
+						background: "rgba(244,114,182,0.08)",
+					}
+			}
+		>
+			{gender}
+		</span>
 	);
 }
 
@@ -100,7 +131,8 @@ function ChangingPanel() {
 						⚡ Exceptions — surprising genders
 					</span>
 				</div>
-				<div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-[#1c1c1f]">
+				{/* MOBILE FIX: 1-col on mobile → 2-col on sm → 3-col on lg */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1c1c1f]">
 					{EXCEPTIONS.map((exc) => (
 						<div
 							key={exc.es}
@@ -110,24 +142,7 @@ function ChangingPanel() {
 								<span className="text-[13px] text-[var(--text-primary)]">
 									{exc.es}
 								</span>
-								<span
-									className="text-[10px] px-1.5 py-0.5 rounded-full border"
-									style={
-										exc.gender === "M" ?
-											{
-												color: "#60a5fa",
-												borderColor: "rgba(96,165,250,0.3)",
-												background: "rgba(96,165,250,0.08)",
-											}
-										:	{
-												color: "#f472b6",
-												borderColor: "rgba(244,114,182,0.3)",
-												background: "rgba(244,114,182,0.08)",
-											}
-									}
-								>
-									{exc.gender}
-								</span>
+								<GenderBadge gender={exc.gender} />
 							</div>
 							<p className="text-[10px] text-[var(--text-label)] tracking-[0.04em] mb-0.5">
 								{exc.pron}
@@ -162,27 +177,27 @@ export default function NounGenderPage() {
 	const [activeTab, setActiveTab] = useState("masculine");
 
 	return (
-		<div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] font-mono">
-			<div className="max-w-5xl mx-auto px-8 pt-16 pb-24">
-				{/* Header */}
-				<p className="text-[11px] tracking-[0.18em] uppercase text-[var(--text-label)] mb-4">
-					Reference — A1 · Grammar · Noun Gender
-				</p>
-				<h1 className="text-5xl font-light tracking-[-0.04em] text-[var(--text-primary)] mb-3">
-					Noun Gender
-				</h1>
-				<p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-8 tracking-wide max-w-lg">
-					Every Spanish noun is Masculine or Feminine — even objects and things
-					have gender.
-				</p>
+		<PageWrapper>
+			<div className="mb-10">
+				<PageReference reference="A1" topic="Grammar" />
+				<PageHeader
+					title="Noun Gender"
+					es="Género de sustantivos"
+					description="Every Spanish noun is Masculine or Feminine — even objects and things
+					have gender →"
+				/>
+			</div>
 
-				{/* Tabs */}
-				<div className="flex gap-0 border-b border-[var(--border)] mb-9">
+			<div className="border-t border-[var(--border)] mb-10" />
+
+			{/* Tabs — MOBILE FIX: scrollable on narrow screens */}
+			<div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+				<div className="flex gap-0 border-b border-[var(--border)] mb-9 min-w-max sm:min-w-0">
 					{TABS.map((tab) => (
 						<button
 							key={tab.id}
 							onClick={() => setActiveTab(tab.id)}
-							className={`px-5 py-2.5 text-[11px] tracking-[0.12em] uppercase border-b-2 -mb-px transition-colors duration-150 cursor-pointer bg-transparent
+							className={`px-5 py-2.5 text-[11px] tracking-[0.12em] uppercase border-b-2 -mb-px transition-colors duration-150 cursor-pointer bg-transparent whitespace-nowrap
                 ${
 									activeTab === tab.id ?
 										"text-[var(--accent)] border-[#f59e0b]"
@@ -193,20 +208,20 @@ export default function NounGenderPage() {
 						</button>
 					))}
 				</div>
-
-				{/* Panels */}
-				{activeTab === "masculine" && <MasculinePanel />}
-				{activeTab === "feminine" && <FemininePanel />}
-				{activeTab === "changing" && <ChangingPanel />}
-
-				{/* Back & Next link */}
-				<BackNext
-					back="/a1/pronunciation"
-					next="/a1/grammar/singular-plural"
-					backLabel="Pronunciation"
-					nextLabel="Singular-Plural"
-				/>
 			</div>
-		</div>
+
+			{/* Panels */}
+			{activeTab === "masculine" && <MasculinePanel />}
+			{activeTab === "feminine" && <FemininePanel />}
+			{activeTab === "changing" && <ChangingPanel />}
+
+			{/* Back & Next link */}
+			<BackNext
+				back="/a1/pronunciation"
+				next="/a1/grammar/singular-plural"
+				backLabel="Pronunciation"
+				nextLabel="Singular-Plural"
+			/>
+		</PageWrapper>
 	);
 }

@@ -89,9 +89,9 @@ export default function RegularVerbsPage() {
 				/>
 
 				<BackNext
-					back="/a1/grammar/contraction"
+					back="/a1/grammar/prepositions"
 					next="/a1/grammar/irregular-verbs"
-					backLabel="Contraction"
+					backLabel="Prepositions"
 					nextLabel="Irregular Verbs"
 				/>
 			</div>
