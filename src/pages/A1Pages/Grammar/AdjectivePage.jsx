@@ -118,7 +118,7 @@ export default function AdjectivePage() {
 					title="Adjective"
 					es="Adjetivos"
 					description="Unlike English, Spanish adjectives must match the gender and number of
-					the noun they describe. Three rules cover almost every case"
+					the noun they describe. Three rules cover almost every case →"
 				/>
 			</div>
 

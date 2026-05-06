@@ -64,5 +64,10 @@ const POSSESSIVES = [
 		],
 	},
 ];
+const PERSON_COLOR = {
+	"1st": "#f59e0b",
+	"2nd": "#a1a1aa",
+	"3rd": "#52525b",
+};
 
-export default POSSESSIVES;
+export { POSSESSIVES, PERSON_COLOR };
