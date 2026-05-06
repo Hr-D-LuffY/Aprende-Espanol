@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 
@@ -48,6 +49,7 @@ export const supabase = createClient(
 const App = () => (
 	<ThemeProvider>
 		<BrowserRouter>
+			<ScrollToTop />
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />

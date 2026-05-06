@@ -3,7 +3,7 @@ import { supabase } from "../App";
 
 import PageWrapper from "../components/PageWrapper.jsx";
 import PageHeader from "../components/PageHeader.jsx";
-import { Card } from "../components/VerbComponents";
+import Card from "../components/Card.jsx";
 
 import SkeletonCard from "../components/Vocab & Phrases/SkeletonCard.jsx";
 import Modal from "../components/Vocab & Phrases/Modal.jsx";

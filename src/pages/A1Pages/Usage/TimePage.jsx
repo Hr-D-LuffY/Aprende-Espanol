@@ -14,7 +14,7 @@ import BackNext from "/src/components/BackNext.jsx";
 import Eyebrow from "../../../components/Eyebrow";
 
 import ExPair from "/src/components/Usage/ExPair.jsx";
-import { Card } from "../../../components/VerbComponents";
+import Card from "../../../components/Card";
 
 function RuleChip({ label, value, accent }) {
 	return (

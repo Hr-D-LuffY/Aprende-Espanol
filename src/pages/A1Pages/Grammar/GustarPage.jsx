@@ -12,7 +12,7 @@ import BackNext from "/src/components/BackNext.jsx";
 import Eyebrow from "../../../components/Eyebrow";
 
 import ConjRow from "../../../components/Verb/ConjRow";
-import { Card } from "../../../components/VerbComponents";
+import Card from "../../../components/Card";
 
 export default function GustrarPage() {
 	const [activeEx, setActiveEx] = useState(null);

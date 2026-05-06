@@ -9,7 +9,7 @@ import Eyebrow from "../../../components/Eyebrow";
 
 import CompareRow from "../../../components/Negation/CompareRow";
 import RuleBlock from "../../../components/Negation/RuleBlock";
-import { Card } from "../../../components/VerbComponents";
+import Card from "../../../components/Card";
 
 export default function NegationPage() {
 	const [activeQ, setActiveQ] = useState(null);

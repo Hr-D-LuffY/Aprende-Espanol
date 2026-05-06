@@ -20,7 +20,7 @@ import LocCard from "../../../components/Usage/LocCard.jsx";
 import VocabPill from "../../../components/Usage/VocabPill.jsx";
 import KeyRule from "../../../components/Usage/KeyRule.jsx";
 import Eyebrow from "../../../components/Eyebrow.jsx";
-import { Card } from "../../../components/VerbComponents";
+import Card from "../../../components/Card";
 
 export default function LocationPage() {
 	const [activePrep, setActivePrep] = useState(0);

@@ -10,7 +10,8 @@ import PageReference from "../../../components/PageReference";
 import BackNext from "/src/components/BackNext.jsx";
 import Eyebrow from "../../../components/Eyebrow";
 
-import { Card } from "../../../components/VerbComponents";
+import Card from "../../../components/Card";
+
 import ConjRow from "../../../components/Verb/ConjRow";
 export default function TenerPage() {
 	const [activeEx, setActiveEx] = useState(null);
