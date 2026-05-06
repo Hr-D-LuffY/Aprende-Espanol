@@ -11,7 +11,7 @@ export const a1Topics = [
 			"-ción / -dad → feminine",
 			"Common exceptions: mano, día",
 		],
-		path: "noun-gender",
+		path: "/a1/grammar/noun-gender",
 	},
 	{
 		num: "02",
@@ -20,7 +20,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Make nouns plural and match articles.",
 		details: ["libro → libros", "ciudad → ciudades"],
-		path: "singular-plural",
+		path: "/a1/grammar/singular-plural",
 	},
 	{
 		num: "03",
@@ -29,7 +29,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Articles must match the noun's gender.",
 		details: ["el / la", "los / las", "un / una"],
-		path: "article",
+		path: "/a1/grammar/article",
 	},
 
 	{
@@ -39,7 +39,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Adjectives must match gender and number.",
 		details: ["chico alto / chica alta", "libros rojos"],
-		path: "adjective",
+		path: "/a1/grammar/adjective",
 	},
 	{
 		num: "05",
@@ -48,7 +48,7 @@ export const a1Topics = [
 		important: true,
 		preview: "Who is doing the action.",
 		details: ["yo, tú, él, ella", "nosotros/as", "ellos/as", "Often dropped"],
-		path: "pronouns",
+		path: "/a1/grammar/pronouns",
 	},
 	{
 		num: "06",

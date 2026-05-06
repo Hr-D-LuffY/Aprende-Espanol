@@ -25,7 +25,7 @@ import SingularPluralPage from "./pages/A1Pages/Grammar/SingularPlural.jsx";
 import PronounsPage from "./pages/A1Pages/Grammar/Pronoun.jsx";
 import DemonstrativePage from "./pages/A1Pages/Grammar/Demonstrativepage.jsx";
 import QuestionWordsPage from "./pages/A1Pages/Grammar/Questionwordspage.jsx";
-import SentenceStructurePage from "./pages/A1Pages/Grammar/SentenceStructurepage.jsx";
+import SentenceStructurePage from "./pages/A1Pages/Grammar/Sentencestructurepage.jsx";
 import PossessiveAdjPage from "./pages/A1Pages/Grammar/PossesiveAdj.jsx";
 import SerPage from "./pages/A1Pages/Grammar/SerPage.jsx";
 import EstarPage from "./pages/A1Pages/Grammar/EstarPage.jsx";
