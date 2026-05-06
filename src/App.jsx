@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 
-import { ThemeProvider } from "./context/ThemeContext.jsx";
+import { ThemeProvider } from "./context/Themecontext.jsx";
 
 import LandingPage from "./pages/LandingPage.jsx";
 import GrammarPage from "./pages/GrammarPage.jsx";
