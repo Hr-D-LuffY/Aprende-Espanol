@@ -18,7 +18,8 @@ import KeyRule from "../../../components/Usage/KeyRule";
 import ExPair from "../../../components/Usage/ExPair";
 import WeekStrip from "../../../components/Usage/WeekStrip";
 import MonthGrid from "../../../components/Usage/MonthGrid";
-import { Eyebrow, Card } from "../../../components/VerbComponents";
+import Eyebrow from "../../../components/Eyebrow";
+import Card from "../../../components/Card";
 
 export default function DaysMonthsPage() {
 	const [activeMonth, setActiveMonth] = useState(null);
