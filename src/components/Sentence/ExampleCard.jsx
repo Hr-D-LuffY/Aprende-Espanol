@@ -1,3 +1,5 @@
+import SlotPill from "./SlotPill";
+
 export default function ExampleCard({ ex, activeSlot }) {
 	return (
 		<div className="border border-[var(--border)] rounded-xl bg-[var(--bg)] p-5">
