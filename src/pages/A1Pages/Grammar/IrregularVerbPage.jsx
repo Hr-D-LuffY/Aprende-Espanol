@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../../App";
 
-import {
-	IRREGULAR_CATEGORIES,
-} from "../../../context/IrregVerbCon";
+import { IRREGULAR_CATEGORIES } from "../../../context/IrregVerbCon";
 
 import PageWrapper from "../../../components/PageWrapper";
 import PageHeader from "../../../components/PageHeader";
@@ -35,7 +33,7 @@ function CategoryDescription({ category }) {
 }
 
 export default function IrregularVerbsPage() {
-	const [activeCategory, setActiveCategory] = useState("go_verb");
+	const [activeCategory, setActiveCategory] = useState("irregular_full");
 	const [verbsByCategory, setVerbsByCategory] = useState(
 		Object.fromEntries(Object.keys(IRREGULAR_CATEGORIES).map((k) => [k, null])),
 	);
