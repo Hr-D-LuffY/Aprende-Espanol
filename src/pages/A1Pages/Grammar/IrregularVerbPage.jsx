@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../../App";
 
 import {
-	TABS,
 	IRREGULAR_CATEGORIES,
-	CONJUGATION_PATTERNS,
 } from "../../../context/IrregVerbCon";
 
 import PageWrapper from "../../../components/PageWrapper";
@@ -66,8 +64,7 @@ export default function IrregularVerbsPage() {
 	}
 
 	const currentVerbs = verbsByCategory[activeCategory];
-	const activeType =
-		currentVerbs?.[0]?.type?.replace("-", "").toLowerCase() ?? TABS[0].id;
+	const activeType = currentVerbs?.[0]?.type?.replace("-", "").toLowerCase();
 
 	return (
 		<PageWrapper>

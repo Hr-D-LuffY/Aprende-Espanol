@@ -1,10 +1,11 @@
-const TABS = [
-	{ id: "ar", label: "-AR", patternVerb: "hablar", stem: "habl" },
-	{ id: "er", label: "-ER", patternVerb: "comer", stem: "com" },
-	{ id: "ir", label: "-IR", patternVerb: "vivir", stem: "viv" },
-];
-
 const IRREGULAR_CATEGORIES = {
+	irregular_full: {
+		label: "Fully Irregular",
+		description:
+			"Every form is unpredictable — no pattern, no rules. Must be memorized completely.",
+		example: "ir → voy, vas, va, vamos, vais, van",
+	},
+
 	go_verb: {
 		label: "Go Verbs",
 		description: 'Yo form ends in "-go", rest conjugate normally.',
@@ -15,21 +16,6 @@ const IRREGULAR_CATEGORIES = {
 		description:
 			"Only the yo form is irregular; all other forms follow regular patterns.",
 		example: "saber → sé",
-	},
-	spelling_change_GUIR: {
-		label: "Spelling: -GUIR",
-		description: 'Drop the "u" in yo form to preserve the hard G sound.',
-		example: "distinguir → distingo",
-	},
-	spelling_change_GER_GIR: {
-		label: "Spelling: -GER/-GIR",
-		description: 'Yo form changes G → J to preserve the soft sound before "o".',
-		example: "coger → cojo",
-	},
-	spelling_change_CER_CIR: {
-		label: "Spelling: -CER/-CIR",
-		description: 'Yo form changes C → ZC before "o".',
-		example: "conocer → conozco",
 	},
 	stem_IE: {
 		label: "Stem: E → IE",
@@ -49,33 +35,28 @@ const IRREGULAR_CATEGORIES = {
 			"Stem vowel E changes to I in all forms except nosotros and vosotros. Only -IR verbs.",
 		example: "pedir → pido",
 	},
+		spelling_change_CER_CIR: {
+		label: "Spelling: -CER/-CIR",
+		description: 'Yo form changes C → ZC before "o".',
+		example: "conocer → conozco",
+	},
+	spelling_change_GUIR: {
+		label: "Spelling: -GUIR",
+		description: 'Drop the "u" in yo form to preserve the hard G sound.',
+		example: "distinguir → distingo",
+	},
+	spelling_change_GER_GIR: {
+		label: "Spelling: -GER/-GIR",
+		description: 'Yo form changes G → J to preserve the soft sound before "o".',
+		example: "coger → cojo",
+	},
+
+	spelling_change_UAR_IAR: {
+		label: "Stress-Shift Verbs",
+		description:
+			"Stem vowel u or i takes an accent mark in all forms except nosotros and vosotros.",
+		example: "enviar → envío, envías, envía, enviamos, enviáis, envían",
+	},
 };
 
-const CONJUGATION_PATTERNS = {
-	ar: [
-		{ pronoun: "yo", ending: "o" },
-		{ pronoun: "tú", ending: "as" },
-		{ pronoun: "él/ella", ending: "a" },
-		{ pronoun: "nosotros", ending: "amos" },
-		{ pronoun: "vosotros", ending: "áis" },
-		{ pronoun: "ellos", ending: "an" },
-	],
-	er: [
-		{ pronoun: "yo", ending: "o" },
-		{ pronoun: "tú", ending: "es" },
-		{ pronoun: "él/ella", ending: "e" },
-		{ pronoun: "nosotros", ending: "emos" },
-		{ pronoun: "vosotros", ending: "éis" },
-		{ pronoun: "ellos", ending: "en" },
-	],
-	ir: [
-		{ pronoun: "yo", ending: "o" },
-		{ pronoun: "tú", ending: "es" },
-		{ pronoun: "él/ella", ending: "e" },
-		{ pronoun: "nosotros", ending: "imos" },
-		{ pronoun: "vosotros", ending: "ís" },
-		{ pronoun: "ellos", ending: "en" },
-	],
-};
-
-export { TABS, IRREGULAR_CATEGORIES, CONJUGATION_PATTERNS };
+export { IRREGULAR_CATEGORIES };
