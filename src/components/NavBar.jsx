@@ -120,10 +120,10 @@ const A1_SECTIONS = [
 	{
 		label: "Usage",
 		children: [
+			{ label: "Location", to: "/a1/usage/location" },
 			{ label: "Numbers", to: "/a1/usage/numbers" },
 			{ label: "Time", to: "/a1/usage/time" },
 			{ label: "Days & Months", to: "/a1/usage/days-months" },
-			{ label: "Location", to: "/a1/usage/location" },
 		],
 	},
 ];
